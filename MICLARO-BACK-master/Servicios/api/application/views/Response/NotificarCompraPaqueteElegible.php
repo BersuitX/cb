@@ -1,0 +1,21 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="Claro.SelfCareManagement.Services.Entities.Contracts" xmlns:clar1="http://schemas.datacontract.org/2004/07/Claro.SelfCareManagement.Services.Entities.Messages">
+   <soapenv:Header>
+      <clar:HeaderAutenticacion>
+         <clar1:contraseñaAutenticacion>Mi2018ClaroCo*$Vvosfj1kohp3.$Vbroibcc3co3</clar1:contraseñaAutenticacion>
+         <clar1:tipoCanalID>1</clar1:tipoCanalID>
+         <clar1:usuarioAutenticacion>Mi$2019.$Vduuglj0unse*$1C$Vk33bzuipr3e$0</clar1:usuarioAutenticacion>
+      </clar:HeaderAutenticacion>
+   </soapenv:Header>
+   <soapenv:Body>
+      <clar:NotificarCompraPaqueteElegibleRequest>
+         <clar:notificarCompraPaqueteElegible>
+            <clar1:codigoContrato><?=$Vbi52g5o1eft?></clar1:codigoContrato>
+            <clar1:customerID><?=$Vcvlfnerdmzp?></clar1:customerID>
+            <clar1:nombrePaquete><?=$V1wzxnfxx4e0?></clar1:nombrePaquete>
+            <clar1:numeroCuenta><?=$V3hbf4so4iko?></clar1:numeroCuenta>
+            <clar1:valor><?=$Vcnpu22u3frv?></clar1:valor>
+            <clar1:vigencia>-</clar1:vigencia>
+         </clar:notificarCompraPaqueteElegible>
+      </clar:NotificarCompraPaqueteElegibleRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

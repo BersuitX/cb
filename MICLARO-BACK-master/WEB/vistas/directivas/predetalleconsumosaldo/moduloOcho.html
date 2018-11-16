@@ -1,0 +1,86 @@
+<div block-ui="HistPaquetes" style="overflow:hidden">
+    <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25">
+        Paquetes adquiridos: <span class="ttc">{{meanterior(1)}}</span>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3  col-lg-4 col-lg-offset-4">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 pt10 pb10 mt0">
+            <div class="col-xs-8 cgraybold">
+                Número móvil
+            </div>
+            <div class="col-xs-4 cred">
+                {{OpSelec.prepago}}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 fs20 tac clila mt1p pb25">
+        <div class="col-xs-12 tac fwbbold clila mt1p">
+            Podrá visualizar los paquetes adquiridos <br> durante el mes anterior
+        </div>
+    </div>
+    <!-- Contenedor -->
+    <div>
+        <div class="col-xs-12 col-md-10 col-md-offset-2 p0 mt25">
+            <div class="row">
+                <div class="col-md-12">
+                    <dic class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-3 ml10 tal fs14 bslb br5all mt10 mb10" ng-repeat="item in Histpaquetes | orderBy:'FECHA' " style="min-height:165px;min-width:300px">
+                            <div class="col-xs-12 clila fwbbold pl15 mt20 pb15 pt0" ng-if="item.DESCRIPCION!=0">
+                                {{item.DESCRIPCION}}
+                            </div>
+                            <div class="col-xs-12 clila mt20 fwbbold p15" ng-if="item.DESCRIPCION==0">
+                                <br>
+                            </div>
+                            <div class="col-xs-12 p0 mb5 hidden-md hidden-lg">
+                                <div class="col-xs-8 tal cgraybold">
+                                    Costo paquete
+                                </div>
+                                <div class="col-xs-4 tar cgraybold  fwbbold">
+                                    <div class="col-xs-12" ng-if="item.COSTO!=0">
+                                        {{item.COSTO | currency:'$':0}}
+                                    </div>
+                                    <div class="col-xs-12" ng-if="item.COSTO_TARJETA!=0">
+                                        {{item.COSTO_TARJETA | currency:'$':0}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 p0 mb5 hidden-md hidden-lg">
+                                <div class="col-xs-7 tal cgraybold">
+                                    Fecha activación
+                                </div>
+                                <div class="col-xs-5 pr10 tar cgraybold  fwbbold">
+                                    {{item.FECHA}}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 p0 mb5 hidden-sm hidden-xs">
+                                <div class="col-xs-8 tal cgraybold">
+                                    Costo paquete
+                                </div>
+                                <div class="col-xs-4 tar cgraybold  fwbbold">
+                                    <div class="col-xs-12" ng-if="item.COSTO!=0">
+                                        {{item.COSTO | currency:'$':0}}
+                                    </div>
+                                    <div class="col-xs-12" ng-if="item.COSTO_TARJETA!=0">
+                                        {{item.COSTO_TARJETA | currency:'$':0}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 p0 mb5 hidden-sm hidden-xs">
+                                <div class="col-xs-8 tal cgraybold">
+                                    Fecha activación
+                                </div>
+                                <div class="col-xs-4 tar cgraybold  fwbbold">
+                                    {{item.FECHA}}
+                                </div>
+                            </div>
+                        </div>
+                    </dic>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-4 tac pt15 pb15 mb5p mt2p cpointer bclilalight cwhite" ng-click="changeModulo(4)">
+                        Volver
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

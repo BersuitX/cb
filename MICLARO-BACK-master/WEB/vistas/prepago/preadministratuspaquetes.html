@@ -1,0 +1,10 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<div class="col-xs-12 p0" block-ui="blockadministraTusPaquetes">
+    <pre-administra-paquetes-uno ng-if="vista == 1"></pre-administra-paquetes-uno>
+    <pre-administra-paquetes-dos ng-if="vista == 2"></pre-administra-paquetes-dos>
+</div>

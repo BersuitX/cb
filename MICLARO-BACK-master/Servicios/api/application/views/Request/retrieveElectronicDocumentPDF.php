@@ -1,0 +1,21 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.americamovil.com/schema/namespace/BillingManagement/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <v1:retrieveElectronicDocumentPDF>
+            <LineOfBusiness><?=$Vrqs4xzp4h4g?></LineOfBusiness>
+            <UserProfileId></UserProfileId>
+            <AccountId><?=$V3hbf4so4iko?></AccountId>
+            <!--Optional:-->
+            <BillReference><?=$Vso0v3gigkru?></BillReference>
+            <!--Optional:-->
+            <DocumentPeriod>
+            <StartDate><?=$V33cbrzompkj?></StartDate>
+            <!--Optional:-->
+            <EndDate><?=$Vnmwtpaqdyce?></EndDate>
+            </DocumentPeriod>
+            <PDFDocumentType>1</PDFDocumentType>
+            <!--Optional:-->
+            <PDFType>1</PDFType>
+        </v1:retrieveElectronicDocumentPDF>
+    </soapenv:Body>
+</soapenv:Envelope>

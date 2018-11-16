@@ -1,0 +1,12 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<div class="col-xs-12 p0" block-ui="gpstemplate">
+    <datoscompartidosinfofg ng-if="modulo==1"></datoscompartidosinfofg>
+    <datoscompartidoseditareliminarfg ng-if="modulo==2"></datoscompartidoseditareliminarfg>
+    <datoscompartidosagregafg ng-if="modulo==3"></datoscompartidosagregafg>
+    <activardesactivarfg ng-if="modulo==4"></activardesactivarfg>
+</div>

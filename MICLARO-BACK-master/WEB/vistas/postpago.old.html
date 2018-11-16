@@ -1,0 +1,332 @@
+<!-- iframe chat -->
+<script>
+    var URLactual = window.location;
+    console.log(URLactual.pathname);
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<div class="pfixed ng-scope r0 b380 zi1 bcgraychat w304 pt5 pb5 pl6" ng-if="chat == 1">
+    <img src="/Images/cancellila.png" class="zi1 b390 r227 h25 w25 cpointer outlinenone" ng-click="showchat()" ng-if="chat == 1"></img>
+</div>
+<iframe src="https://www.miclaroapp.com.co/archivos/chatPostpago.html?name=Claro&email=Claro" class="pfixed zi1 b0 r0 h380 bcgraylight " ng-if="chat == 1"></iframe>
+
+<!-- Detalle del plan prepago -->
+<script type="text/ng-template" id="popupdesasociarproducto.html">
+    <div class="col-xs-12" block-ui="desasociarproductoblockui">
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+        </div>
+        <div>
+            <div class="col-xs-12 tac fwbbold fs30 mt3p cgraybold">Desasociar Cuenta</div>
+            <div class="col-xs-12 tac fs15 mt2p cgraybold">Se desasociará la siguiente cuenta de tu aplicación: </div>
+            <div class="col-xs-12 tac fs18 mt2p cblack fwbbold">{{cuenta}}</div>
+            <div class="col-xs-8 col-xs-offset-2 tac fs18 mt2p cblack fwbbold">
+                ¿Estás seguro?
+            </div>
+            <div class="col-xs-8 col-xs-offset-2 bgcorange cwhite pt10 pb10 fs18 tac cpointer mb8p mt30" ng-click="clicsesaciarcuenta()" role="button" tabindex="0">
+                Desasociar
+            </div>
+        </div>
+        <div class="cb"></div>
+    </div>
+    <div class="cb"></div>
+</script>
+
+<!-- Historial Imei's -->
+<script type="text/ng-template" id="popuphistorialimeipostpagoCtrl.html">
+    <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img></div>
+    <div class="col-xs-12 mh200"  block-ui="HistorialImei">
+        <div class="col-xs-12 tac fwbbold fs30 mt3p cgraybold mb3p">
+            IMEIs registrados
+        </div>
+        <div class="col-xs-12 p0 max-h600 ofy">
+            <div class="col-xs-12 tac fwbbold fs16 mt3p cblack" ng-repeat="item in HistorialImei">
+                {{item}}
+                <div class="col-xs-12 p0 bbcgray mt3p"></div>
+            </div>
+        </div>
+        <div class="cb"></div>
+    </div>
+    <div class="cb"></div>
+</script>
+
+<!-- Contenedor -->
+<div class="col-xs-12 col-md-10 col-md-offset-1 p0" block-ui="block" ng-if="notieneproducto.length > 0">
+    <div id="showcerrarsesion" class="mr10 cpointer ttc tac cgraybold mt15 hidden-md hidden-lg" ng-if="nombreUserClaro != ''">
+        Bienvenido(<sapn class="ttl">a</sapn>), {{nombreUserClaro | lowercase}}
+    </div>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3  col-lg-4 col-lg-offset-4">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 bc1graylight pt10 pb10 mt25">
+            <div class="col-xs-3 p0 clila fs15 RobotoRegular">Número:</div>
+            <div class="col-xs-9">
+                <select class="corange bn outlinenone col-xs-12 talast bcwhite hidden-xs" ng-model="OpSelec.postpago" ng-change="validar()">
+                  <option value="">-- Seleccione --</option>
+                  <option value="{{item.AccountId}}" ng-repeat="item in Us.cuentas" ng-if="item.LineOfBusiness == 3">{{item.alias}}</option>
+                </select>
+
+                <md-select class="corange bn outlinenone col-xs-12 talast bcwhite m0 hidden-sm hidden-md hidden-lg" aria-label="Follow" ng-model="OpSelec.postpago" ng-change="validar()">
+                    <md-option value="">-- Seleccione --</md-option>
+                    <md-option value="{{item.AccountId}}" ng-repeat="item in Us.cuentas" ng-if="item.LineOfBusiness == 3">{{item.alias}}</md-option>
+                </md-select>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contenedor -->
+    <!-- Formulario Compra de paquetes y recargas-->
+    <div id="mainContentPaquetesRecargas"></div>
+    <style>
+        form {
+            display: none
+        }
+    </style>
+    
+    <!-- Contenedor Dashboard Card-->
+    <div class="col-xs-12 p0" ng-show="ShowDash == 1">
+        <div class="col-xs-12 p0 mt25">
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_detalleplan');fcninterna('DetallePlanPostpago')">
+                <div class="col-xs-12 h140 bcgraylight tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0 mt15contenticoncarddash">
+                        <img src="/Images/detalleplanGray.png" class="ma mt19 img-responsive"></img>
+                    </div>
+
+                    <div class="col-xs-12 p0 cgraybold fwbbold fs16 mt10">
+                        Detalle de tu plan
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_ConsumoDatos');fcninterna('ConsumoDeDatosPostpago')">
+                <div class="col-xs-12 h140 bclilalight tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0">
+                        <img src="/Images/Consumodedatos.png" class="ma mt19 img-responsive"></img>
+                    </div>
+                    <div class="col-xs-12 p0 cwhite fwbbold fs16 mt10">
+                        Consumo de datos
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobil -->
+            <div class="col-xs-12 hidden-md hidden-lg">
+                <div class="h4"></div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_administratufactura');fcninterna('PagaTuFacturaPostpago')">
+                <div class="col-xs-12 h140 bgcorange tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0">
+                        <img src="/Images/pagatufactura.png" class="ma mt19 img-responsive"></img>
+                    </div>
+                    <div class="col-xs-12 p0 cwhite fwbbold fs16 mt10">
+                        Administra tu factura
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-xs-6 col-md-3 outlinenone">
+                <div class="col-xs-12 h140 bcgraylight tac cpointer" ng-click="Tagging('Postpago','bt_pos_ini_paquetesyrecargas');compradepaquetes()">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0">
+                        <img src="/Images/RecargasGris.png" class="ma mt15 img-responsive w64"></img>
+                    </div>
+                    <div class="col-xs-12 p0">
+                        <div class="cgraybold  fs15 mt5">
+                            Compra de
+                        </div>
+                        <div class="cgraybold fwbbold fs16">
+                            Paquetes y Recargas
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="col-xs-12 mt25 mb25">
+            <div class="col-xs-12 bc1graylight pt10 pb10 tac cpointer outlinenone" ng-click="Tagging('Postpago','Postpago_Chateaconnosotros');showchat()">
+                <div class="col-xs-12 col-md-8 col-md-offset-2 p0">
+                    <div class="col-xs-3 col-xs-offset-1 col-sm-offset-2 col-md-2 col-md-offset-3 p0">
+                        <img src="/Images/tools.png" class="ma w41"></img>
+                    </div>
+                    <div class="col-xs-8 col-md-7 p0 fs19 corange fwbbold mt5 tal"><span>Chatea con nosotros</span></div>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="col-xs-12 p0 mbbil13 mt25">
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_registratuselegidosclaro');fcninterna('ElegidosTodoDestino')">
+                <div class="col-xs-12 h140 bcgraylight tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0">
+                        <img src="/Images/RegistrototodestinoGray.png" class="ma mt15 img-responsive w66"></img>
+                    </div>
+                    <div class="col-xs-12 p0">
+                        <div class="cgraybold  fs15 mt5">
+                            Administra tus
+                        </div>
+                        <div class="cgraybold fwbbold fs16">
+                            Elegidos todo destino
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_cambiatunumeroclaro');fcninterna('CambioDeNumeroPostpago')">
+                <div class="col-xs-12 h140 bclilalight tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0">
+                        <img src="/Images/Casmbiatunumeroclaro.png" class="ma mt7 img-responsive"></img>
+                    </div>
+                    <div class="col-xs-12 p0">
+                        <div class="cwhite fs15 mt5">
+                            Cambia tu
+                        </div>
+                        <div class="cwhite fwbbold fs16">
+                            Número Claro
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobil -->
+            <div class="col-xs-12 hidden-md hidden-lg">
+                <div class="h4"></div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_cdatvozsms_detalle_cdatvozsms');fcninterna('ConsumoDeVozPostpago')">
+                <div class="col-xs-12 h140 bcgraylight tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0">
+                        <img src="/Images/Consumdevozroamingsms.png" class="ma mt7 img-responsive"></img>
+                    </div>
+                    <div class="col-xs-12 p0">
+                        <div class="cgraybold  fs15 mt5">
+                            Consumos de
+                        </div>
+                        <div class="cgraybold fwbbold fs16">
+                            Voz, Roaming y SMS.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_registratuimei');fcninterna('RegistrarIMEI')">
+                <div class="col-xs-12 h140 bclilalight tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0">
+                        <img src="/Images/Registratuemai.png" class="ma mt19 img-responsive ma h60"></img>
+                    </div>
+                    <div class="col-xs-12 p0">
+                        <div class="cwhite fs15 mt5">
+                            Registra tu
+                        </div>
+                        <div class="cwhite fwbbold fs16">
+                            IMEI
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 p0 mt25">
+
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','Postpago_Vermovimientosdelacuenta');fcninterna('MovimientosDeLaCuentaPostpago')">
+                <div class="col-xs-12 h140 bclilalight tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5 p0">
+                        <img src="/Images/MovimientosCuenta.png" class="ma mt19 img-responsive"></img>
+                    </div>
+                    <div class="col-xs-12 p0">
+                        <div class="cwhite fs15 mt5">
+                            Ver movimientos
+                        </div>
+                        <div class="cwhite fwbbold fs16">
+                            de la cuenta
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="fcninterna('CambiaTuPlanPostpago')">
+                <div class="col-xs-12 p0 h140 bcgraylight tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0 mt15contenticoncarddash">
+                        <img src="/Images/CambioPlan.png" class="ma mt6 img-responsive"></img>
+                    </div>
+                    <div class="col-xs-12 p0 cgraybold fwbbold fs16">
+                        Cambio de plan
+                    </div>
+                </div>
+            </div>
+            -->
+            
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','Postpago_Datoscompartidos');fcninterna('DatosFamiliayamigos')">
+                <div class="col-xs-12 h140 bcgraylight tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 p0">
+                        <img src="/Images/icon_datoscompartidos_gris.png" class="ma mt19 img-responsive"></img>
+                    </div>
+                    <div class="col-xs-12 p0">
+                        <div class="cgraybold fs15 mt5">
+                            Familia y
+                        </div>
+                        <div class="cgraybold fwbbold fs16">
+                            Amigos
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobil -->
+            <div class="col-xs-12 hidden-md hidden-lg">
+                <div class="h4"></div>
+            </div>
+            
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','Postpago_Datoscompartidos');fcninterna('DatosCompartidos')">
+                <div class="col-xs-12 h140 bgcorange tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5 p0">
+                        <img src="/Images/DatosCompartidos.png" class="ma mt19 img-responsive"></img>
+                    </div>
+                    <div class="col-xs-12 p0">
+                        <div class="cwhite fs15 mt5">
+                            Datos
+                        </div>
+                        <div class="cwhite fwbbold fs16">
+                            Compartidos
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','Postpago_HistorialImeis');popuphistorialimeipostpagoCtrl()">
+                <div class="col-xs-12 h140 bclilalight tac cpointer">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5 p0">
+                        <img src="/Images/historialemeipostpago.png" class="ma mt19 img-responsive"></img>
+                    </div>
+                    <div class="col-xs-12 p0">
+                        <div class="cwhite fs15 mt5">
+                            IMEIs
+                        </div>
+                        <div class="cwhite fwbbold fs16">
+                            registrados
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xs-12 p0 mt25">
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_desasociarcuenta');desasociarproducto()">
+                <div class="col-xs-12 h140 bcwhite tac cpointer bc1red">
+                    <img src="/Images/icon_desasociarcuenta_blanco.png" class="mt22"></img>
+                    <div class="corange fwbbold fs16 mt10">
+                        Desasociar cuenta
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xs-12 mt25 mb25">
+            <a href="{{Target}}" target="_Blank" ng-click="Tagging('Postpago','bt_pos_ini_bannerpublicitario')">
+            <img ng-src="{{BannerImg}}" class="pull-right img-responsive w100p"></img>
+        </a>
+        </div>
+    </div>
+
+</div>
+
+<!-- No hay productos -->
+<asociar-producto></asociar-producto>

@@ -1,0 +1,129 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<!-- Modal Terminos y condiciones legalizacion -->
+    <script type="text/ng-template" id="popupalias.html">
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+        </div>
+        <div class="col-xs-12 mb30 ">
+            <div class="col-xs-12 tac fs17 mt30 cgraybold">
+                Define un nombre para tu cuenta
+            </div>
+            <div class="col-xs-12 tac fs20 mb3 mt3 fwbbold cblack">
+                {{datos.AccountId}}
+            </div>
+            <div class="col-xs-12 tac fs17 cgraybold">
+                Que recuerdes fácilmente
+            </div>
+            <div class="col-xs-12 mt1p">
+                <input type="text" placeholder="Nombre servicio" class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3 fs17 p7 fs20 mb10 mt10 fwbbold cblack tac outlinenone bnfocusounder" ng-model="dataalidos.alias" maxlength="30" aria-invalid="false" style="">
+            </div>
+            <div class="col-xs-12 tac fs17 cgraybold">
+                Pedes actualizarlo en
+            </div>
+            <div class="col-xs-12 tac fs17 cgraybold">
+                cualquier momento
+            </div>
+            <div class="col-xs-12 mt25">
+                <div class="col-xs-6">
+                    <div class="col-xs-12 bcgraydark cwhite pt10 pb10 fs18 tac cpointer mb8p" ng-click="Tagging('Mi_claro','bt_ini_personalizarcuentas_cancelar');cancel()" role="button" tabindex="0">
+                        Cancelar
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="col-xs-12 bgcorange cwhite pt10 pb10 fs18 tac cpointer mb8p" ng-click="Tagging('Mi_claro','bt_ini_personalizarcuentas_aceptar');ok()" role="button" tabindex="0">
+                        Aceptar
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cb"></div>
+    </script>
+<div class="col-xs-12 p0" block-ui="blockDir">
+    
+    <!-- Primera pantalla -->
+    <div class="col-xs-12 p0">
+        <div class="col-xs-12 p0 fs40 fwbbold tac cgraybold mt25">
+            Personaliza tus servicios
+        </div>
+    </div>
+    <div class="col-xs-12 p0">
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4 p0 fs17 tac cgraybold mt25 mb30">
+            ¡Cada una de tus cuentas es única! Personaliza tus servicios con el nombre que más te guste.
+        </div>
+    </div>
+    <div class="col-xs-12 p0 mb20">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 p0 fs17" ng-if="linePrepago.length != 0">
+            <div class="col-xs-12 bcgraylight fwbbold cblack fs18 pt7 pb7">
+                Prepago
+            </div>
+            <div class="col-xs-12 bbgraybold pt7 pb7 cgraybold fwbbold fs18" ng-repeat="item in linePrepago">
+                <div class="col-xs-7 col-md-8 p0 pt5" ng-if="item.alias === item.AccountId">
+                    Sin nombre
+                </div>
+                <div class="col-xs-7 col-md-8 p0 pt5" ng-if="item.alias != item.AccountId">
+                    {{item.alias}}
+                </div>
+                <div class="col-xs-5 col-md-4 p0">
+                    <div class="col-xs-8 col-md-6 p0 pt5">
+                        {{item.AccountId}}
+                    </div>
+                    <div class="col-xs-4 col-md-6 p0">
+                        <img src="/Images/IconEdit.png" class="cpointer outlinenone ma pull-right w32" ng-click="editarAlias(item);Tagging('Mi_claro','bt_ini_personalizarcuentas_agregar')"></img>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 p0 fs17" ng-if="linePotspago.length != 0">
+            <div class="col-xs-12 bcgraylight fwbbold cblack fs18 pt7 pb7">
+                Postpago
+            </div>
+            <div class="col-xs-12 bbgraybold pt7 pb7 cgraybold fwbbold fs18" ng-repeat="item in linePotspago">
+                <div class="col-xs-7 col-md-8 p0 pt5" ng-if="item.alias === item.AccountId">
+                    Sin nombre
+                </div>
+                <div class="col-xs-7 col-md-8 p0 pt5" ng-if="item.alias != item.AccountId">
+                    {{item.alias}}
+                </div>
+                <div class="col-xs-5 col-md-4 p0">
+                    <div class="col-xs-8 col-md-6 p0 pt5">
+                        {{item.AccountId}}
+                    </div>
+                    <div class="col-xs-4 col-md-6 p0">
+                        <img src="/Images/IconEdit.png" class="cpointer outlinenone ma pull-right w32" ng-click="editarAlias(item)"></img>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 p0 fs17" ng-if="lineHogar.length != 0">
+            <div class="col-xs-12 bcgraylight fwbbold cblack fs18 pt7 pb7" ng-if="Us.usuario.DocumentType != 5">
+                Hogar
+            </div>
+            <div class="col-xs-12 bcgraylight fwbbold cblack fs18 pt7 pb7" ng-if="Us.usuario.DocumentType == 5">
+                Pyme
+            </div>
+            <div class="col-xs-12 bbgraybold pt7 pb7 cgraybold fwbbold fs18" ng-repeat="item in lineHogar">
+                <div class="col-xs-7 col-md-8 p0 pt5" ng-if="item.alias === item.AccountId">
+                    Sin nombre
+                </div>
+                <div class="col-xs-7 col-md-8 p0 pt5" ng-if="item.alias != item.AccountId">
+                    {{item.alias}}
+                </div>
+                <div class="col-xs-5 col-md-4 p0">
+                    <div class="col-xs-8 col-md-6 p0 pt5">
+                        {{item.AccountId}}
+                    </div>
+                    <div class="col-xs-4 col-md-6 p0">
+                        <img src="/Images/IconEdit.png" class="cpointer outlinenone ma pull-right w32" ng-click="editarAlias(item)"></img>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-xs-offset-5 tac p0 cpointer bclilalight cwhite mt10 mb20 pt10 pb10 fs17" ng-click="cambioModulo(1)">
+            Volver
+        </div>
+    </div>
+</div>

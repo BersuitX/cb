@@ -1,0 +1,160 @@
+<script>
+    var URLactual = window.location;
+    if (URLactual.pathname.indexOf('.') != -1) {
+        window.location.href = "/";
+    }
+</script>
+<!-- Modal Terminos y condiciones -->
+<script type="text/ng-template" id="terminoscondiciones.html">
+    <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+    </div>
+    <div class="col-xs-12 tac fwbbold fs21 cgraybold">Terminos y condiciones</div>
+    <div class="col-xs-12 max-h360 tac fs15 mt2p mb4p cgraybold ofy">
+        Claro te permite hacer el cambio de tu número móvil sin costo. El nuevo número móvil quedará habilitado en las siguientes 6 horas finalizada la solicitud para lo cual debes apagar y prender nuevamente tu equipo móvil. Una vez finalizado el proceso te
+        informaremos cuál es tu nuevo número móvil para que disfrutes de los servicios que Claro tiene para ti. Finalizada la solicitud no se podrá reversar el cambio de tu número móvil. En caso de requerir un nuevo cambio de número móvil podrás hacerlo
+        pasados 30 días.
+    </div>
+    <div class="cb"></div>
+</script>
+
+<!-- Modal Cambio de número -->
+<script type="text/ng-template" id="cambiodenumero.html">
+    <div class="col-xs-12" block-ui="blockcambiodenumero">
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+        </div>
+        <div class="col-xs-12 tac fwbbold fs21 cgraybold tac">
+            <img src="/Images/Miclaro.png"></img>
+        </div>
+
+        <div class="col-xs-12 tac fs15 mt2p cgraybold"><strong>¿Deseas cambiar tu número actual</strong></div>
+        <div class="col-xs-12 tac fs15 mt1p cgraybold"><strong>{{OpSelec.postpago}}</strong>?</div>
+
+        <div class="col-xs-8 col-xs-offset-2 fs17 bcgraylight h1 fs18 mt4p"></div>
+
+        <div class="col-xs-12 mt3p">
+            <div class="fwbbold fs18 tac">¡Recuerda!</div>
+            <div class="cgraybold fs15 tac mt3p">El número asignado será aleatorio, irreversible y solo se puede</div>
+            <div class="cgraybold fs15 tac mt1p">hacer una vez cada 30 días</div>
+        </div>
+
+        <div class="col-xs-12 p0">
+            <div class="col-xs-12 col-md-8 col-md-offset-2 mt6p mb6p">
+                <div class="col-xs-6 pl0">
+                    <div class="col-xs-12 bcgraymouse cwhite tac pt10 pb10 fs18 tac cpointer" ng-click="cancel()">
+                        Cancelar
+                    </div>
+                </div>
+
+                <div class="col-xs-6 pr0 bgcorange cwhite tac pt10 pb10 fs18 tac cpointer" ng-click="nuevonumero()">
+                    Cambiar número
+                </div>
+            </div>
+        </div>
+        <div class="cb"></div>
+    </div>
+    <div class="cb"></div>
+</script>
+
+<div class="col-xs-12 p0" block-ui="block">
+
+    <div class="col-xs-12" ng-show="seccion == 1">
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25">
+            Cambio de número
+        </div>
+
+        <!-- Mobil -->
+        <div class="col-xs-12 hidden-md hidden-lg">
+            <div class="h4"></div>
+        </div>
+
+        <div class="col-xs-12 tac fs15 fwbbold clilalight">
+            <div class="">En Claro, puedes cambiar el número de tu</div>
+            <div>móvil, no importa el motivo.</div>
+        </div>
+
+        <!-- Mobil -->
+        <div class="col-xs-12 hidden-md hidden-lg">
+            <div class="h4"></div>
+        </div>
+
+        <div class="col-xs-12 col-md-6 col-md-offset-3 cgraylight fs12">
+            <div class="col-xs-12">
+                <div class="col-xs-1 col-md-1 col-md-offset-1 tac">
+                    <img src="/Images/Point.png"></img>
+                </div>
+                <div class="col-xs-10">Ten en cuenta que el nuevo número te será asignado aleatoriamente y no puedes personalizarlo.</div>
+                <!--<div class="col-xs-1 col-md-1 col-md-offset-1 tac"></div>
+                <div class="col-xs-10">personalizarlo.</div>-->
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-1 col-md-1 col-md-offset-1 tac"><img src="/Images/Point.png"></img>
+                </div>
+                <div class="col-xs-10">El número asignado será aleatorio, irreversible y solo se puede hacer una vez cada 30 días.</div>
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-1 col-md-1 col-md-offset-1 tac"><img src="/Images/Point.png"></img>
+                </div>
+                <div class="col-xs-10">Este servicio no tiene ningún costo.</div>
+            </div>
+        </div>
+
+        <!-- Mobil -->
+        <div class="col-xs-12 hidden-md hidden-lg">
+            <div class="h4"></div>
+        </div>
+
+        <!-- Contenedor -->
+        <div class="col-xs-12 p0">
+            <div class="col-xs-12 col-md-6 col-md-offset-3 p0 bcgraylight mt20">
+                <div class="col-xs-12 mt5p fs13">
+                    <div class="col-xs-9 col-md-8 col-md-offset-1 fwbbold">Quiero suscribirme al servicio de redireccionamiento de llamada.</div>
+                    <div class="col-xs-3 p0">
+                        <md-switch ng-model="CambioNumero.Redireccionamiento"></md-switch>
+                    </div>
+                </div>
+                <div class="col-xs-12 mt2p fs13">
+                    <div class="col-xs-9 col-md-8 col-md-offset-1 fwbbold tdul cpointer outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_cambionum_aceptoterminos');terminoscondiciones()">Acepto los Términos y Condiciones del uso de este servicio.</div>
+                    <div class="col-xs-3 p0">
+                        <md-switch ng-model="CambioNumero.Terminos"></md-switch>
+                    </div>
+                </div>
+                <div class="col-xs-12 mt4p mb5p">
+                    <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 pr0 bgcorange cwhite tac pt10 pb10 fs16 tac cpointer" ng-click="Tagging('Postpago','bt_pos_ini_cambionum_cambiarnumero');open()">
+                        Cambiar Número
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12" ng-show="seccion == 0">
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25">
+            Cambio de número
+        </div>
+
+        <div class="col-xs-12 fs20 tac mt3p">
+            <strong>
+                ¡Listo! Tu nuevo número es:
+            </strong>
+        </div>
+
+        <div class="col-xs-12 fs40 fwbbold corange tac">
+            {{numeroAsignado}}
+        </div>
+
+        <div class="col-xs-12 mt6p">
+            <img src="/Images/Reiniciar.png" class="img-responsive ma"></img>
+        </div>
+
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 bgcorange cwhite pt10 pb10 fs18 tac mt10p cpointer outlinenone" ng-click="reload()">
+            Terminar proceso
+        </div>
+
+        <!-- <div class="col-xs-12 mt6p">
+            <img src="/Images/Shared.png" class="img-responsive ma"></img>
+            <div class="col-xs-12 tac cgraylight fs15 mt2p">Comparte tu número</div>
+            <div class="col-xs-12 tac cgraylight fs15">Con tus amigos</div>
+        </div> -->
+    </div>
+
+</div>

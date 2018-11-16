@@ -1,0 +1,744 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<!-- Historial de consumos -->
+<script type="text/ng-template" id="postopenhistorialconsumospre.html">
+    <div class="col-xs-12 bc1graylight mh316 max-h750 ofh ofy" block-ui="blockconsumos">
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+        </div>
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mb25">
+            Historial de consumos
+        </div>
+        <div class="cred fs18 mt3p tac" ng-if="Consumos.length == 0">No se encontraron consumos</div>
+
+        <div class="col-xs-12 p0" ng-if="Consumos.length > 0">
+            <div class="col-xs-10 col-xs-offset-1 cgraybold fwbbold fs18 tac mb15">
+                Seleccione el tipo de consumo
+            </div>
+
+            <!-- Desktop -->
+            <div class="col-md-10 col-md-offset-1 hidden-xs hidden-sm p0 cgraybold fwbbold fs18 tac mb25">
+                <div class="col-xs-2 col-xs-offset-1">
+                    <div class="col-xs-12 p0 tac outline0 {{SelectdTipoConsumo == 5 ? 'bgcorange' : 'bcgraylight' }}" ng-click="Tagging('Prepago','bt_pre_ini_resumencta_consumomes_otros');SelectdTipoConsumo = 5;validar(SelectdTipoConsumo)">
+                        <img ng-src="{{SelectdTipoConsumo == 5 && '/Images/TotalesInAc.png' || '/Images/TotalesIn.png'}}" class="ma mt16 cpointer outlinenone w32"></img>
+                        <div class="fs12 mt7 {{SelectdTipoConsumo == 5 ? 'cwhite' : 'cgraylight' }}">Totales</div>
+                    </div>  
+                </div>
+                <div class="col-xs-2">
+                    <div class="col-xs-12 p0 tac outline0 {{SelectdTipoConsumo == 1 ? 'bgcorange' : 'bcgraylight' }}" ng-click="Tagging('Prepago','bt_pre_ini_resumencta_consumomes_msjes');SelectdTipoConsumo = 1;validar(SelectdTipoConsumo)">
+                        <img ng-src="{{SelectdTipoConsumo == 1 && '/Images/DatosAcAc.png' || '/Images/DatosAc.png'}}" class="ma mt24 cpointer outlinenone w32"></img>
+                        <div class="fs12 mt7 {{SelectdTipoConsumo == 1 ? 'cwhite' : 'cgraylight' }}">Datos</div>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="col-xs-12 p0 tac outline0 {{SelectdTipoConsumo == 2 ? 'bgcorange' : 'bcgraylight' }}" ng-click="Tagging('Prepago','bt_pre_ini_resumencta_consumomes_llamada');SelectdTipoConsumo = 2;validar(SelectdTipoConsumo)">
+                        <img ng-src="{{SelectdTipoConsumo == 2 && '/Images/LlamadasInAc.png' || '/Images/LlamadasIn.png'}}" class="ma mt16 cpointer outlinenone w32"></img>
+                        <div class="fs12 mt7 {{SelectdTipoConsumo == 2 ? 'cwhite' : 'cgraylight' }}">Llamadas</div>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="col-xs-12 p0 tac outline0 {{SelectdTipoConsumo == 3 ? 'bgcorange' : 'bcgraylight' }}" ng-click="Tagging('Prepago','bt_pre_ini_resumencta_consumomes_datos');SelectdTipoConsumo = 3;validar(SelectdTipoConsumo)">
+                        <img ng-src="{{SelectdTipoConsumo == 3 && '/Images/MensajesInAc.png' || '/Images/MensajesIn.png'}}" class="ma mt16 cpointer outlinenone w32"></img>
+                        <div class="fs12 mt7 {{SelectdTipoConsumo == 3 ? 'cwhite' : 'cgraylight' }}">Mensajes</div>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="col-xs-12 p0 tac outline0 {{SelectdTipoConsumo == 4 ? 'bgcorange' : 'bcgraylight' }}" ng-click="Tagging('Prepago','bt_pre_ini_resumencta_consumomes_totales');SelectdTipoConsumo = 4;validar(SelectdTipoConsumo)">
+                        <img ng-src="{{SelectdTipoConsumo == 4 && '/Images/OtrosInAc.png' || '/Images/OtrosIn.png'}}" class="ma mt15 cpointer outlinenone w32"></img>
+                        <div class="fs12 mt7 {{SelectdTipoConsumo == 4 ? 'cwhite' : 'cgraylight' }}">Otros</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobil -->
+            <div class="col-xs-12 hidden-md hidden-lg col-md-10 col-md-offset-1 p0 cgraybold fwbbold fs18 tac mb25">
+                <div class="col-xs-2 col-xs-offset-1 p0">
+                    <div class="col-xs-12 p0 tac outline0 {{SelectdTipoConsumo == 5 ? 'bgcorange' : 'bcgraylight' }}" ng-click="Tagging('Prepago','bt_pre_ini_resumencta_consumomes_otros');SelectdTipoConsumo = 5;validar(SelectdTipoConsumo)">
+                        <img ng-src="{{SelectdTipoConsumo == 5 && '/Images/TotalesInAc.png' || '/Images/TotalesIn.png'}}" class="ma mt16 cpointer outlinenone w32"></img>
+                        <div class="fs12 mt7 {{SelectdTipoConsumo == 5 ? 'cwhite' : 'cgraylight' }}">Totales</div>
+                    </div>  
+                </div>
+                <div class="col-xs-2 p0 pl1">
+                    <div class="col-xs-12 p0 tac outline0 {{SelectdTipoConsumo == 1 ? 'bgcorange' : 'bcgraylight' }}" ng-click="Tagging('Prepago','bt_pre_ini_resumencta_consumomes_msjes');SelectdTipoConsumo = 1;validar(SelectdTipoConsumo)">
+                        <img ng-src="{{SelectdTipoConsumo == 1 && '/Images/DatosAcAc.png' || '/Images/DatosAc.png'}}" class="ma mt24 cpointer outlinenone w32"></img>
+                        <div class="fs12 mt7 {{SelectdTipoConsumo == 1 ? 'cwhite' : 'cgraylight' }}">Datos</div>
+                    </div>
+                </div>
+                <div class="col-xs-2 p0 pl1">
+                    <div class="col-xs-12 p0 tac outline0 {{SelectdTipoConsumo == 2 ? 'bgcorange' : 'bcgraylight' }}" ng-click="Tagging('Prepago','bt_pre_ini_resumencta_consumomes_llamada');SelectdTipoConsumo = 2;validar(SelectdTipoConsumo)">
+                        <img ng-src="{{SelectdTipoConsumo == 2 && '/Images/LlamadasInAc.png' || '/Images/LlamadasIn.png'}}" class="ma mt16 cpointer outlinenone w32"></img>
+                        <div class="fs12 mt7 {{SelectdTipoConsumo == 2 ? 'cwhite' : 'cgraylight' }}">Llamadas</div>
+                    </div>
+                </div>
+                <div class="col-xs-2 p0 pl1">
+                    <div class="col-xs-12 p0 tac outline0 {{SelectdTipoConsumo == 3 ? 'bgcorange' : 'bcgraylight' }}" ng-click="Tagging('Prepago','bt_pre_ini_resumencta_consumomes_datos');SelectdTipoConsumo = 3;validar(SelectdTipoConsumo)">
+                        <img ng-src="{{SelectdTipoConsumo == 3 && '/Images/MensajesInAc.png' || '/Images/MensajesIn.png'}}" class="ma mt16 cpointer outlinenone w32"></img>
+                        <div class="fs12 mt7 {{SelectdTipoConsumo == 3 ? 'cwhite' : 'cgraylight' }}">Mensajes</div>
+                    </div>
+                </div>
+                <div class="col-xs-2 p0 pl1">
+                    <div class="col-xs-12 p0 tac outline0 {{SelectdTipoConsumo == 4 ? 'bgcorange' : 'bcgraylight' }}" ng-click="Tagging('Prepago','bt_pre_ini_resumencta_consumomes_totales');SelectdTipoConsumo = 4;validar(SelectdTipoConsumo)">
+                        <img ng-src="{{SelectdTipoConsumo == 4 && '/Images/OtrosInAc.png' || '/Images/OtrosIn.png'}}" class="ma mt15 cpointer outlinenone w32"></img>
+                        <div class="fs12 mt7 {{SelectdTipoConsumo == 4 ? 'cwhite' : 'cgraylight' }}">Otros</div>
+                    </div>
+                </div>
+            </div>            
+
+            <!-- Fecha de actualizacion -->
+            <div class="col-xs-12 p0 fwbbold cblack fs16 tac">
+                Movimientos del: {{fechas.fechainicial}} hasta {{fechas.fechafinal}}
+            </div>
+
+            <div class="col-xs-12 p0 pb30">
+                <!-- Contenedor correspondiente a los totales globales -->
+                <!-- Content Central cuando --- SelectdTipoConsumo == 5 -->
+                <div class="col-xs-12 p0 h360 ofys" ng-if="SelectdTipoConsumo == 5">
+                    <div class="col-xs-12 fwbbold cblack fs16 tac mt4p" ng-if="ListSelectdTipoConsumoFix.Datos.length > 0">Consumo total de datos</div>
+
+                    <!-- Datos -->
+                    <div class="col-xs-12 col-md-6 col-md-offset-3 p0 pt15 pb15 bbcgray" ng-repeat="item in ListSelectdTipoConsumoFix.Datos">
+                        <div class="col-xs-12 fs16 cblack fwbbold">{{item.RATING_GROUP_DESCRIPTION}}</div>
+                        <div class="col-xs-12 p0 mt2p">
+                            <div class="col-xs-3 cred fwbbold fs15">Consumo:</div>
+                            <div class="col-xs-3 p0 cgraybold fwbbold fs15">{{item.CONSUMO_TOTAL_RATING_GROUP}} {{item.UNIDAD_CONSUMO}}</div>
+                            <div class="col-xs-3 cred fwbbold fs15">Valor:</div>
+                            <div class="col-xs-3 p0 cgraybold fwbbold fs15">{{fnreplace(item.COSTO_TOTAL_RATING_GROUP_MAIN_ACCOUNT)}}</div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 fwbbold cblack fs16 tac mt4p" ng-if="ListSelectdTipoConsumoFix.Llamadas.length > 0">Consumo total de llamadas</div>
+
+                    <!-- Llamadas -->
+                    <div class="col-xs-12 col-md-6 col-md-offset-3 p0 pt15 pb15" ng-repeat="item in ListSelectdTipoConsumoFix.Llamadas">
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Consumo total:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_SEGUNDOS}} seg</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número de llamadas:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_LLAMADAS}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número de videollamadas:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_VIDEOLLAMADAS}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número total:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor llamadas:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_LLAMADAS)}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor promocional:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_LLAMADAS_BONOS)}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor total:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_LLAMADAS_MAIN_ACCOUNT)}}</div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 fwbbold cblack fs16 tac mt4p" ng-if="ListSelectdTipoConsumoFix.Mensajes.length > 0">Consumo total de mensajes</div>
+
+                    <!-- Mensajes -->
+                    <div class="col-xs-12 col-md-6 col-md-offset-3 p0 pt15 pb15" ng-repeat="item in ListSelectdTipoConsumoFix.Mensajes">
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número de mensajes:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_MENSAJE_GRATIS}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número de mensajes con costo:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_MENSAJE_CON_COSTO}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número total:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor mensajes:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_MAIN_ACCOUNT)}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor promocional:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_BONOS)}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor total:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL)}}</div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 fwbbold cblack fs16 tac mt4p" ng-if="ListSelectdTipoConsumoFix.Varios.length > 0">Otros</div>
+
+                    <!-- Varios -->
+                    <div class="col-xs-12 col-md-6 col-md-offset-3 p0 pt15 pb15" ng-repeat="item in ListSelectdTipoConsumoFix.Varios">
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Total:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_VARIOS}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor total:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_VARIOS)}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Promocional:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_VARIOS_BONOS)}}</div>
+                        </div>
+                        <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                            <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Total:</div>
+                            <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_VARIOS_MAIN_ACCOUNT)}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenedor correspondiente a los detalles de cada uno -->
+                <div class="col-xs-12 p0" ng-if="SelectdTipoConsumo != 5">
+                    <div class="cred fs18 mt3p tac" ng-if="ListSelectdTipoConsumoFix.length == 0 && ListSelectdTipoConsumoScroll.length == 0">No se encontraron consumos para este tipo.</div>
+                    <!-- Content Left fija -->
+                    <div class="col-xs-12 col-md-6 p0">
+
+                        <div class="col-xs-12 fwbbold cblack fs16 tac mt6p" ng-if="SelectdTipoConsumo == 1 && (ListSelectdTipoConsumoFix.length > 0 || ListSelectdTipoConsumoScroll.length > 0)">Consumo total de datos</div>
+                        <div class="col-xs-12 fwbbold cblack fs16 tac mt6p" ng-if="SelectdTipoConsumo == 2 && (ListSelectdTipoConsumoFix.length > 0 || ListSelectdTipoConsumoScroll.length > 0)">Consumo total de llamadas</div>
+                        <div class="col-xs-12 fwbbold cblack fs16 tac mt6p" ng-if="SelectdTipoConsumo == 3 && (ListSelectdTipoConsumoFix.length > 0 || ListSelectdTipoConsumoScroll.length > 0)">Consumo total de mensajes</div>
+                        <div class="col-xs-12 fwbbold cblack fs16 tac mt6p" ng-if="SelectdTipoConsumo == 4 && (ListSelectdTipoConsumoFix.length > 0 || ListSelectdTipoConsumoScroll.length > 0)">Otros</div>
+
+                        <!-- Datos -->
+                        <div class="col-xs-12 pt15 pb15 bbcgray" ng-repeat="item in ListSelectdTipoConsumoFix" ng-if="SelectdTipoConsumo == 1">
+                            <div class="col-xs-12 fs16 cblack fwbbold">{{item.RATING_GROUP_DESCRIPTION}}</div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-3 cred fwbbold fs15">Consumo:</div>
+                                <div class="col-xs-3 cgraybold fwbbold fs15">{{item.CONSUMO_TOTAL_RATING_GROUP}} {{item.UNIDAD_CONSUMO}}</div>
+                                <div class="col-xs-3 cred fwbbold fs15">Valor:</div>
+                                <div class="col-xs-3 p0 cgraybold fwbbold fs15">{{fnreplace(item.COSTO_TOTAL_RATING_GROUP_MAIN_ACCOUNT)}}</div>
+                            </div>
+                        </div>
+
+                        <!-- Llamadas -->
+                        <div class="col-xs-12 pt15 pb15" ng-repeat="item in ListSelectdTipoConsumoFix" ng-if="SelectdTipoConsumo == 2">
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Consumo total:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_SEGUNDOS}} seg</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número de llamadas:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_LLAMADAS}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número de videollamadas:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_VIDEOLLAMADAS}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número total:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor llamadas:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_LLAMADAS)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Promocional:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_LLAMADAS_BONOS)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor total:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_LLAMADAS_MAIN_ACCOUNT)}}</div>
+                            </div>
+                        </div>
+
+                        <!-- Mensajes -->
+                        <div class="col-xs-12 pt15 pb15" ng-repeat="item in ListSelectdTipoConsumoFix" ng-if="SelectdTipoConsumo == 3">
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número de mensajes:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_MENSAJE_GRATIS}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número de mensajes con costo:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_MENSAJE_CON_COSTO}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Número total:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor mensajes:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_MAIN_ACCOUNT)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor promocional:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_BONOS)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor total:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL)}}</div>
+                            </div>
+                        </div>
+
+                        <!-- Varios -->
+                        <div class="col-xs-12 pt15 pb15" ng-repeat="item in ListSelectdTipoConsumoFix" ng-if="SelectdTipoConsumo == 4">
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Total:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{item.TOTAL_VARIOS}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Valor total:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_VARIOS)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Promocional:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_VARIOS_BONOS)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p pb5 bbcgray">
+                                <div class="col-xs-9 pr0 cgraybold fwbbold fs15">Total:</div>
+                                <div class="col-xs-3 pl0 cblack fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL_VARIOS_MAIN_ACCOUNT)}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Right scroll -->
+                    <div class="col-xs-12 col-md-6 p0 max-h360 ofy">
+                        <div class="col-xs-12 fwbbold cblack fs16 tac mt6p" ng-if="SelectdTipoConsumo != 0 && SelectdTipoConsumo != 5 && ListSelectdTipoConsumoScroll.length > 0">Detalle de consumo</div>
+
+                        <!-- Datos -->
+                        <div class="col-xs-12 pt15 pb15 bbcgray" ng-repeat="item in ListSelectdTipoConsumoScroll" ng-if="SelectdTipoConsumo == 1">
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-12 fs16 cblack fwbbold">{{item.RATING_GROUP_DESCRIPTION}}</div>
+                                <div class="col-xs-12 p0">
+                                    <div class="col-xs-3 cred fwbbold fs15">Fecha:</div>
+                                    <div class="col-xs-9 p0 cgraybold fwbbold fs15">{{item.TRANSACTION_DATE}}</div>
+                                </div> 
+                            </div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-3 cred fwbbold fs15">Consumo:</div>
+                                <div class="col-xs-3 cgraybold fwbbold fs15">{{item.CONSUMO_TOTAL_RATING_GROUP}} {{item.UNIDAD_CONSUMO}}</div>
+                                <div class="col-xs-3 cred fwbbold fs15">Valor:</div>
+                                <div class="col-xs-3 p0 cgraybold fwbbold fs15">{{fnreplace(item.COSTO_TOTAL_RATING_GROUP_MAIN_ACCOUNT)}}</div>
+                            </div>
+                        </div>
+
+                        <!-- Llamadas -->
+                        <div class="col-xs-12 pt15 pb15 bbcgray" ng-repeat="item in ListSelectdTipoConsumoScroll" ng-if="SelectdTipoConsumo == 2">
+                            <div class="col-xs-12 mt2p fs16 cblack fwbbold">{{item.DESCRICION_LLAMADA}}</div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-3 fs16 cred">Duración:</div>
+                                <div class="col-xs-2 p0 cgraybold fwbbold fs15">{{item.DURACION_LLAMADA}} seg</div>
+                                <div class="col-xs-2 p0 fs16 cred">Fecha:</div>
+                                <div class="col-xs-5 p0 cgraybold fwbbold fs15 tar">{{item.FECHA_LLAMADA}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-6 cred fs15">Valor:</div>
+                                <div class="col-xs-6 p0 cgraybold fwbbold fs15 tar">{{fnreplace(item.VALOR_LLAMADA)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-6 cred fs15">Valor promocional:</div>
+                                <div class="col-xs-6 p0 cgraybold fwbbold fs15 tar">{{fnreplace(item.VALOR_LLAMADA_BONOS)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-6 cred fwbbold fs15">Valor total:</div>
+                                <div class="col-xs-6 p0 cgraybold fwbbold fs15 tar">{{fnreplace(item.VALOR_LLAMADA_MAIN_ACCOUNT)}}</div>
+                            </div>
+                        </div>
+
+                        <!-- Mensajes -->
+                        <div class="col-xs-12 pt15 pb15 bbcgray" ng-repeat="item in ListSelectdTipoConsumoScroll" ng-if="SelectdTipoConsumo == 3">
+
+                            <!--No se tiene data para renderizar la informacion, ni sabemos cuales son los parametros a pintar-->
+
+                            <div class="col-xs-12 mt2p fs16 cblack fwbbold">{{item.DESCRICION_MENSAJE}}</div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-3 fs16 cred">Cantidad:</div>
+                                <div class="col-xs-1 p0 cgraybold fwbbold fs15">1</div>
+                                <div class="col-xs-3 fs16 cred">Fecha:</div>
+                                <div class="col-xs-5 p0 cgraybold fwbbold fs15 tar">{{item.FECHA_MENSAJE}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-6 cred fs15">Valor:</div>
+                                <div class="col-xs-6 p0 cgraybold fwbbold fs15 tar">{{fnreplace(item.VALOR_MENSAJE)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-6 cred fs15">Valor promocional:</div>
+                                <div class="col-xs-6 p0 cgraybold fwbbold fs15 tar">{{fnreplace(item.VALOR_MENSAJE_BONOS)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-6 cred fwbbold fs15">Valor total:</div>
+                                <div class="col-xs-6 p0 cgraybold fwbbold fs15 tar">{{fnreplace(item.VALOR_MENSAJE_MAIN_ACCOUNT)}}</div>
+                            </div>
+
+
+                        </div>
+
+                        <!-- Varios -->
+                        <div class="col-xs-12 pt15 pb15 bbcgray" ng-repeat="item in ListSelectdTipoConsumoScroll" ng-if="SelectdTipoConsumo == 4">
+                            <div class="col-xs-12 mt2p fs16 cblack fwbbold">{{item.DESCRIPCION}}</div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-3 fs16 cred fwbbold">Cantidad:</div>
+                                <div class="col-xs-1 p0 cgraybold fwbbold fs15">{{item.CANTIDAD}}</div>
+                                <div class="col-xs-3 fs16 cred fwbbold">Fecha:</div>
+                                <div class="col-xs-5 p0 cgraybold fwbbold fs15 tar">{{item.FECHA}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-6 cred fs15">Valor:</div>
+                                <div class="col-xs-6 p0 cgraybold fwbbold fs15 tar">{{fnreplace(item.VALOR_TOTAL)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-6 cred fs15">Valor promocional:</div>
+                                <div class="col-xs-6 p0 cgraybold fwbbold fs15 tar">{{fnreplace(item.VALOR_VARIOS_BONOS)}}</div>
+                            </div>
+                            <div class="col-xs-12 p0 mt2p">
+                                <div class="col-xs-6 cred fwbbold fs15">Valor total:</div>
+                                <div class="col-xs-6 p0 cgraybold fwbbold fs15 tar">{{fnreplace(item.VALOR_VARIOS_MAIN_ACCOUNT)}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 cgraybold fwbbold fs15 tac mb25 mt25" ng-if="SelectdTipoConsumo == 1">
+                        Consumo de TRAFICO WEB son actualizaciones automáticas de sus aplicaciones instaladas, sistema operativo de su celular, YouTube, navegación web, Juegos y otras aplicaciones que en el momento de su instalación usted autorizo a consumir datos, estos consumos
+                        se pueden controlar únicamente desde su Celular, ingresando por ajustes generales. Algunas aplicaciones instaladas en su celular podrían consumir datos en segundo plano y actualizarse para recibir sus mensajes y notificaciones,
+                        estos consumos se pueden controlar únicamente desde su Celular, ingresando por ajustes generales.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="cb"></div>
+</script>
+
+<!-- Historial de recargas -->
+<script type="text/ng-template" id="postopenhistorialrecargaspre.html">
+    <div class="col-xs-12 bc1graylight mh316 max-h600 ofy" block-ui="blockrecargas">
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+        </div>
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mb25">
+            Historial de recargas
+        </div>
+        <div class="cred fs18 mt3p tac" ng-if="Recargas.length == 0">Actualmente no cuentas con recargas disponibles.</div>
+        <div class="col-xs-12 pb30" ng-if="Recargas.length > 0">
+            <div class="col-xs-12 pt15 pb15 bbcgray" ng-repeat="item in Recargas">
+                <div class="col-xs-12 fs15 cblack fwbbold mb10">{{item.DESCRIPCION_RECARGA}}</div>
+                <div class="col-xs-12 fs14">
+                    <div class="col-xs-6 p0 cred">
+                        Valor:
+                    </div>
+                    <div class="col-xs-6 p0 tar">
+                        {{fnreplace(item.VALOR_RECARGA)}}
+                    </div>
+                </div>
+                <div class="col-xs-12 fs14">
+                    <div class="col-xs-6 p0 cred">
+                        Fecha de recarga:
+                    </div>
+                    <div class="col-xs-6 p0 tar">
+                        {{item.FECHA_RECARCA}}
+                    </div>
+                </div>
+                <div class="col-xs-12 fs14">
+                    <div class="col-xs-6 p0 cred">
+                        Fecha de vencimiento:
+                    </div>
+                    <div class="col-xs-6 p0 tar">
+                        {{item.VENCIMIENTO_RECARGA}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cb"></div>
+</script>
+
+<div class="col-xs-12 p0" block-ui="blockposrecargaspre">
+    <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25">
+        Resumen de tu cuenta: <span class="ttc">{{fechaactualconsumos}}</span>
+    </div>
+    
+    <div class="col-xs-12 fs15 tac cgraybold mt1p pb25">
+         <div class="col-xs-12 tac cgraybold mt1p">
+            Número de Cuenta <span class="corange ml10">{{OpSelec.postpago}}</span>
+        </div>
+    </div>
+    
+    <!-- Contenedor -->
+    <div class="col-xs-12 col-md-10 col-md-offset-2 mt25">
+        <div class="col-xs-12 col-md-8 col-md-offset-1 fs16 cgraylight p0 mb20">
+            <div class="col-xs-12 bcgraylight fs17 pt10 pb10 mb25 cblack">
+                Detalles
+            </div>
+            
+            <div class="col-xs-12 fs17 pt10 pb10 bslbposconsumo mb25 cblack">
+                <div class="col-xs-12 p0">
+                    <div class="col-xs-6 p0 lh1">
+                        Saldo de mes anterior<br>
+                        <span class="fs13">{{meanterior(1)}}</span>
+                    </div>
+                    <div class="col-xs-6 tar p0">
+                        {{fnreplace(InfoConsumo.SALDO_ANTERIOR)}}
+                    </div>  
+                </div>
+                <div class="col-xs-12 p0 mb5">
+                    <div class="col-xs-6 p0">
+                        Recargas de este mes
+                    </div>
+                    <div class="col-xs-6 tar p0">
+                        {{fnreplace(InfoConsumo.TOTAL_RECARGA)}}
+                    </div>  
+                </div>
+                <div class="col-xs-12 p0 mb5">
+                    <div class="col-xs-6 p0">
+                        Consumo de este mes
+                    </div>
+                    <div class="col-xs-6 tar p0">
+                        {{fnreplace(InfoConsumo.TOTAL_CONSUMO)}}
+                    </div>  
+                </div>
+                <div class="col-xs-12 p0 mb5">
+                    <div class="col-xs-10 p0">
+                    </div>
+                    <div class="col-xs-2 tar p0 btcred1px">
+                    </div>  
+                </div>
+                <div class="col-xs-12 p0 mb5 cred fs20">
+                    <div class="col-xs-6 p0">
+                        Saldo Disponible
+                    </div>
+                    <div class="col-xs-6 tar p0 fs24">
+                        {{fnreplace(InfoConsumo.SALDO_FINAL_UCIP)}}
+                    </div>  
+                </div>
+               <!-- <div class="col-xs-12 p0 mb5">
+                    <div class="col-xs-6 p0">
+                        Fecha de vencimiento
+                    </div>
+                    <div class="col-xs-6 tar p0">
+                        15/05/2018
+                    </div>  
+                </div>-->
+            </div>
+            
+            <div class="col-xs-12 fs17 pt10 pb10 bslbposconsumo mb25 cblack">
+                <div class="col-xs-12 p0 mb5 cred fs20">
+                    <div class="col-xs-6 p0">
+                        Saldo promocional
+                    </div>
+                    <div class="col-xs-6 tar p0 fs24">
+                        {{fnreplace(InfoConsumo.TOTAL_BONUS)}}
+                    </div>  
+                </div>
+                <div class="col-xs-12 p0 mb5">
+                    <div class="col-xs-6 p0">
+                        Saldo consumido
+                    </div>
+                    <div class="col-xs-6 tar p0">
+                        {{fnreplace(InfoConsumo.TOTAL_CONSUMO_BONOS)}}
+                    </div>  
+                </div>
+                <!--<div class="col-xs-12 p0 mb5">
+                    <div class="col-xs-6 p0">
+                        Fecha de vencimiento
+                    </div>
+                    <div class="col-xs-6 tar p0">
+                        15/05/2018
+                    </div>  
+                </div>-->
+            </div>
+            
+            <div class="col-xs-12 bslbposconsumo cred mb25 pt10 pb10">
+                <div class="col-xs-6 fs18 p0">
+                    Detalle mes anterior
+                </div>
+                <div class="col-xs-6 tar cred bnfocusounder p0" ng-click="datalleMesAnterior(1);Tagging('Postpago','bt_pos_ini_detaconsu_paqadi_salmesante')">
+                    Ver <img src="/Images/Extractosprepago_icon_rounded_ritgh_rojo.png" alt="ver historial de recargas" class="w27 ml10">
+                </div>
+            </div>
+            
+            <div class="col-xs-12 bslbposconsumo cred mb25 pt10 pb10">
+                <div class="col-xs-6 fs18 p0">
+                    Historial de recargas
+                </div>
+                <div class="col-xs-6 tar cred bnfocusounder p0" ng-click="Tagging('Prepago','bt_pre_ini_recargasdelmes');postopenhistorialrecargaspre()">
+                    Ver <img src="/Images/Extractosprepago_icon_rounded_ritgh_rojo.png" alt="ver historial de recargas" class="w27 ml10">
+                </div>
+            </div>
+            
+            <div class="col-xs-12 bslbposconsumo cred mb25 pt10 pb10">
+                <div class="col-xs-6 fs18 p0">
+                    Detalle de consumos
+                </div>
+                <div class="col-xs-6 tar cred bnfocusounder p0" ng-click="Tagging('Prepago','bt_pre_ini_consumodelmes');postopenhistorialcosnumospre()">
+                    Ver
+                    <img src="/Images/Extractosprepago_icon_rounded_ritgh_rojo.png" alt="ver detalle de consumos" class="w27 ml10">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--<div class="col-xs-12 col-md-10 col-md-offset-1 p0 mb25">
+        <div class="col-xs-12 col-md-6 col-md-offset-3 mt6p fs16 cgraylight">
+            <div class="col-xs-12 p0 bbcgray">
+                <div class="col-xs-6 col-xs-offset-1 p0">
+                    Saldo anterior: <span class="ttc">{{mespasadosaldofinal}}</span>
+                </div>
+                <div class="col-xs-2 p0 cblack">
+                    {{fnreplace(InfoConsumo.SALDO_ANTERIOR)}}
+                </div>
+            </div>
+            <div class="col-xs-12 p0 mt2p bbcgray">
+                <div class="col-xs-6 col-xs-offset-1 p0">
+                    Recargas del mes:
+                </div>
+                <div class="col-xs-2 p0 cblack">
+                    {{fnreplace(InfoConsumo.TOTAL_RECARGA)}}
+                </div>
+                <div class="col-xs-3 p0 tac cred cpointer fwbbold" ng-click="Tagging('Prepago','bt_pre_ini_recargasdelmes');openhistorialrecargas()">
+                    Detalles >
+                </div>
+            </div>
+            <div class="col-xs-12 p0 mt2p">
+                <div class="col-xs-7 p0 p0 bbcred2px">
+                    <div class="col-xs-11 col-xs-offset-1">
+                        Consumo del mes:
+                    </div>
+                </div>
+    
+                <div class="col-xs-2 p0 cblack bbcred2px">
+                    {{fnreplace(InfoConsumo.TOTAL_CONSUMO - InfoConsumo.TOTAL_CONSUMO_BONOS)}}
+                </div>
+                <div class="col-xs-3 p0 tac cred bbcgray cpointer fwbbold" ng-click="Tagging('Prepago','bt_pre_ini_consumodelmes');openhistorialcosnumos()">
+                    Detalles >
+                </div>
+            </div>
+            <div class="col-xs-12 p0 mt2p cred fs18">
+                <div class="col-xs-6 col-xs-offset-1 p0">
+                    Saldo disponible:
+                </div>
+                <div class="col-xs-2 p0 cred">
+                    {{fnreplace(InfoConsumoheader.CurrentBalance)}}
+                </div>
+            </div>
+            <div class="col-xs-12 p0 fs12">
+                <div class="col-xs-8 col-xs-offset-1 p0">
+                    Última actualización: {{fechaultimaactualizacion}}
+                </div>
+            </div>
+            <div class="col-xs-12 p0 mt8p">
+                <div class="col-xs-7 p0 p0 bbcred2px">
+                    <div class="col-xs-11 col-xs-offset-1">
+                        Consumo promocional:
+                    </div>
+                </div>
+                <div class="col-xs-2 p0 cblack bbcred2px h24 mtlineaseparatorprepagodetalleconsumo">
+                    {{fnreplace(InfoConsumo.TOTAL_CONSUMO_BONOS)}}
+                </div>
+                <div class="col-xs-3 p0 cred bbcgray cpointer h24 mtlineaseparatorprepagodetalleconsumo" ng-click="openhistorialcosnumos()"></div>
+            </div>
+            <div class="col-xs-12 p0 mt2p cred fs18">
+                <div class="col-xs-6 col-xs-offset-1 p0">
+                    Saldo promocional:
+                </div>
+                <div class="col-xs-2 p0 cred">
+                    {{fnreplace(InfoConsumoheader.AdditionalBalance)}}
+                </div>
+            </div>
+            <div class="col-xs-12 p0 fs12">
+                <div class="col-xs-8 col-xs-offset-1 p0">
+                    Última actualización: {{fechaultimaactualizacion}}
+                </div>
+            </div>
+        </div>-->
+    <div class="col-xs-12 p0">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 mb10 p0bil" ng-if="multiple.detallePaquetesactarray.length != 0">
+            <div class="col-xs-12 col-md-10 col-md-offset-1 cgraybold fs18 mb10">Paquetes activos</div>
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 mbbil20">
+                <ui-carousel id="paquetesac" slides="multiple.detallePaquetesactarray" slides-to-show="1" slides-to-scroll="1" initial-slide="0" autoplay="false" autoplay-speed="2000" dots="false" centerMode="true" draggable="true">
+                    <carousel-item class="elemnt">
+                        <div class="col-xs-12 p15">
+                            <div class="col-xs-12 bsdetallepaquetepre">
+                                <div class="col-xs-12 clila p0 pt10 pb10 fs22 tac">
+                                    {{item.NOMBRE}}
+                                </div>
+                                <div class="col-xs-12 pt10 pb10 p0">
+                                    <div class="col-xs-2 p0">
+                                        <div class="col-xs-12 mb5">
+                                            <img ng-src="{{item.imagen}}" class="img-responsive">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="progress mb1p br20all bclilalightx h28">
+                                            <div class="progress-bar br20all bclilalight" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{item.paAc}}%;">
+                                            </div>
+                                            <div class="pabsolute cwhite fs18 fwbbold l34 pt3">
+                                                {{item.paAc}} %
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 cgraylight p0">
+                                            <div class="col-xs-6 p0 tal">
+                                                <div class="col-xs-12 p0">
+                                                    {{item.des}} consumidos
+                                                </div>
+                                                <div class="col-xs-12 p0 cblack fs25">
+                                                    {{item.CONSUMO+" "+item.tipotext}} 
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 p0 tar">
+                                                <div class="col-xs-12 p0">
+                                                    {{item.des}} disponibles
+                                                </div>
+                                                <div class="col-xs-12 p0 blgray1px cblack fs25">
+                                                    {{item.CAPACIDAD+" "+item.tipotext}}  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 pb10 p0 fs16 cblack fs14">
+                                    <div class="col-xs-12 p0 mb15">
+                                        <div class="col-xs-6 tal">
+                                            Fecha de activación
+                                        </div>
+                                        <div class="col-xs-6 tar">
+                                            {{item.FECHAACTIVACION}}
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 p0">
+                                        <div class="col-xs-6 tal">
+                                            Fecha de vencimiento
+                                        </div>
+                                        <div class="col-xs-6 tar">
+                                            {{item.FECHAEXPIRACION}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </carousel-item>
+                </ui-carousel>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-8 col-md-offset-2 mb10 p0bil p0">
+           <!-- <div class="col-xs-12 col-sm-6 mb20">
+                <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all bnfocus" ng-click="Tagging('Prepago','bt_pre_ini_compradepaquetesyrecargas');postredireccionrecargaspre()">
+                    <div class="col-xs-2 col-sm-3 p0">
+                        <img src="/Images/Extractosprepago_comrpadepaquetesyrecargas.png" alt="Compra de Paquetes y Recargas" class="w23">
+                    </div>
+                    <div class="col-xs-10 col-sm-9 tal">Compra de Paquetes y Recargas</div>
+                </div>
+            </div>-->
+            <div class="col-xs-12 col-md-6 mb10 p0bil p0">
+                <div class="col-xs-12 p0 bclilalight cwhite tac pb10 pt10 fwbbold fs16 cpointer outlinenone br10all" ng-click="Tagging('Prepago','bt_pre_ini_resumcta_pqdatorecur_volver');getini()">
+                    Volver
+                </div>  
+            </div>
+            <div class="col-xs-12 col-sm-6 mb20">
+                <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all bnfocus" ng-click="moduloCompraPaquetesRecargas()">
+                    <div class="col-xs-2 col-sm-3 p0">
+                        <img src="/Images/extractosprepago_compradepaquetescontusaldo.png" alt="Compra de Paquetes con tu Saldo" class="w23">
+                    </div>
+                    <div class="col-xs-10 col-sm-9 tal">Compra de Paquetes y Recargas</div>
+                </div>
+            </div>
+        </div>
+        <div id="mainContent" class="dn"></div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<div class="container-fluid" block-ui="blockDir">
+    <div class="col-xs-12 p0">
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25 mb20">
+            Actualizar tus datos
+        </div>
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 hidden-sm hidden-xs">
+            <div class="col-xs-12 fs22 fsm18 tac cblack mt19">
+                Elige el número de cuenta sobre el que<br> deseas realizar la actualización de datos
+            </div>
+        </div>
+        <div class="col-xs-12 mb25 plm10p fs16 fwbbold tac cgraybold hidden-md hidden-lg">
+            <div class="col-xs-12 fs14 tac cblack mt25 pl0 pm0">
+                 Elige el número de cuenta sobre el que<br> deseas realizar la actualización de datos
+            </div>
+        </div>
+        <!--Contenido del plan (especificaciones)-->
+        <div class="row">
+            <div class="col-xs-12  col-md-10 col-md-offset-1 mt30 mb20 p0">
+                <!--Descripción Postpago-->
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 fs15 mt25 pl10 pr10 cpointer">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12 br5all mt10 bslb p15" ng-repeat="item in Us.cuentas" ng-if="item.LineOfBusiness == 3" ng-click="consultarUserData(item,1)">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 imgRes">
+                                <img src="/Images/icon_numpost.png" class="pt5"></img>
+                            </div>
+                            <div class="col-xs-9 tac fwbbold corange fs34 mt15 hidden-xs hidden-sm">
+                                {{item.alias}}
+                            </div>
+                            
+                            <div class="col-xs-9 tac fwbbold corange fs22 mt15 hidden-md hidden-lg">
+                                {{item.alias}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Descripción Prepago-->
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 fs15 mt25 pl10 pr10 cpointer">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12 br5all mt10 bslb p15" ng-repeat="item in Us.cuentas" ng-if="item.LineOfBusiness == 2" ng-click="consultarUserData(item,1)">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 imgRes">
+                                <img src="/Images/icon_numpre.png" class="pt5"></img>
+                            </div>
+                            <div class="col-xs-9 tac fwbbold corange fs34 mt15 hidden-xs hidden-sm">
+                                {{item.alias}}
+                            </div>
+                            
+                            <div class="col-xs-9 tac fwbbold corange fs22 mt15 hidden-md hidden-lg">
+                                {{item.alias}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Descripción Hogar-->
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 fs15 mt25 pl10 pr10 cpointer">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12 br5all mt10 bslb p15" ng-repeat="item in Us.cuentas" ng-if="item.LineOfBusiness == 1" ng-click="consultarUserData(item,2)">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 imgRes">
+                                <img src="/Images/icon_numhog.png" class="pt5"></img>
+                            </div>
+                            <div class="col-xs-9 tac fwbbold corange fs34 mt15 hidden-xs hidden-sm">
+                                {{item.alias}}
+                            </div>
+                            
+                            <div class="col-xs-9 tac fwbbold corange fs22 mt15 hidden-md hidden-lg">
+                                {{item.alias}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

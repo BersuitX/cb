@@ -1,0 +1,93 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<div class="col-xs-12 p0" ng-init="fieldClear()">
+    <div class="col-xs-12 col-md-6 col-md-offset-3 mt20 mb20">
+        <div class="cgray col-xs-12 col-md-12 tac fwbbold fs25">
+            ¿Cómo te sentiste con la atención de nuestro técnico?  
+        </div>
+       <!-- <div class="cgraybold col-xs-12 col-md-12 tac fwbbold fs25 mb30">
+            ¿Qué tal servicio?
+        </div>-->
+        <div class="col-xs-12 col-md-12 p0 pb25 dn-flex flex-jc-space-bt">
+            <div class="pull-left maincpointer bnfocus w20pbil" ng-click="Tagging('Hogar','_ini_vistec_calificanos_sentim5');escojercalificacion(1)">
+               <div class=""><img ng-src="{{calificacion != 1 && '/Images/icon_furioso.png' || '/Images/icon_furioso_rojo.png'}}" alt="icon_furioso" class="bounce w100pbil ma"></div>
+               <div class="tac cgray mt12 fsm11" ng-class="(calificacion == 1)? 'bbredface clRojoBl' : ' ';">Furioso</div>
+           </div>
+            <div class="pull-left mt34 mtbil31 maincpointer bnfocus w20pbil" ng-click="Tagging('Hogar','_ini_vistec_calificanos_sentim4');escojercalificacion(2)">
+               <div class="imagenescl"><img ng-src="{{calificacion != 2 && '/Images/icon_decepcionado.png' || '/Images/icon_decepcionado_rojo.png'}}" alt="icon_decepcionado" class="bounce w100pbil ma"></div>
+               <div class="tac cgray mt12 fsm11" ng-class="(calificacion == 2)? 'bbredface clRojoBl' : ' ';">Decepcionado</div>
+           </div>
+            <div class="pull-left mt34 mtbil31 maincpointer bnfocus w20pbil" ng-click="Tagging('Hogar','_ini_vistec_calificanos_sentim3');escojercalificacion(3)">
+               <div class="imagenescl"><img ng-src="{{calificacion != 3 && '/Images/icon_sorprendido.png' || '/Images/icon_sorprendido_rojo.png'}}" alt="icon_sorprendido" class="bounce w100pbil ma"></div>
+               <div class="tac cgray mt12 fsm11" ng-class="(calificacion == 3)? 'bbredface clRojoBl' : ' ';">Normal</div>
+           </div>
+           <div class="pull-left mt34 mtbil31 maincpointer bnfocus w20pbil" ng-click="Tagging('Hogar','_ini_vistec_calificanos_sentim2');escojercalificacion(4)">
+               <div class="imagenescl"><img ng-src="{{calificacion != 4 && '/Images/icon_estoyfeliz.png' || '/Images/icon_feliz_rojo.png'}}" alt="icon_estoyfeli" class="bounce w100pbil ma"></div>
+               <div class="tac cgray mt12 fsm11" ng-class="(calificacion == 4)? 'bbredface clRojoBl' : ' ';">Estoy feliz</div>
+           </div>
+           <div class="pull-left mt12 maincpointer bnfocus w20pbil" ng-click="Tagging('Hogar','_ini_vistec_calificanos_sentim1');escojercalificacion(5)">
+               <div class=""><img ng-src="{{calificacion != 5 && '/Images/icon_meencanto.png' || '/Images/icon_meencanto_rojo.png'}}" alt="icon_meencanto " class="bounce w100pbil ma"></div>
+               <div class="tac cgray mt12 fsm11" ng-class="(calificacion == 5)? 'bbredface clRojoBl' : ' ';">Me encanta</div>
+           </div>
+        </div>
+        <div class="col-xs-12 col-md-12 p0 mb25 mt25 bcgraylight pb40 pt30" ng-show="showMejoras">
+           <div class="col-xs-12 col-md-12 tac cgraybold fs18">
+               ¡Tú puedes ayudarnos!
+           </div>
+            <div class="col-xs-12 col-md-12 tac cgray fwbbold fs20">
+               ¿Qué crees que debemos mejorar?
+           </div>
+           <div class="col-xs-6 col-md-4 pt30">
+               <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora1');escoMejorar(0)" ng-class="(opMejorar[0].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                   Puntualidad
+               </div>
+           </div>
+           <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora2');escoMejorar(1)" ng-class="(opMejorar[1].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                   Conocimientos técnicos
+               </div>
+           </div>
+           <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora3');escoMejorar(2)" ng-class="(opMejorar[2].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                   Amabilidad del Técnico
+               </div>
+           </div>
+            <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora4');escoMejorar(3)" ng-class="(opMejorar[3].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                   Aseo en presentación del servicio 
+               </div>
+           </div>
+           <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora4');escoMejorar(4)" ng-class="(opMejorar[4].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                   Presentación personal
+               </div>
+           </div>
+           <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora4');escoMejorar(5)" ng-class="(opMejorar[5].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                   Equipos usados
+               </div>
+           </div>
+           <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora5');escoMejorar(6)" ng-class="(opMejorar[6].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                    Tiempo de ejecución del servicio
+               </div>
+           </div>
+        </div>
+        <div class="col-xs-12 col-md-12 p0 mb40">
+            <div class="col-xs-12 col-sm-6 p0bil">
+                <div class="col-xs-12 col-md-12 bgRojoBl cwhite tac pb20 pt20 fwbbold fs18" ng-click="Tagging('Hogar','_ini_vistec_calificanos_voler');volverPrimerModulo()">
+                    Volver
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 p0bil mtbil10">
+                <div class="col-xs-12 col-md-12 bclilalight cwhite tac pb20 pt20 fwbbold fs18" ng-click="Tagging('Hogar','_ini_vistec_calificanos_calificar');enviarCalificacion()">
+                    Enviar la calificación
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

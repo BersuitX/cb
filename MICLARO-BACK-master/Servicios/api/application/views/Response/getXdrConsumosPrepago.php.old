@@ -1,0 +1,60 @@
+<?php
+    $error=0;
+    if(intval($status["statusCode"])!=1){
+        $response["error"]=1;
+        $response["response"]="No se puede obtener la información en este momento. Intentelo mas tarde.";
+    }else{
+        if(isset($mapCollection) && count($mapCollection)>0){
+
+            $response["error"]=0;
+            $listResponse=array();
+            $list=array();
+            $totalSegundos=0;
+
+            foreach ($mapCollection as $map){
+                $values=$map["values"];
+        
+                //$list=array();
+                foreach($values["mapArrayValues"] as $item){
+                    $i=0;
+                    $nuevo=array();
+                    foreach($values["mapArrayColumns"] as $columna){
+
+                        $val = str_replace(",", ".", $item["registro"][$i]);
+                        $nuevo[$columna]=$val;//(( strpos($item["registro"][$i], ',') !== false    )?floatval($item["registro"][$i]):$item["registro"][$i]);
+                        $i++;
+                    }
+                    $nuevo["tipo"]=$values["arrayNameValue"];
+
+                    if ($nuevo["tipo"]=="DetalleLlamadas") {
+                        $totalSegundos+=intval($nuevo["DURACION_LLAMADA"]);
+                    }
+
+                    array_push($list,$nuevo);
+                }
+    
+                //array_push($listResponse,array( "tipo"=>$values["arrayNameValue"],"list"=>$list) );
+            }
+            //$response["response"]=$listResponse;
+
+
+            $nueva_lista=array();
+            foreach ($list as $item) {
+                if ($item["tipo"]=="ResumenLlamadas") {
+                    $item["TOTAL_SEGUNDOS"]=$totalSegundos;
+                }
+
+                array_push($nueva_lista,$item);
+            }
+
+            $response["response"]=$nueva_lista;
+        }else{
+            $response["error"]=1;
+            $response["response"]="No se encontró información.";
+        }
+    }
+
+
+
+echo json_encode($response);
+?>

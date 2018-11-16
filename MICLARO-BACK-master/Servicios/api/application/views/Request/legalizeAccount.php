@@ -1,0 +1,40 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.americamovil.com/schema/namespace/AccountManagement/v1">
+    <soapenv:Header>
+    <ServiceGatewayHeader>
+    <codIdioma>EN</codIdioma>
+    <systemId>SELFSERV</systemId>
+    <userProfileId>PAQUITA@hotmail.com</userProfileId>
+    <operationId>retrieveCustomerData</operationId>
+    <IPServer>9.129.59.6</IPServer>
+    <TipoCanal><?=(($Vrqs4xzp4h4g==1)?"FX":"MB")?></TipoCanal>
+    <VersionServicio>1.0</VersionServicio>
+    <VersionEndpoint>1.0</VersionEndpoint>
+    <Notification>false</Notification>
+    </ServiceGatewayHeader>
+    </soapenv:Header>
+   <soapenv:Body>
+      <v1:legalizeAccount>
+         <LineOfBusiness><?=$Vrqs4xzp4h4g?></LineOfBusiness>
+         <AccountId><?=$V3hbf4so4iko?></AccountId>
+         <LegalizationData>
+            <Name><?=$Vwzmz1dvggot?></Name>
+            <LastName><?=$Vcfuma51n1le?> <?=$Vj2zuouufqds?></LastName>
+            <DocumentType><?=$Vcfzis3ca5nv?></DocumentType>
+            <DocumentNumber><?=$Vbbhadzcf3q5?></DocumentNumber>
+            <!--Optional:-->
+            <MobileNumber><?=$V3hbf4so4iko?></MobileNumber>
+            <!--Optional:-->
+            <EmailAddress><?=(($Vur1q223roby!="")?$Vur1q223roby:"_@claro.com")?></EmailAddress>
+            <!--Optional:-->
+            <Address>
+               <Address><?=$Vtt5lms041w2?></Address>
+            </Address>
+            <!--Optional:-->
+            <InstallationAddress>
+               <Address><?=$Vtt5lms041w2?></Address>
+            </InstallationAddress>
+         </LegalizationData>
+         <Source>BSCS</Source>
+      </v1:legalizeAccount>
+   </soapenv:Body>
+</soapenv:Envelope>

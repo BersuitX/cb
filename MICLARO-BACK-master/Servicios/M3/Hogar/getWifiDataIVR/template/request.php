@@ -1,0 +1,34 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.cmPoller.sisges.telmex.com.co" xmlns:obj="http://objects.cmPoller.sisges.telmex.com.co">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getWifiDataIVR>
+         <ser:cm>
+            <obj:alive><?=$Vqhzkfsafzrc->alive?></obj:alive>
+            <obj:brand><?=$Vqhzkfsafzrc->brand?></obj:brand>
+            <obj:buildingId><?=$Vqhzkfsafzrc->buildingId?></obj:buildingId>
+            <obj:buildingName><?=$Vqhzkfsafzrc->buildingName?></obj:buildingName>
+            <obj:clientAddress><?=$Vqhzkfsafzrc->clientAddress?></obj:clientAddress>
+            <obj:cmts><?=$Vqhzkfsafzrc->cmts?></obj:cmts>
+            <obj:cmtsInterface><?=$Vqhzkfsafzrc->cmtsInterface?></obj:cmtsInterface>
+            <obj:cmtsIp><?=$Vqhzkfsafzrc->cmtsIp?></obj:cmtsIp>
+            <obj:division><?=$Vqhzkfsafzrc->division?></obj:division>
+            <obj:docsCableMaclayerIndex><?=$Vqhzkfsafzrc->docsCableMaclayerIndex?></obj:docsCableMaclayerIndex>
+            <obj:firmware><?=$Vqhzkfsafzrc->firmware?></obj:firmware>
+            <obj:index><?=$Vqhzkfsafzrc->index?></obj:index>
+            <obj:interfaceIndex><?=$Vqhzkfsafzrc->interfaceIndex?></obj:interfaceIndex>
+            <obj:ipAddress><?=$Vqhzkfsafzrc->ipAddress?></obj:ipAddress>
+            <obj:lastSeen><?=$Vqhzkfsafzrc->lastSeen?></obj:lastSeen>
+            <obj:mac><?=$Vqhzkfsafzrc->mac?></obj:mac>
+            <obj:matrixAccount><?=$Vqhzkfsafzrc->matrixAccount?></obj:matrixAccount>
+            <obj:model><?=$Vqhzkfsafzrc->model?></obj:model>
+            <obj:node><?=$Vqhzkfsafzrc->node?></obj:node>
+            <obj:rrAccount><?=$Vqhzkfsafzrc->rrAccount?></obj:rrAccount>
+            <obj:standBy><?=$Vqhzkfsafzrc->standBy?></obj:standBy>
+            <obj:status><?=$Vqhzkfsafzrc->status?></obj:status>
+            <obj:sysDescr></obj:sysDescr>
+            <obj:uptime><?=$Vqhzkfsafzrc->uptime?></obj:uptime>
+            <obj:validIndex><?=$Vqhzkfsafzrc->validIndex?></obj:validIndex>
+         </ser:cm>
+      </ser:getWifiDataIVR>
+   </soapenv:Body>
+</soapenv:Envelope>

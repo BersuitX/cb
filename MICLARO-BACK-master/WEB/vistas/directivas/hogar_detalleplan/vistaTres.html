@@ -1,0 +1,141 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<!-----------
+Detalle del plan tv Hogar
+------------->
+<script type="text/ng-template" id="paquetesSlt.html">
+    <div block-ui="detalletvplanblock"> 
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img></div>
+        <div class="col-xs-12 tac fwbbold fs21 cgraybold tac">
+            <img src="/Images/Miclaro.png"></img>
+        </div>
+        <div class="col-xs-12 tac fs15 mt4p cgraybold">¿Estás seguro que deseas adquirir los paquetes</div>
+        <div class="col-xs-12 tac fs15 cgraybold">seleccionados y agregarlos a tu Cuenta Hogar?</div>
+        <div class="col-xs-12 fs15 mb15 fwbbold cgraybold mt10 tal tac">
+            {{OpSelec.hogar}}
+        </div>
+        <div class="col-xs-12 cgraybold mb5">
+            <div class="col-xs-5">
+                Paquetes
+            </div>
+            <div class="col-xs-5">
+                Costos
+            </div>
+            <div class="col-xs-2">
+            </div>
+        </div>
+        <div class="col-xs-12 cblack mb2" ng-repeat="item in pauqtesAdq" ng-if="item.agregado == true">
+            <div class="col-xs-5 fwbbold">
+                {{item.tipoTelevision}}
+            </div>
+            <div class="col-xs-5 fwbbold">
+                {{fnreplace(item.valor)}}
+            </div>
+            <div class="col-xs-2 tar">
+                <img src="/Images/IconDelete.png" class="cpointer outlinenone" ng-click="item.agregado = false;totlaPaquetes()"></img>
+            </div>
+        </div>
+        <div class="col-xs-12 bbcgray mt10 mb10"></div>
+        <div class="col-xs-12 tac fs15 cgraybold">Recuerda que estos cambios se verán</div>
+        <div class="col-xs-12 tac fs15 cgraybold">reflejados en tu próxima facturación.</div>
+        <div class="col-xs-12 p0 mt15">
+            <div class="col-xs-6 tac fs15 cgraybold">Costo total de paquetes</div>
+            <div class="col-xs-6 tac fs15 fwbbold cred">{{fnreplace(precioTotalPaquetes)}}</div>
+        </div>
+        <div class="col-xs-12 p0">
+            <div class="col-xs-8 col-xs-offset-2 mt5p mb5p p0">
+                <div class="col-xs-12 p0 bgcorange cwhite tac pt10 pb10 fs16 tac cpointer" ng-click="ok()">
+                    Continuar compra
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cb"></div> 
+</script>
+<div class="col-xs-12 p0">
+    <img src="/Images/banner_HD.png" alt="" class="img-responsive">
+</div>
+
+<div class="col-xs-12 p0 col-sm-8 col-sm-offset-2 mt25 mb25 fs20">
+    <div class="col-xs-6 fs14 fwbbold cgraybold mt3 tar">
+        Número de Cuenta
+    </div>
+    <div class="col-xs-6 fs15 fwbbold cred tal">
+        {{OpSelec.hogar}}
+    </div>
+</div>
+
+<div class="col-xs-12 p0 col-md-10 col-md-offset-1 fs15 cgray">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 mbbil20">
+        <div class="col-xs-10 tac">
+            Selecciona los productos
+            que deseas agregar a tu
+            cuenta Hogar
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 p0 col-md-10 col-md-offset-1 mt30 mb30">
+    <div class="col-xs-12 col-sm-4 mbbil25 mb20" ng-repeat="item in lisaddpaquetes">
+        <div class="bcgraycajas col-xs-12 pt20 bsdetallepaquetepre">
+            <div class="col-xs-12 fs30 cgray fwbbold p0">{{item.descripcion}}</div>
+            <div class="col-xs-12 p0 mb10">
+                <div class="col-xs-12 cgray fwbbold p0 fs20">{{fnreplace(item.valor)}}</div>
+            </div>
+            <!--<div class="col-xs-12 mt18 p0">
+                <div class="col-xs-12 p0 cgraybold">
+                    <div class="col-xs-12 p0 fs15">10 Canales</div>
+                    <div class="col-xs-12 p0 fs15">3 Canales HD</div>
+                </div>
+                <div class="col-xs-6 p0">
+                    <img src="/Images/HBO_logo.png">
+                </div>
+            </div>-->
+            <div class="col-xs-12 tac cpointer fs14 cgray mt20 mb10 bnfocus" ng-click="detalleTvPlan(item)">
+                Más información
+            </div>
+        </div>
+        <div class="col-xs-12 cpointer tac bgbluelight pb10 pt10 fs12 cwhite bnfocus" ng-if="item.agregado == false" ng-click="item.agregado = true;hayPaquetesSlt()">
+            Agregar
+        </div>
+        <div class="col-xs-12 cpointer tac bcgraymousebold pb10 pt10 fs12 cwhite bnfocus" ng-if="item.agregado == true" ng-click="item.agregado = false;hayPaquetesSlt()">
+            Eliminar
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 col-md-8 col-md-offset-2 p0bil hidden-xs">
+    <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 p0 bgbluelight cwhite tac pb10 pt10 fwbbold fs16 cpointer outlinenone" ng-click="getinfohd()">
+            Volver
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 p0 bcgraymousebold cwhite tac pb10 pt10 fwbbold fs16 outlinenone bnfocus" ng-if="contrataPaquetes == false">
+            Aún no has seleccionado paquetes
+        </div>
+        <div class="col-xs-12 p0 bgcorange cwhite tac pb10 pt10 fwbbold fs16 cpointer outlinenone bnfocus" ng-if="contrataPaquetes == true" ng-click="popupPaquetesSlt()">
+            Contratar los paquetes seleccionados <span class="numPaquetesselec">{{cntPaquetes}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 p0 col-md-8 col-md-offset-2 p0bil hidden-sm hidden-md hidden-lg">
+    <div class="col-xs-12 mb10">
+        <div class="col-xs-12 p0 bcgraymousebold cwhite tac pb10 pt10 fwbbold fs16 outlinenone bnfocus" ng-if="contrataPaquetes == false">
+            Aún no has seleccionado paquetes
+        </div>
+        <div class="col-xs-12 p0 bgcorange cwhite tac pb10 pt10 fwbbold fs16 cpointer outlinenone bnfocus" ng-if="contrataPaquetes == true" ng-click="popupPaquetesSlt()">
+            Contratar los paquetes seleccionados <span class="numPaquetesselec">{{cntPaquetes}}</span>
+        </div>
+    </div>
+    <div class="col-xs-12 mb10">
+        <div class="col-xs-12 p0 bgbluelight cwhite tac pb10 pt10 fwbbold fs16 cpointer outlinenone" ng-click="getinfohd()">
+            Volver
+        </div>
+    </div>
+</div>

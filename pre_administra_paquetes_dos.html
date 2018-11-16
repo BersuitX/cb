@@ -1,0 +1,60 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<div class="col-xs-12 fs40 fwbbold tac cgraybold mt25 mb10">
+    Navegación por demanda
+</div>
+<div class="col-xs-6 fs14 fwbbold cgraybold mt3 tar">
+    Número móvil:
+</div>
+<div class="col-xs-6 fs15 fwbbold cred tal">
+    {{OpSelec.prepago}}
+</div>
+<div class="col-xs-12 p0 col-md-8 col-md-offset-2 mt25">
+    <div class="col-xs-9 col-sm-9  mb15">
+        <div class="col-xs-12 p0bil cblack fs16">
+            Activa o desactiva la navegación con descuento de tu recarga. Recuerda que si desactivas esta opción,
+            únicamente podrás navegar adquiriendo paquetes.
+        </div>
+    </div>
+    <div class="col-xs-3 col-sm-3 cgraymouse mb15">
+        <div class="col-xs-12 p0bil">
+            Estado
+        </div>
+        <div class="col-xs-12 p0bil">
+            <md-switch ng-show="listo" ng-model="navegacionAgranel.Activa" ng-click="Tagging('Prepago','bt_pre_ini_navegdemanda_activar');validarEstado(1,$event)"></md-switch>
+        </div>
+        <div class="col-xs-12 p0bil" ng-if="navegacionAgranel.Activa == true">
+            Activo
+        </div>
+        <div class="col-xs-12 p0bil" ng-if="navegacionAgranel.Activa == false">
+            Inactivo
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 p0 col-md-8 col-md-offset-2 mt25">
+    <div class="col-xs-12 mb15">
+        Descripción de los estados:
+    </div>
+    <div class="col-xs-12 col-sm-6 mb15 p0">
+        <div class="col-xs-12 cred mb15">
+            Estado Activo:
+        </div>
+        <div class="col-xs-12">
+            Se descontarán de tu recarga las acciones de navegación que
+            realices desde tu equipo.
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 mb15 p0">
+        <div class="col-xs-12 cred mb15">
+            Estado Inactivo:
+        </div>
+        <div class="col-xs-12">
+            No se descontarán de tu recarga las acciones de navegación que realices desde
+            tu equipo.
+        </div>
+    </div>
+</div>

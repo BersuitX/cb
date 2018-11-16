@@ -1,0 +1,341 @@
+<style type="text/css">
+    li::before{
+    content:'';    
+    }
+</style>
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<!-- Mas productos -->
+<script type="text/ng-template" id="popupmasopcioneshogar.html">
+    <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+    </div>
+    <div class="col-xs-6 col-xs-offset-3 p0 mt2p">
+        <div class="col-xs-12 p0 fs21 corange fwbbold tac">
+            Más opciones
+        </div>
+
+        <div class="col-xs-12 p0 cpointer mt13p">
+            <div ng-click="redireccion('AsociarProductoClaroGeneral')" class="outlinenone">
+                <div class="col-xs-2 p0 tac">
+                    <img src="/Images/MobileMasOpcionesPost.png"></img>
+                </div>
+                <div class="col-xs-10 p0 cgraybold mt10">
+                    Asociar otros productos claro
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 p0 h1 bcgraymouse mt3p"></div>
+    </div>
+
+    <div class="col-xs-6 col-xs-offset-3 bcgraymouse cwhite pt10 pb10 fs18 tac mt8p cpointer mb8p" ng-click="cancel()">
+        Cancelar
+    </div>
+    <div class="cb"></div>
+</script>
+
+<!-- Detalle del plan prepago -->
+<script type="text/ng-template" id="popupdesasociarproducto.html">
+    <div class="col-xs-12" block-ui="desasociarproductoblockui">
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+        </div>
+        <div>
+            <div class="col-xs-12 tac fwbbold fs30 mt3p cgraybold">Desasociar Cuenta</div>
+            <div class="col-xs-12 tac fs15 mt2p cgraybold">Se desasociará la siguiente cuenta de tu aplicación: </div>
+            <div class="col-xs-12 tac fs18 mt2p cblack fwbbold">{{cuenta}}</div>
+            <div class="col-xs-8 col-xs-offset-2 tac fs18 mt2p cblack fwbbold">
+                ¿Estás seguro?
+            </div>
+            <div class="col-xs-8 col-xs-offset-2 bgcorange cwhite pt10 pb10 fs18 tac cpointer mb8p mt30" ng-click="clicsesaciarcuenta()" role="button" tabindex="0">
+                Desasociar
+            </div>
+        </div>
+        <div class="cb"></div>
+    </div>
+    <div class="cb"></div>
+</script>
+
+<!-- iframe chat -->
+<div class="pfixed ng-scope r0 b380 zi1 bcgraychat w304 pt5 pb5 pl6" ng-if="chat2 == 1">
+    <img src="/Images/cancellila.png" class="zi1 b390 r227 h25 w25 cpointer outlinenone" ng-click="showchat()" ng-if="chat2 == 1"></img>
+</div>
+<iframe ng-src="{{UrlIframe}}" class="pfixed zi1 b0 r0 h380 bcgraylight " ng-if="chat2 == 1"></iframe>
+
+<!-- iframe productos -->
+<div class="pfixed ng-scope r0 b380 zi1 bcgraychat w304 pt5 pb5 pl6" ng-if="adProductos == 1">
+    <img src="/Images/cancellila.png" class="pfixed zi1 b390 r227 h25 w25 cpointer outlinenone pinitial" ng-click="showchatadProductos()" ng-if="adProductos == 1"></img>
+</div>
+<iframe ng-src="{{UrlIframeHogar}}" class="pfixed zi1 b0 r0 h380 bcgraylight " ng-if="adProductos == 1"></iframe>
+
+<!-- iframe chat hogar -->
+<div class="pfixed ng-scope r0 b380 zi1 bcgraychat w304 pt5 pb5 pl6" ng-if="chat == 1">
+    <img src="/Images/cancellila.png" class="pfixed zi1 b390 r227 h25 w25 cpointer outlinenone pinitial" ng-click="showchat()" ng-if="chat == 1"></img>
+</div>
+<iframe ng-src="{{UrlIframeHogar}}" class="pfixed zi1 b0 r0 h380 bcgraylight " ng-if="chat == 1"></iframe>
+
+<!-- iframe chat productos HD -->
+<div class="pfixed ng-scope r0 b380 zi1 bcgraychat w304 pt5 pb5 pl6" ng-if="chatHd == 1">
+    <img src="/Images/cancellila.png" class="zi1 b390 r227 h25 w25 cpointer outlinenone" ng-click="showchatHd()" ng-if="chatHd == 1"></img>
+</div>
+<iframe src="{{UrlIframeChatHd}}" class="pfixed zi1 b0 r0 h380 bcgraylight " ng-if="chatHd == 1"></iframe>
+
+<!-- Contenedor -->
+<div class="col-xs-12 col-md-10 col-md-offset-1 p0" block-ui="block" ng-if="notieneproducto.length > 0" style="overflow:hidden">
+    <div id="showcerrarsesion" class="mr10 cpointer ttc tac cgraybold mt15 hidden-md hidden-lg" ng-if="nombreUserClaro != ''">
+        Hola {{nombreUserClaro | lowercase}}
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3  col-lg-4 col-lg-offset-4">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 bc1graylight pt10 pb10 mt25">
+            <div class="col-xs-12">
+                <select class="corange bn outlinenone col-xs-12 bcwhite talast hidden-xs" ng-model="OpSelec.hogar" ng-change="validar()">
+                  <option value="">-- Seleccione --</option>
+                  <option value="{{item.AccountId}}" ng-repeat="item in Us.cuentas" ng-if="item.LineOfBusiness == 1 || item.LineOfBusiness == 4">{{item.alias}}</option>
+                </select>
+                
+                <md-select class="corange bn outlinenone col-xs-12 m0 bcwhite talast hidden-sm hidden-md hidden-lg" aria-label="Follow" ng-model="OpSelec.hogar" ng-change="validar()">
+                  <md-option value="">-- Seleccione --</md-option>
+                  <md-option value="{{item.AccountId}}" ng-repeat="item in Us.cuentas" ng-if="item.LineOfBusiness == 1 || item.LineOfBusiness == 4">{{item.alias}}</md-option>
+                </md-select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor Dashboard Card-->
+    <div class="col-xs-12 p0" ng-show="ShowDash == 1">
+        <!-- Dirección de la cuenta -->
+        <div class="col-xs-12 fwbbold fs18 cgraylight tac mt3p mb1p ttuc">
+            DIRECCIÓN: {{(adress == "")?'No Aplica':adress}}
+        </div>
+        
+        <div class="col-xs-12 mt25 hidden-xs hidden-sm ">
+            <div class="col-xs-12 dn-flex flex-ai-center h65 p0 cpointer outlinenone" ng-click="fcninterna('compraPaquetesyRecargasHogar')">
+                <img src="/Images/btn_compradepaquetesyrecargas_hogar.png" alt="Compra de Paquetes" class="hidden-xs hidden-sm img-responsive w100p">
+            </div>
+        </div>
+        <div class="col-xs-12 mt25 mb2 hidden-md hidden-lg">
+            <div class="col-xs-12 dn-flex flex-ai-center h65 p0 cpointer outlinenone" ng-click="fcninterna('compraPaquetesyRecargasHogar')">
+                <img src="/Images/btn_compradepaquetesyrecargas_hogarx2.png" alt="Paquetes Premium" class=" img-responsive w100p">
+            </div>
+        </div>
+        <div class="col-xs-6 mt25 mb2 hidden-xs hidden-sm" ng-if="botonHd == 2">
+            <div class="col-xs-12 dn-flex flex-ai-center h65 p0 cpointer outlinenone" ng-click="fcninterna('paquetesHdHogar')">
+                <img src="/Images/btn_canalespremium@2x.png" alt="Paquetes Premium" class="hidden-xs hidden-sm img-responsive w100p">
+            </div>
+        </div>
+        <div class="col-xs-12 mt25 mb2 hidden-md hidden-lg" ng-if="botonHd == 2">
+            <div class="col-xs-12 dn-flex flex-ai-center h65 p0 cpointer outlinenone" ng-click="fcninterna('paquetesHdHogar')">
+                <img src="/Images/btn_canalespremium.png" alt="Paquetes Premium" class=" img-responsive w100p">
+            </div>
+        </div>
+        
+         <div class="col-xs-6 mt25 mb2 hidden-xs hidden-sm" ng-if="botonHd == 1">
+            <div class="col-xs-12 dn-flex flex-ai-center h65 p0 cpointer outlinenone " ng-click="showchatHd();">
+                <img src="/Images/btn_canalespremium@2x.png" alt="Paquetes Premium" class=" img-responsive w100p">
+            </div>
+        </div>
+        <div class="col-xs-12 mt25 mb2 hidden-md hidden-lg" ng-if="botonHd == 1">
+            <div class="col-xs-12 dn-flex flex-ai-center h65 p0 cpointer outlinenone " ng-click="showchatHd();">
+                <img src="/Images/btn_canalespremium@2x.png" alt="Paquetes Premium" class=" img-responsive w100p">
+            </div>
+        </div>
+        
+        <div class="col-xs-6 mt25 mb2 hidden-xs hidden-sm" >
+            <div class="col-xs-12 dn-flex flex-ai-center h65 p0 cpointer outlinenone" ng-click=""> <a ng-href="{{Nagraurl}}" target="_black">
+                <img src="/Images/btn_guiaclaro@2x.png" alt="Guía Claro" class=" img-responsive w100p"></a>
+            </div>
+        </div>
+        <div class="col-xs-12 mt25 mb2 hidden-md hidden-lg" >
+            <div class="col-xs-12 dn-flex flex-ai-center h65 p0 cpointer outlinenone" ng-click=""> <a ng-href="{{Nagraurl}}" target="_black">
+                <img src="/Images/btn_guiaclaro@2x.png" alt="Guía Claro" class=" img-responsive w100p"></a>
+            </div>
+        </div>
+        
+        
+        <div class="col-xs-12 mt5">
+            <div class="col-xs-12 bgcorange dn-flex flex-ai-center h65 p0 cpointer outlinenone" ng-click="fcninterna('BeneficiosHogar')">
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 p0">
+                    <div class="col-xs-4 p0">
+                        <img src="/Images/Group_9436.png" alt="" class="w60 ma img-responsive">
+                    </div>
+                    <div class="col-xs-8 cwhite fwbbold fs22 p0 mt10 hidden-xs hidden-sm">
+                        Déjanos sorprenderte
+                    </div>
+                    <div class="col-xs-8 cwhite fwbbold fs18 p0 mt15 hidden-md hidden-lg">
+                        Déjanos sorprenderte
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 p0 mt25 hidden-md hidden-lg">
+            </div>
+        </div>
+        
+        <div class="col-xs-12 p0 mt25">
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Hogar','_ini_detalleplan');fcninterna('DetallePlanHogar');">
+                <div class="col-xs-12 h170 bcgraylight tac cpointer outlinenone">
+                    <div>
+                        <img src="/Images/Hogar_detalledetuplan.png" class="mt19"></img>    
+                    </div>
+                    <div class="col-xs-12 p0 cgrayboldhome fwbbold fs18 mt10">
+                        Detalle de tu Plan
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Hogar','_ini_administratufactura');fcninterna('PagaTuFacturaHogar')">
+                <div class="col-xs-12 h170 bclilalight tac cpointer dn-flex flex-column flex-jc-center">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0">
+                        <img src="/Images/Hogar_administrafactura.png" class="ma mt19 img-responsive"></img>
+                    </div>
+                    <div class="col-xs-12 p0 cwhite fwbbold fs18 mt10">
+                        Administra tu Factura
+                    </div>
+                </div>
+            </div>
+            
+             <!-- Mobil -->
+            <div class="col-xs-12 hidden-md hidden-lg">
+                <div class="h4"></div>
+            </div>
+            
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Hogar','_ini_gestionatusvisitastecnicas');fcninterna('GpsTecnico')">
+                <div class="col-xs-12 h170 bcgraylight tac cpointer outlinenone dn-flex flex-column flex-jc-center">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3 p0">
+                        <img src="/Images/Hogar_gestionatusvivistastecnicas.png"></img>
+                    </div>
+                    <div class="cgrayboldhome fwbbold fs18 mt5">
+                        Gestiona tus
+                    </div>
+                    <div class="cgrayboldhome fwbbold fs18 lh14px">
+                        Visitas Técnicas
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Hogar','_ini_recuerdatuclavewifi');fcninterna('CambioDeClaveWifi')">
+                <div class="col-xs-12 h170 bgcorange tac cpointer dn-flex flex-column flex-jc-center">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3 p0">
+                        <img src="/Images/Hogar_personalizaturedwifi.png"></img>
+                    </div>
+                    <div class="cwhite  fwbbold fs18 mt5">
+                        Personaliza tu
+                    </div>
+                    <div class="cwhite fwbbold fs18 lh14px">
+                        Red Wifi
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+                        
+        <div class="col-xs-12 p0 mt25 hidden-md hidden-lg" ng-if="Us.usuario.DocumentType != 5">
+            <!-- Mobil -->
+        </div>
+        
+        <div class="col-xs-12 mt25" ng-if="Us.usuario.DocumentType != 5">
+            <div class="col-xs-12 bc1graylight pt10 pb10 tac cpointer outlinenone" ng-click="Tagging('Hogar','_ini_chateaconnosotros');showchat()">
+                <div class="col-xs-12 col-md-8 col-md-offset-2 col-xs-offset-2 p0">
+                    <div class="col-xs-3 col-xs-offset-1 col-md-2 col-md-offset-3 p0">
+                        <img src="/Images/tools.png" class="ma w41"></img>
+                    </div>
+                    <div class="col-xs-8 col-md-7 p0 fs19 corange fwbbold mt5 tal"><span>Chatea con nosotros</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 p0 mt25">
+            
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Hogar','_ini_adquirirproducto');showchatadProductos()" ng-if="Us.usuario.DocumentType != 5">
+                <div class="col-xs-12 h170 bgcorange tac cpointer outlinenone dn-flex flex-column flex-jc-center">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3 p0">
+                        <img src="/Images/Hogar_adquirirproducto.png"></img>
+                    </div>
+                    <div class="cwhite fwbbold fs18 mt10">
+                        Adquirir Producto
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Hogar','_ini_elefijomovil');fcninterna('ElegidosHogar')">
+                <div class="col-xs-12 h170 bcgraylight tac cpointer dn-flex flex-column flex-jc-center">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0 mt4 contenticoncarddash">
+                        <img src="/Images/hog_elegidostododestino.png" class="ma img-responsive"></img>
+                    </div>
+                    <div class="cgrayboldhome fwbbold fs18 mt5">
+                        Administra tus
+                    </div>
+                    <div class="cgrayboldhome fwbbold fs18 lh14px">
+                        Elegidos Fijo – Móvil
+                    </div>
+                </div>
+            </div>
+            
+             <div class="col-xs-12 hidden-md hidden-lg">
+                <div class="h4"></div>
+            </div>
+            
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Hogar','_ini_encuentranuestraszonaswifi');fcninterna('ZonasWifiHogar')" ng-if="Us.usuario.DocumentType != 5">
+                <div class="col-xs-12 h170 bclilalight tac cpointer dn-flex flex-column flex-jc-center">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3 p0">
+                        <img src="/Images/Hogar_encuentranuestrszonaswifi.png"></img>
+                    </div>
+                    <div class="cwhite fwbbold fs18 mt5">
+                        Encuentra Nuestras
+                    </div>
+                    <div class="cwhite fwbbold fs18 lh14px">
+                        Zonas Wifi
+                    </div>
+                </div>
+            </div>
+            
+             <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Hogar','_ini_encuentranuestraszonaswifi');fcninterna('ZonasWifiHogar')" ng-if="Us.usuario.DocumentType == 5">
+                <div class="col-xs-12 h170 bcgraylight tac cpointer dn-flex flex-column flex-jc-center">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3 p0">
+                        <img src="/Images/Hogar_encuentranuestrszonaswifi.png"></img>
+                    </div>
+                    <div class="cwhite fwbbold fs18 mt5">
+                        Encuentra Nuestras
+                    </div>
+                    <div class="cwhite fwbbold fs18 lh14px">
+                        Zonas Wifi
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Hogar','_ini_desasociarcuenta');desasociarproducto()">
+                <div class="col-xs-12 h170 bcwhite tac cpointer bc1red dn-flex flex-column flex-jc-center">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3 p0">
+                        <img src="/Images/icon_desasociarcuenta_blanco.png" class="ma img-responsive"></img>
+                    </div>
+                    <div class="corange fwbbold fs18 mt10">
+                        Desasociar Cuenta
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        
+        <div class="col-xs-12 p0 mt25 hidden-md hidden-lg" ng-if="Us.usuario.DocumentType != 5">
+            <!-- Mobil -->
+        </div>
+        <div class="col-xs-12 mt25 mb25">
+            <ui-carousel slides="multiple.slides" slides-to-show="1" slides-to-scroll="1" initial-slide="0" autoplay="true" autoplay-speed="3000" dots="true" arrows="false" centerMode="true" draggable="true" on-init="onCarouselInit(event, slick, currentSlide)">
+                <carousel-item class="elemnt">
+                    <a href="{{item.target}}" target="_Blank" ng-click="Tagging('Hogar','_ini_bannerpublicitario')">
+                        <img ng-src="{{item.img}}" class="pull-right img-responsive w100p"></img>
+                    </a>
+                </carousel-item>
+            </ui-carousel>
+        </div>
+    </div>
+
+</div>
+
+<!-- No hay productos -->
+<asociar-producto></asociar-producto>

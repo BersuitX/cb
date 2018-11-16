@@ -1,0 +1,12 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+
+
+    <posgteinfo ng-if="interna == 1"></posgteinfo>
+    <posgteregistra ng-if="interna == 2"></posgteregistra>
+    <posgteconsulta ng-if="interna == 3"></posgteconsulta>
+    <posgteregistradual ng-if="interna == 4"></posgteregistradual>

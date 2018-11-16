@@ -1,0 +1,23 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://www.ericsson.com/esb/data/generico/CommonTypes/v2/" xmlns:v1="http://www.ericsson.com/esb/message/usageSpecification/getBalanceConsumptionRequest/v1.0">
+   <soapenv:Header>
+      <v2:headerRequest>
+         <v2:channel>ESB</v2:channel>
+         <v2:idApplication>MAXIMO</v2:idApplication>
+         <v2:userApplication>EOC</v2:userApplication>
+         <v2:userSession>teste</v2:userSession>
+         <v2:idESBTransaction>1234</v2:idESBTransaction>
+         <v2:idBusinessTransaction>123</v2:idBusinessTransaction>
+         <v2:startDate>03-08-2018</v2:startDate>
+      </v2:headerRequest>
+   </soapenv:Header>
+   <soapenv:Body>
+      <v1:GetBalanceConsumptionRequest>
+         <subscriberNumber>57<?=$Vqhzkfsafzrc->AccountId?></subscriberNumber>
+         <searchLimit></searchLimit>
+         <startFromDate><?=$Vqhzkfsafzrc->FechaInicial?></startFromDate>
+         <startToDate><?=$Vqhzkfsafzrc->FechaFinal?></startToDate>
+         <returnDetails>true</returnDetails>
+         <returnTotals>true</returnTotals>
+      </v1:GetBalanceConsumptionRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

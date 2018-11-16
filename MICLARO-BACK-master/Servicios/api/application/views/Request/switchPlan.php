@@ -1,0 +1,33 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.americamovil.com/schema/namespace/ServiceManagement/v1">
+    <soapenv:Header>
+        <ServiceGatewayHeader>
+        <codIdioma>EN</codIdioma>
+        <systemId>SELFSERVICE</systemId>
+        <userProfileId>david400@gmail.com</userProfileId>
+        <operationId>switchPlan</operationId>
+        <IPServer>9.129.59.6</IPServer>
+        <TipoCanal>MB</TipoCanal>
+        <VersionServicio>1.0</VersionServicio>
+        <VersionEndpoint>1.0</VersionEndpoint>
+        <Notification>false</Notification>
+        </ServiceGatewayHeader>
+    </soapenv:Header>
+   <soapenv:Body>
+      <v1:switchPlan>
+         <LineOfBusiness><?=$Vrqs4xzp4h4g?></LineOfBusiness>
+         <AccountId><?=$V3hbf4so4iko?></AccountId>
+         <ServiceID>1</ServiceID>
+         <ServiceType>1</ServiceType>
+         <NewPlan>
+            <PlanID><?=$Vmcd2qd3gqhb?></PlanID>
+            <PlanName><?=$V51spkpzy2vt?></PlanName>
+            <PlanCode><?=$V25hargehsn4?></PlanCode>
+         </NewPlan>
+         <OldPlan>
+            <PlanID><?=$V1iaw4y2tbkf?></PlanID>
+            <PlanName><?=$V3offgefkqyf?></PlanName>
+            <PlanCode><?=$Vswzhgivuk3l?></PlanCode>
+         </OldPlan>
+      </v1:switchPlan>
+   </soapenv:Body>
+</soapenv:Envelope>

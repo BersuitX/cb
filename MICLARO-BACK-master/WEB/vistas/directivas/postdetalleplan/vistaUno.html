@@ -1,0 +1,525 @@
+<script>
+    var URLactual = window.location;
+    if (URLactual.pathname.indexOf('.') != -1) {
+        window.location.href = "/";
+    }
+</script>
+<!-- Modal: Descripción -> Postpago -> Detalle del plan -->
+<script type="text/ng-template" id="postpagodetalledelplan.html">
+    <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+    </div>
+    <div class="col-xs-12 tac fwbbold fs18 mt3p cgraybold">{{Data.PlanName}}</div>
+
+    <div class="col-xs-10 col-xs-offset-1 fs16 cgraybold mt6p taj">{{Data.PlanDescription}}</div>
+
+    <div class="col-xs-4 col-xs-offset-4 bgcorange cwhite pt10 pb10 fs18 tac mt8p cpointer mb8p" ng-click="Tagging('Postpago','Postpago_Detalledetuplan_Descripciondelplan_Aceptar');ok()">
+        Aceptar
+    </div>
+    <div class="cb"></div>
+</script>
+
+<!--Versión anterior DETALLE DE TU PLAN-->
+<div block-ui="blockDetallePospago">
+    <div class="col-xs-12 p0">
+
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25">
+            Detalle de tu plan
+        </div>
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 hidden-sm hidden-xs">
+            <div class="col-xs-6 fs28 fsm18 fwbbold tac cgraybold mt19">
+                Número de cuenta
+            </div>
+            <div class="col-xs-6 fs28 fwbbold tac cblack mt19">
+                {{OpSelec.postpago}}
+            </div>
+        </div>
+        <div class="col-xs-12 mb25 plm10p fs16 fwbbold tac cgraybold hidden-md hidden-lg">
+            <div class="row tac pl14p">
+                <div class="col-xs-5 fs14 fwbbold tac cgraybold mt25 pl0 pm0">
+                    Número de cuenta:
+                </div>
+                <div class="col-xs-4 fs14 pl14p fwbbold tac mt25 cred ">
+                    {{OpSelec.postpago}}
+                </div>
+            </div>
+        </div>
+        <!-- Contenedor -->
+        <div class="col-xs-12 p0 col-md-8 col-md-offset-2 mt25 hidden-xs hidden-sm hidden-md hidden-lg">
+            <!-- destopk -->
+            <div class="col-xs-12 p0 mt25 hidden-xs">
+
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bclilalight tac">
+                        <div class="cwhite fs12 tac mt15 RobotoLight" ng-show="Data.SocialNetworks == 1">
+                            Tienes acceso a:
+                        </div>
+                        <div class="cwhite fs12 tac mt15 RobotoLight" ng-show="Data.SocialNetworks == 0">
+                            <strong>¿Te quedaste sin datos?</strong>
+                        </div>
+
+                        <div class="mt10 fccenter">
+                            <img src="/Images/Twitterdatosplan.png" class="mr30 w30mobil"></img>
+                            <img src="/Images/Facedatosplan.png" class="mr30 w30mobil"></img>
+                            <img src="/Images/Whatsdatosplan.png" class="w30mobil"></img>
+                        </div>
+
+                        <div class="cwhite fs12 tac mt10 RobotoLight" ng-show="Data.SocialNetworks == 1">
+                            Aunque hayas consumido
+                        </div>
+
+                        <div class="cwhite fs12 tac RobotoLight" ng-show="Data.SocialNetworks == 1">
+                            los datos de tu plan
+                        </div>
+
+                        <div class="cwhite fs12 tac mt10 RobotoLight" ng-show="Data.SocialNetworks == 0">
+                            Compra paquetes de redes y chat
+                        </div>
+
+                        <div class="cwhite fs12 tac RobotoLight" ng-show="Data.SocialNetworks == 0">
+                            por el tiempo que quieras
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bcgraylight tac">
+                        <div class="fwbbold fs40 mt25">
+                            {{Data.datos}}
+                        </div>
+                        <div class="clilalight fwbbold fs12 mt10">
+                            Megas de navegación incluidas
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobil -->
+                <div class="col-xs-12 hidden-md hidden-lg">
+                    <div class="h4"></div>
+                </div>
+
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bcgraylight tac">
+                        <div class="fwbbold clilalight fs40 mt25">
+                            {{Data.FrequentNumbersAllowed.Call}}
+                        </div>
+                        <div class="clilalight fwbbold fs12 mt10">
+                            <div>Elegidos de cualquier operador</div>
+                            <div>fijo o móvil</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 p0 mt25 hidden-xs">
+
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bcgraylight tac">
+                        <div class="fwbbold fs40 mt25">
+                            {{Data.PlanAmount}}
+                        </div>
+                        <div class="clilalight fwbbold fs12 mt10">
+                            <div>Cargo fijo mensual</div>
+                            <div>(Impuestos incluidos)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-4 cpointer outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_detalledetuplan_descripcion');open()">
+                    <div class="col-xs-12 h140 bcgraymouse tac">
+                        <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 descripcionplanpostago">
+                            <img src="/Images/verdetallesplan.png" class="mt25 img-responsive ma"></img>
+                        </div>
+                        <div class="col-xs-12 p0 cwhite fs18 mt10">
+                            <strong>Descripción del Plan</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bcgraylight tac">
+                        <div class="fwbbold fs40 mt25">
+                            {{Data.voz}}
+                        </div>
+                        <div class="clilalight fwbbold fs12 mt10">
+                            Segundos incluidos a móvil o fijo nacional
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobil -->
+                <div class="col-xs-12 hidden-md hidden-lg">
+                    <div class="h4"></div>
+                </div>
+
+                <!--<div class="col-xs-6 col-md-3 cpointer outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_detalledetuplan_vercontrato');getPDF()">
+                <div class="col-xs-12 h140 bgcorange tac">
+                    <div class="col-xs-6 col-xs-offset-3 vercontratopostpago">
+                        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 p0">
+                            <img src="/Images/Plusmejoratuplan.png" class="mt25 img-responsive ma"></img>
+                        </div>
+                    </div>                        
+                    <div class="col-xs-12 p0 cwhite fs18 mt10">
+                        <strong>Ver contrato</strong>
+                    </div>
+                </div>
+            </div>-->
+
+                <!-- <div class="col-xs-6 col-md-3 outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_ConsumoDatos');fcninterna('ConsumoDeDatosPostpago')">
+                <div class="col-xs-12 h140 bgcorange tac cpointer dn-flex flex-column flex-jc-center">
+                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 p0">
+                        <img src="/Images/Detalledeplan_detalledeconsumos.png" class="ma img-responsive"></img>
+                    </div>
+                    <div class="col-xs-12 p0 cwhite fwbbold fs18 mt10">
+                        Consumo de datos
+                    </div>
+                </div>
+            </div>-->
+
+            </div>
+
+            <div class="col-xs-12 p0 mt25 hidden-xs">
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bcgraylight tac">
+                        <div class="fwbbold fs40 mt25">
+                            {{Data.sms}}
+                        </div>
+                        <div class="clilalight fwbbold fs12 mt10">
+                            Mensajes de texto incluidos a móviles Claro
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- movile -->
+            <div class="col-xs-12 p0 mt25 hidden-sm hidden-md hidden-lg">
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bclilalight tac">
+                        <div class="cwhite fs12 tac mt15 RobotoLight" ng-show="Data.SocialNetworks == 1">
+                            Tienes acceso a:
+                        </div>
+                        <div class="cwhite fs12 tac mt15 RobotoLight" ng-show="Data.SocialNetworks == 0">
+                            <strong>¿Te quedaste sin datos?</strong>
+                        </div>
+
+                        <div class="mt10 fccenter">
+                            <img src="/Images/Twitterdatosplan.png" class="mr30 w30mobil"></img>
+                            <img src="/Images/Facedatosplan.png" class="mr30 w30mobil"></img>
+                            <img src="/Images/Whatsdatosplan.png" class="w30mobil"></img>
+                        </div>
+
+                        <div class="cwhite fs12 tac mt10 RobotoLight" ng-show="Data.SocialNetworks == 1">
+                            Aunque hayas consumido
+                        </div>
+
+                        <div class="cwhite fs12 tac RobotoLight" ng-show="Data.SocialNetworks == 1">
+                            los datos de tu plan
+                        </div>
+
+                        <div class="cwhite fs12 tac mt10 RobotoLight" ng-show="Data.SocialNetworks == 0">
+                            Compra paquetes de redes y chat
+                        </div>
+
+                        <div class="cwhite fs12 tac RobotoLight" ng-show="Data.SocialNetworks == 0">
+                            por el tiempo que quieras
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bcgraylight tac">
+                        <div class="fwbbold fs40 mt25">
+                            {{Data.datos}}
+                        </div>
+                        <div class="clilalight fwbbold fs12 mt10">
+                            Megas de navegación incluidas
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 p0 mt25 hidden-sm hidden-md hidden-lg">
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bcgraylight tac">
+                        <div class="fwbbold clilalight fs40 mt25">
+                            {{Data.FrequentNumbersAllowed.Call}}
+                        </div>
+                        <div class="clilalight fwbbold fs12 mt10">
+                            <div>Elegidos de cualquier operador</div>
+                            <div>fijo o móvil</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bcgraylight tac">
+                        <div class="fwbbold fs40 mt25">
+                            {{Data.PlanAmount}}
+                        </div>
+                        <div class="clilalight fwbbold fs12 mt10">
+                            <div>Cargo fijo mensual</div>
+                            <div>(Impuestos incluidos)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 p0 mt25 hidden-sm hidden-md hidden-lg">
+                <div class="col-xs-6 col-md-4 cpointer outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_detalledetuplan_descripcion');open()">
+                    <div class="col-xs-12 h140 bcgraymouse tac">
+                        <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 descripcionplanpostago">
+                            <img src="/Images/verdetallesplan.png" class="mt25 img-responsive ma"></img>
+                        </div>
+                        <div class="col-xs-12 p0 cwhite fs18 mt10">
+                            <strong>Descripción del Plan</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bcgraylight tac">
+                        <div class="fwbbold fs40 mt25">
+                            {{Data.voz}}
+                        </div>
+                        <div class="clilalight fwbbold fs12 mt10">
+                            Segundos incluidos a móvil o fijo nacional
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 p0 mt25 hidden-sm hidden-md hidden-lg">
+                <div class="col-xs-6 col-md-4">
+                    <div class="col-xs-12 h140 bcgraylight tac">
+                        <div class="fwbbold fs40 mt25">
+                            {{Data.sms}}
+                        </div>
+                        <div class="clilalight fwbbold fs12 mt10">
+                            Mensajes de texto incluidos a móviles Claro
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 p0 mt25 mb24 hidden-sm hidden-md hidden-lg">
+                <div class="col-xs-12 col-md-4 mb10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="Tagging('Postpago','bt_pos_ini_detalledetuplan_vercontrato');getPDF()">
+                        <img src="/Images/ico_consultaAqui.png" alt="Compra de Paquetes y Recargas" class="w23 pabsolute l11"> Ver contrato
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-4 mb10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="MejoratuPlan()">
+                        <img src="/Images/group_1251.png" alt="Compra de Paquetes y Recargas" class="w18 pabsolute l11"> Mejora tu plan
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-4 mb10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="serviciosAdicionales()">
+                        <img src="/Images/Extractosprepago_comrpadepaquetesyrecargas.png" alt="Compra de Paquetes y Recargas" class="w23 pabsolute l11"> Paquetes adicionales
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 p0 mt25 mb24 hidden-xs">
+                <div class="col-xs-12 col-md-4 mb10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="Tagging('Postpago','bt_pos_ini_detalledetuplan_vercontrato');getPDF()">
+                        <img src="/Images/ico_consultaAqui.png" alt="Ver contrato postpago" class="w23 pabsolute l11"> Ver contrato
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-4 mb10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="MejoratuPlan()">
+                        <img src="/Images/group_1251.png" alt="Mejora tu plan" class="w18 pabsolute l11"> Mejora tu plan
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-4 mb10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="serviciosAdicionales()">
+                        <img src="/Images/Extractosprepago_comrpadepaquetesyrecargas.png" alt="Paquetes adicionales" class="w23 pabsolute l11"> Paquetes adicionales
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Nueva visual de Detalle de tu plan >MD -->
+    <div class="container-fluid">
+        <div class="col-xs-12 p0" block-ui="block">
+
+            <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 p0 mt15">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+                    <div class="col-xs-6 cgraybold fs20 fsm20"> Tu Plan:</div>
+                    <div class="col-xs-6 corange fwbbold fs30 fsm25 tar">{{Data.PlanAmount}}</div>
+                </div>
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+                    <div class="col-xs-6 cblack fwbbold fs20 fsm16">{{Data.PlanName}}</div>
+                    <div class="col-xs-6 cgraybold fs16 fsm14  tar pt4"> Cargo fijo mensual (impuestos incluidos)</div>
+                </div>
+            </div>
+
+            <!--Contenido del plan (especificaciones)-->
+            <div class="row">
+                <div class="col-xs-12  col-md-10 col-md-offset-1 mt30">
+                    <!--Descripción DATOS-->
+                    <div class="col-xs-12 col-lg-4 fs15 mt25 pl10 pr10">
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12  mt10 bslb p15">
+                            <div class="col-xs-12">
+                                <div class="col-xs-3 imgRes">
+                                    <img src="/Images/icon_datos_detalleplan.png" class="pt5"></img>
+                                </div>
+                                <div class="col-xs-9 fs25 fwbbold" ng-show="!oculta">
+                                    {{Data.datos}}<span class="fs25 fwbbold"> GB</span></div>
+                                <div class="col-xs-9 clila fs18" ng-if="Data.blindaje">{{Data.datos1}}GB + {{Data.beneficio.total}}GB</div>
+                                <div class="col-xs-9">Gigas de navegación incluidas.</div>
+                            </div>
+
+                            <div class="col-xs-9 col-xs-offset-3 pl22">Aunque hayas consumido los datos de tu plan tienes acceso a:</div>
+                            <div class="col-xs-9 col-xs-offset-3 mt10">
+                                <div class="col-xs-1"><img src="/Images/icon_wtsap.png"></img>
+                                </div>
+                                <div class="col-xs-1 ml7"><img src="/Images/icon_fcbk.png"></img>
+                                </div>
+                                <div class="col-xs-1 ml7"><img src="/Images/icon_twittr.png"></img>
+                                </div>
+                            </div>
+
+                            <div class="p0 col-xs-12" ng-if="!datosCompartido">
+                                <div class="col-xs-12 mt12 imgRes">
+                                    <div class="col-xs-3"><img src="/Images/icon_DC.png" class="pl5"></img>
+                                    </div>
+                                    <div class="col-xs-9 pt5">Servicio de datos compartidos</div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-9 col-xs-offset-3 pl0">
+                                        <div class="col-xs-12 corange" ng-click="fcninterna('DatosCompartidos')"><u>Administrar</u><img src="/Images/icon_flecharoja.png" class="ml10"></img>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Descripción VOZ-->
+                    <div class="col-xs-12 col-lg-4 fs15 mt25 pl10 pr10">
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12 bslb mt10 p15">
+                            <div class="col-xs-12">
+                                <div class="col-xs-3 imgRes">
+                                    <img src="/Images/icon_voz.png" class="pt5 pl5"></img>
+                                </div>
+                                <div class="col-xs-9 fs25 fwbbold">{{Data.voz}}</div>
+                                <div class="col-xs-9">Segundos incluidos a móvil o fijo nacional</div>
+                            </div>
+
+                            <div class="p0 col-xs-12" ng-if="!elegidoVoz">
+                                <div class="col-xs-12 imgRes mt15">
+                                    <div class="col-xs-3">
+                                        <img src="/Images/ICON_9ELEGIDOS.png" class="pt5"></img>
+                                    </div>
+                                    <div class="col-xs-9">Elegidos de cualquier operador fijo o móvil</div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-9 col-xs-offset-3 corange imgRes tdu" ng-click="fcninterna('ElegidosTodoDestino')">Administrar<img src="/Images/icon_flecharoja.png" class="ml10"></img>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p0 col-xs-12" ng-if="!familiaYamigos">
+                                <div class="col-xs-12 mt15">
+                                    <div class="col-xs-3 imgRes">
+                                        <img src="/Images/ICON_F&a.png" class="pt5"></img>
+                                    </div>
+                                    <div class="col-xs-9">Servicio Familia y Amigos</div>
+                                    <div class="col-xs-9 corange imgRes tdu" ng-click="fcninterna('DatosFamiliayamigos')">Administrar<img src="/Images/icon_flecharoja.png" class="ml10"></img>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Descripción SMS-->
+                    <div class="col-xs-12 col-lg-4 fs15 mt25 pl10 pr10">
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12 bslb mt10 p15">
+                            <div class="col-xs-12">
+                                <div class="col-xs-3 imgRes">
+                                    <img src="/Images/icon_smsPlan.png" class="pt5"></img>
+                                </div>
+                                <div class="col-xs-9 fs25 fwbbold">{{Data.sms}}</div>
+                                <div class="col-xs-9">Mensajes de texto incluidos</div>
+                            </div>
+                            <div class="col-xs-12 mt15" ng-model="Data" ng-if="!elegidoSMS">
+                                <div class="col-xs-3 imgRes">
+                                    <img src="/Images/ICON_elegidotext.png" class="pt5 pl5"></img>
+                                </div>
+                                <div class="col-xs-9">Elegido de texto a móviles Claro</div>
+                                <div class="col-xs-9 corange tdu" ng-click="fcninterna('Postelegidostexto')">Administrar<img src="/Images/icon_flecharoja.png" class="ml10"></img>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Descripción del plan (texto)-->
+
+            <div class="col-xs-12 col-md-8 col-md-offset-2 pl20 pr20 mt40">
+                <div class="col-xs-12">
+                    <div class="col-xs-12 clila fs25 fsm17">Descripción del plan<img ng-src="{{!viewPlan? '/Images/ICON_ABAJO.png' : '/Images/ICON-ARRIBA.png'}}" class="ml15 outlinenone" ng-click="showPlan()" role="button"></img>
+                    </div>
+                </div>
+                <div class="col-xs-12 cgraybold mt20 taj" ng-if="viewPlan">
+                    {{Data.PlanDescription}}
+                </div>
+            </div>
+
+
+            <!--Botones Mejora Tu Plan -- Servicios Adicionales-->
+
+            <div class="col-xs-8 col-xs-offset-2 p0 mt25 mb24 hidden-sm hidden-md hidden-lg">
+                <!--<div class="col-xs-12 col-md-4 mb10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="Tagging('Postpago','bt_pos_ini_detalledetuplan_vercontrato');getPDF()">
+                        <img src="/Images/ico_consultaAqui.png" alt="Compra de Paquetes y Recargas" class="w23 pabsolute l11">
+                        Ver contrato
+                    </div>
+                </div>-->
+
+                <div class="col-xs-12 mb10 mt10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all " ng-click="MejoratuPlan()">
+                        <img src="/Images/group_1251.png" alt="Compra de Paquetes y Recargas" class="w18 pabsolute l11"> Mejora tu plan
+                    </div>
+                </div>
+
+                <div class="col-xs-12 mb10 mt10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="serviciosAdicionales()">
+                        <img src="/Images/Extractosprepago_comrpadepaquetesyrecargas.png" alt="Compra de Paquetes y Recargas" class="w23 pabsolute l11"> Paquetes adicionales
+                    </div>
+                </div>
+                <div class="col-xs-12 mt10 mb24">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="getPDF();Tagging('Postpago','bt_pos_ini_detalledetuplan_vercontrato')">
+                       <img src="/Images/ico_consultaAqui.png" alt="Compra de Paquetes y Recargas" class="w23 pabsolute l11"> Descargar contrato
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-8 col-xs-offset-2 p0 mt50 mb24 hidden-xs">
+                <div class="col-md-6 mb10 mt10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="MejoratuPlan()">
+                        <img src="/Images/group_1251.png" alt="Mejora tu plan" class="w18 pabsolute l11"> Mejora tu plan
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 mb10 mt10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="serviciosAdicionales()">
+                        <img src="/Images/Extractosprepago_comrpadepaquetesyrecargas.png" alt="Paquetes adicionales" class="w23 pabsolute l11"> Paquetes adicionales
+                    </div>
+                </div>
+                <div class="col-xs-6 col-xs-offset-3 p0 mt10 mb24">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="getPDF();Tagging('Postpago','bt_pos_ini_detalledetuplan_vercontrato')">
+                       <img src="/Images/ico_consultaAqui.png" alt="Compra de Paquetes y Recargas" class="w23 pabsolute l11"> Descargar contrato
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

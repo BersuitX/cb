@@ -1,0 +1,188 @@
+<style type="text/css">
+    span.circle {
+        border-radius: 2.7em;
+        -moz-border-radius: 2.7em;
+        -webkit-border-radius: 2.7em;
+        color: #ffffff;
+        display: inline-block;
+        font-weight: bold;
+        line-height: 2.6em;
+        margin-right: 15px;
+        text-align: center;
+        width: 2.6em;
+    }
+</style>
+<script>
+    var URLactual = window.location;
+    if (URLactual.pathname.indexOf('.') != -1) {
+        window.location.href = "/";
+    }
+</script>
+<!-- Modal: Descripción -> Postpago -> Detalle del plan -->
+<script type="text/ng-template" id="postpagodetalledelplan.html">
+    <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+    </div>
+    <div class="col-xs-12 tac fwbbold fs18 mt3p cgraybold">{{Data.PlanName}}</div>
+
+    <div class="col-xs-10 col-xs-offset-1 fs16 cgraybold mt6p taj">{{Data.PlanDescription}}</div>
+
+    <div class="col-xs-4 col-xs-offset-4 bgcorange cwhite pt10 pb10 fs18 tac mt8p cpointer mb8p" ng-click="Tagging('Postpago','Postpago_Detalledetuplan_Descripciondelplan_Aceptar');ok()">
+        Aceptar
+    </div>
+    <div class="cb"></div>
+</script>
+
+
+<!--Nueva visual de Detalle de tu plan >MD -->
+<div class="container-fluid" block-ui="blockPlan">
+    <div class="col-xs-12 p0">
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25 mb20">
+            Detalle de tu plan
+        </div>
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 hidden-sm hidden-xs">
+            <div class="col-xs-6 fs28 fsm18 fwbbold tac cgraybold mt19">
+                Número de cuenta
+            </div>
+            <div class="col-xs-6 fs28 fwbbold tac cblack mt19">
+                {{OpSelec.prepago}}
+            </div>
+        </div>
+        <div class="col-xs-12 mb25 plm10p fs16 fwbbold tac cgraybold hidden-md hidden-lg">
+            <div class="row tac pl14p">
+                <div class="col-xs-5 fs14 fwbbold tac cgraybold mt25 pl0 pm0">
+                    Número de cuenta:
+                </div>
+                <div class="col-xs-4 fs14 pl14p fwbbold tac mt25 cred ">
+                    {{OpSelec.prepago}}
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 p0 mt15">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <div class="col-xs-6 cgraybold fs20 hidden-sm hidden-xs"> Tu Plan:</div>
+                <div class="col-xs-6 cgraybold fs18 hidden-md hidden-lg"> Tu Plan:</div>
+            </div>
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <div class="col-xs-6 cblack fwbbold fs20 hidden-sm hidden-xs">{{Data.PlanName}}</div>
+                <div class="col-xs-6 cblack fwbbold fs18 hidden-md hidden-lg">{{Data.PlanName}}</div>
+            </div>
+        </div>
+
+        <!--Contenido del plan (especificaciones)-->
+        <div class="row">
+            <div class="col-xs-12  col-md-10 col-md-offset-1 mt30">
+                <!--Descripción DATOS-->
+                <div class="col-xs-12 col-lg-4 fs15 mt25 pl10 pr10" ng-show="Data.datos!=0">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12  mt10 bslb p15">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 imgRes">
+                                <img src="/Images/icon_datos_detalleplan.png" class="pt5"></img>
+                            </div>
+                            <div class="col-xs-9 fs18 mt20 fwbbold" ng-show="!oculta">
+                                {{Data.datos}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Descripción VOZ-->
+                <div class="col-xs-12 col-lg-4 fs15 mt25 pl10 pr10" ng-show="Data.FrequentNumbersAllowed.Free!=0 || Data.FrequentNumbersAllowed.Call!=0">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12 bslb mt10 p15">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 imgRes">
+                                <img src="/Images/icon_voz.png" class="pt5 pl5"></img>
+                            </div>
+                            <div class="col-xs-9 fs18 mt30 fwbbold" ng-show="Data.voz!=0">{{Data.voz}}</div>
+                        </div>
+
+                        <div class="p0 col-xs-12" ng-if="!familiaYamigos">
+                            <div class="col-xs-12 imgRes mt15">
+                                <div class="col-xs-3">
+                                    <span class="circle bclilalight">{{Data.FrequentNumbersAllowed.Free}}</span>
+                                </div>
+                                <div class="col-xs-9">Números amigo para hablar.
+                                    <div class="col-xs-9 corange imgRes tdu" ng-click="fcninterna('RegistroNumeroaAmigoPrepago')" role="button" tabindex="0">Administrar<img src="/Images/icon_flecharoja.png" class="ml10"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p0 col-xs-12" ng-show="!elegidoVoz">
+                            <div class="col-xs-12 mt15">
+                                <div class="col-xs-3 imgRes">
+                                    <span class="circle bclilalight">{{Data.FrequentNumbersAllowed.Call}}</span>
+                                </div>
+                                <div class="col-xs-9">Elegidos para hablar los primeros 5 minutos.</div>
+                                <div class="col-xs-9 corange imgRes tdu" ng-click="fcninterna('ElegidoTodoDestinoPrepago');">Administrar<img src="/Images/icon_flecharoja.png" class="ml10"></img>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Descripción SMS-->
+                <div class="col-xs-12 col-lg-4 fs15 mt25 pl10 pr10" ng-show="Data.sms!=0">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12 bslb mt10 p15">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 imgRes">
+                                <img src="/Images/icon_smsPlan.png" class="pt5"></img>
+                            </div>
+                            <div class="col-xs-9 fs18 mt20 fwbbold">{{Data.sms}}</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Descripción del plan (texto)-->
+
+        <div class="col-xs-12 col-md-8 col-md-offset-2 pl20 pr20 mt40">
+            <div class="col-xs-12">
+                <div class="col-xs-12 clila fs25 fsm17">Descripción del plan<img ng-src="{{!viewPlan? '/Images/ICON_ABAJO.png' : '/Images/ICON-ARRIBA.png'}}" class="ml15 outlinenone" ng-click="showPlan()" role="button"></img>
+                </div>
+            </div>
+            <div class="col-xs-12 cgraybold mt20 taj" ng-if="viewPlan">
+                {{Data.PlanDescription}}
+            </div>
+        </div>
+
+        <div class="col-xs-8 col-xs-offset-2 p0 mt25 mb24 hidden-sm hidden-md hidden-lg">
+
+            <div class="col-xs-12 mb10 mt10">
+                <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all " ng-click="fcninterna('CambiaTuPlanPrepago')">
+                    <img src="/Images/group_1251.png" alt="Compra de Paquetes y Recargas" class="w18 pabsolute l11"> Cambio de plan
+                </div>
+            </div>
+
+            <div class="col-xs-12 mb10 mt10">
+                <a href="http://miclaroapp.com.co/archivos/contratoPrepago.pdf" target="_blank" ng-click="Tagging('Prepago','bt_pre_ini_dtarifa_dplan_vercontrato');">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all">
+                        <img src="/Images/ico_terminosCondiciones.png" alt="Compra de Paquetes y Recargas" class="w23 pabsolute l11"> Ver contato
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-xs-8 col-xs-offset-2 p0 mt50 mb24 hidden-xs">
+            <!--<div class="col-xs-12 col-md-4 mb10">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="Tagging('Postpago','bt_pos_ini_detalledetuplan_vercontrato');getPDF()">
+                        <img src="/Images/ico_consultaAqui.png" alt="Ver contrato postpago" class="w23 pabsolute l11">
+                        Ver contrato
+                    </div>
+                </div>-->
+
+            <div class="col-md-4 col-md-offset-2 mb10 mt10">
+                <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all" ng-click="fcninterna('CambiaTuPlanPrepago')">
+                    <img src="/Images/group_1251.png" alt="Mejora tu plan" class="w18 pabsolute l11"> Cambio de plan
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4 mb10 mt10">
+                <a href="http://miclaroapp.com.co/archivos/contratoPrepago.pdf" target="_blank" ng-click="Tagging('Prepago','bt_pre_ini_dtarifa_dplan_vercontrato');">
+                    <div class="col-xs-12 bgcorange tac pt10 pb10 cwhite fs16 fwbbold br10all">
+                        <img src="/Images/ico_terminosCondiciones.png" alt="Paquetes adicionales" class="w23 pabsolute l11"> Ver contato
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
