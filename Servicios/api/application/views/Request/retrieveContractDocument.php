@@ -1,0 +1,22 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.americamovil.com/schema/namespace/ContractManagement/v1">
+<soapenv:Header>
+    <ServiceGatewayHeader>
+        <codIdioma>EN</codIdioma>
+        <systemId>SELFSERVICE</systemId>
+        <userProfileId><?=$Vur1q223roby?></userProfileId>
+        <operationId>retrieveContractDocument</operationId>
+        <IPServer>9.129.59.6</IPServer>
+        <TipoCanal>MB</TipoCanal>
+        <VersionServicio>1.0</VersionServicio>
+        <VersionEndpoint>1.0</VersionEndpoint>
+        <Notification>false</Notification>
+    </ServiceGatewayHeader>
+</soapenv:Header>
+   <soapenv:Body>
+      <v1:retrieveContractDocument>
+         <LineOfBusiness><?=$Vrqs4xzp4h4g?></LineOfBusiness>
+         <UserProfileId><?=$Vur1q223roby?></UserProfileId>
+         <AccountId><?=$V3hbf4so4iko?></AccountId>
+      </v1:retrieveContractDocument>
+   </soapenv:Body>
+</soapenv:Envelope>

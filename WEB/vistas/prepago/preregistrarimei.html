@@ -1,0 +1,27 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<!-- Modal Terminos y condiciones -->
+<script type="text/ng-template" id="terminoscondiciones.html">
+    <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+    </div>
+    <div class="col-xs-12 tac fwbbold fs21 mt2p cgraybold">Términos y condiciones</div>
+    <div class="col-xs-12 max-h360 taj fs15 mt2p mb4p cgraybold ofy overflowxh">
+        Autorizo conforme lo establecido en la Ley 1581 de 2012 a COMCEL o a cualquier tercero autorizado por esta compañía, para que de manera madura, libre, expresa e irrevocable obtenga de cualquier fuente y reporte y actualice a cualquier banco de datos las
+        informaciones y referencias relativas a mi persona, nombres, apellidos y documento de identificación, así como para elaborar bases de datos con fines comerciales y/o publicitarios. De igual forma manifiesto que respecto a la información mencionada
+        puedo ejercer los derechos dispuestos en el artículo 8 de la Ley 1581 de 2012 y que conozco que se encuentran disponibles en la página web www.claro.com.co las políticas de tratamiento de la información de que trata la referida Ley. Con la
+        suscripción del presente documento como titular de la información manifiesto que los datos suministrados en la solicitud son ciertos y que no ha sido omitida o alterada ninguna información, quedando informado que la falsedad u omisión de algún
+        dato supondrá la imposibilidad de prestar correctamente el servicio. Así mismo, en la Ley 1453, Decreto 1630 y Resolución CRC 3128 de 2011, autorizo la utilización de la información registrada para conformar la Base de Datos que almacena la
+        relación de los números de identificación de los equipos terminales (IMEI) y demás información necesaria que soporta dicha base de datos.
+    </div>
+    <div class="cb"></div>
+</script>
+
+    <pregteinfo ng-if="interna == 1"></pregteinfo>
+    <pregteregistra ng-if="interna == 2"></pregteregistra>
+    <pregteconsulta ng-if="interna == 3"></pregteconsulta>
+    <pregteregistradual ng-if="interna == 4"></pregteregistradual>
+

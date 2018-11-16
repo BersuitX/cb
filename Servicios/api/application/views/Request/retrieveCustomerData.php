@@ -1,0 +1,21 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.americamovil.com/schema/namespace/AccountManagement/v1">
+    <soapenv:Header>
+    <ServiceGatewayHeader>
+    <codIdioma>EN</codIdioma>
+    <systemId>SELFSERV</systemId>
+    <userProfileId>PAQUITA@hotmail.com</userProfileId>
+    <operationId>retrieveCustomerData</operationId>
+    <IPServer>9.129.59.6</IPServer>
+    <TipoCanal><?=(($Vrqs4xzp4h4g==1)?"FX":"MB")?></TipoCanal>
+    <VersionServicio>1.0</VersionServicio>
+    <VersionEndpoint>1.0</VersionEndpoint>
+    <Notification>false</Notification>
+    </ServiceGatewayHeader>
+    </soapenv:Header>
+   <soapenv:Body>
+      <v1:retrieveCustomerData>
+         <LineOfBusiness><?=$Vrqs4xzp4h4g?></LineOfBusiness>
+         <AccountId><?=$V3hbf4so4iko?></AccountId>
+      </v1:retrieveCustomerData>
+   </soapenv:Body>
+</soapenv:Envelope>

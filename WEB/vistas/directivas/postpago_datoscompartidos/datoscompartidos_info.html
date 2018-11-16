@@ -1,0 +1,239 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<div class="col-xs-12 p0" block-ui="datoscompatidosingresar">
+    <!-- Modal -->
+    <!-- popup estas seguro de eliminar el numero -->
+    <script type="text/ng-template" id="eliminarnumdatoconpartidosconfirmar.html">
+        <div class="col-xs-12" block-ui="blockdatoselimnarnumero">
+            <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+            </div>
+            <div>
+                <div class="col-xs-12 tac mt3p"><img src="/Images/logo-mi-claro-popup.jpg"></div>
+                <div class="col-xs-12 tac fs17 mt40 cgraybold">
+                    ¿Estás seguro que deseas eliminar este número de tus datos compartidos Claro?
+                </div>
+
+                <div class="col-xs-12 tac fs28 mt20 cblack">
+                    {{numeroaeliminar.msisdn}}
+                </div>
+                
+                <div class="col-xs-12 tac fs17 mt20 cgraybold">
+                    Si eliminas este número, a partir de este momento dejarás de compartirle datos.
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="col-xs-6">
+                        <div class="col-xs-12 bcgraydark cwhite pt10 pb10 fs18 tac cpointer mb8p mt40" ng-click="cancel()" role="button" tabindex="0">
+                            Cancelar
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="col-xs-12 bgcorange cwhite pt10 pb10 fs18 tac cpointer mb8p mt40" ng-click="Tagging('Datos_compartidos','Eliminar_numero_popup');eliminarnumero()" role="button" tabindex="0">
+                            Eliminar
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cb"></div>
+        </div>
+        <div class="cb"></div>
+    </script>
+    <!-- confirma que el numero de datos compartidos a sido eliminado -->
+    <script type="text/ng-template" id="numdatoscompartidoeliminado.html">
+        <div class="col-xs-12" block-ui="datoscompatidosblockui">
+            <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+            </div>
+            <div>
+                <div class="col-xs-12 tac mt3p"><img src="/Images/logo-mi-claro-popup.jpg"></div>
+                <div class="col-xs-12 tac fs17 mt35 cgraybold">El número de datos compartidos </div>
+                <div class="col-xs-12 tac fs28 mt2p cblack fwbbold">{{alertanumeroeliminado}}</div>
+                <div class="col-xs-12 tac fs17 mt2p cgraybold">
+                    ha sido eliminado correctamente
+                </div>
+                <div class="col-xs-8 col-xs-offset-2 bgcorange cwhite pt10 pb10 fs18 tac cpointer mb8p mt40" ng-click="Tagging('Datos_compartidos','Acepto_eliminacion_numero_popup');cerrar()" role="button" tabindex="0">
+                    Aceptar
+                </div>
+            </div>
+            <div class="cb"></div>
+        </div>
+        <div class="cb"></div>
+    </script>
+
+    <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25">
+        Datos compartidos
+    </div>
+
+    <div class="col-xs-12 fs15 tac cgraybold mt1p">
+        Número de línea <span class="corange ml10">{{OpSelec.postpago}}</span>
+    </div>
+
+    <!-- Contenedor -->
+    <div class="col-xs-12 col-md-10 col-md-offset-1 p0 mt3p">
+        <!-- Content Left-->
+        <div class="col-xs-12 col-md-4" block-ui="blockdatos">
+            <div class="col-xs-12 p0">
+                <span class="col-xs-6 col-xs-offset-2 cblack fwbbold fs18 p0">Datos incluidos</span>
+                <span class="col-xs-2 corange fwbbold fs18 tar p0">{{convertbytetobgbyte(CommunityInformation.total_quota,3)}} GB</span>
+            </div>
+
+            <div class="col-xs-12 p0 fwbbold cgraybold fs18 tac mt20 pb20 brgrayop1px estadisticasdatoscompartidos">
+                {{CommunityInformation.offerTerms.name}}
+            </div>
+
+            <div class="col-xs-12 tac brgrayop1px pb20 estadisticasdatoscompartidos">
+                <div class="w210 h160 ma prelative">
+                    <canvas id="doughnuttorta" class="chart chart-doughnut" chart-data="datadata" chart-labels="labelsdata" chart-colors="colorcharts" chart-options="options"></canvas>
+                </div>
+            </div>
+
+            <div class="col-xs-12 cgraylight fs15 tac">
+                Última actualización: {{FechaActualizacion}}
+            </div>
+        </div>
+
+        <!-- Mobil -->
+        <div class="col-xs-12 hidden-md hidden-lg">
+            <div class="h4"></div>
+        </div>
+
+
+        <!-- Content Right-->
+        <div class="col-xs-12 p0 col-md-8" block-ui="blocknumeros">
+
+            <!-- Header-->
+            <div class="col-xs-12 p0">
+                <div class="col-xs-6 fs18 fwbbold cgraybold">
+                    <span class="col-xs-12 p0 tac">Administra los números de tus datos</span>
+                    <span class="col-xs-12 p0 tac">compartidos Claro</span>
+                </div>
+                <div class="col-xs-6 blgray2px fs18 clila fwbbold">
+                    <span class="col-xs-12 p0 tac">Puedes agregar hasta 24 números Claro</span>
+                    <span class="col-xs-12 p0 tac">para compartir los datos de tu plan.</span>
+                </div>
+            </div>
+
+            <!-- Desktop Numeros de la cuenta-->
+            <div class="col-xs-12 p0 mt6p hidden-xs hidden-sm">
+                <div class="col-xs-12 col-md-4 p0">
+                    <span class="col-md-9 tar fs15 cgraylight mt2">
+                        Números agregados:
+                    </span>
+                    <span class="col-md-3 p0 fs18 fwbbold cgraybold">
+                        {{CommunityInformation.members_current}}
+                    </span>
+                </div>
+                <div class="col-xs-12 col-md-4 p0">
+                    <span class="col-md-9 tar fs15 cgraylight mt2">
+                        Números por agregar:
+                    </span>
+                    <span class="col-md-3 p0 fs18 fwbbold cgraybold">
+                        {{CantidadPorAgregar}}
+                    </span>
+                </div>
+                <div class="col-xs-12 col-md-4 p0">
+                    <span class="col-md-9 tar fs15 cgraylight mt2">
+                      Límite de números:
+                    </span>
+                    <span class="col-md-3 p0 fs18 fwbbold cgraybold">
+                        {{CommunityInformation.members_allowed}}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Mobile Numeros de la cuenta-->
+            <div class="col-xs-12 p0 mt6p hidden-md hidden-lg">
+                <div class="col-xs-12 tac p0 p0 fs15 cgraylight fwbbold">
+                    Números agregados: {{CommunityInformation.members_current}}
+                </div>
+                <div class="col-xs-12 tac 0 p0 fs15 cgraylight fwbbold">
+                    Números por agregar: {{CantidadPorAgregar}}
+                </div>
+                <div class="col-xs-12 tac col-md-4 p0 fs15 cgraylight fwbbold">
+                    Limite de números: {{CommunityInformation.members_allowed}}
+                </div>
+            </div>
+
+            <!-- Números, cantidad de megas asignadas y gastadas -->
+
+            <!-- Head -->
+            <div class="col-xs-12 mt5p hidden-xs hidden-sm">
+                <div class="col-xs-1 p0">
+                </div>
+                <div class="col-xs-11 p0 pt10 pb10 fs18 cgray fontsizeheaderdatoscompartidosgrilla">
+                    <div class="col-xs-4 p0 psuspensivos">
+                        Número móvil
+                    </div>
+                    <div class="col-xs-3 p0 psuspensivos">
+                        Cupo máximo GB
+                    </div>
+                    <div class="col-xs-5 p0">
+                        <div class="col-xs-6 p0 psuspensivos">
+                            GB consumidas
+                        </div>
+                        <div class="col-xs-6 p0 tac psuspensivos">
+                            <span ng-if="Administrador == 1">Acciones</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobil -->
+            <div class="col-xs-12 hidden-md hidden-lg">
+                <div class="h4"></div>
+            </div>
+
+            <!-- Body -->
+            <div class="col-xs-12">
+                <div class="col-xs-12 p0" ng-repeat="item in ConsumoComunidad.members">
+                    <!-- ng-if="item.state == 'A'" -->
+                    <div class="col-xs-1 p0 tac h65 bgcorange pt15 fs18 fwbbold cwhite bc1graylight">
+                        {{$index + 1}}
+                    </div>
+                    <div class="col-xs-11 p0 h65 pt10 pb10 bc1graylight">
+                        <div class="col-xs-4 p0 brgrayop1px h100p">
+                            <div class="col-xs-12 p0 fwbbold fs18 cblack mt5p tac griddatoscompartidosmobile">{{item.msisdn}}</div>
+                        </div>
+                        <div class="col-xs-3 p0 brgrayop1px h100p">
+                            <div class="col-xs-12 p0 fwbbold fs18 cblack mt5p tac griddatoscompartidosmobile">{{convertbytetobgbyte(item.member_assigned_quota,3)}}</div>
+                        </div>
+                        <div class="col-xs-5 p0 h100p">
+                            <div class="col-xs-6 p0">
+                                <div class="col-xs-12 p0 fwbbold fs18 cblack mt5p tac griddatoscompartidosmobile">{{convertbytetobgbyte(item.member_consumption,3)}}</div>
+                            </div>
+                            <div class="col-xs-6 p0 tac">
+                                <div class="col-xs-6 p0 mt5p">
+                                    <img src="/Images/IconEdit.png" class="cpointer outlinenone ma pull-right w32" ng-click="Tagging('Datos_compartidos','bt_pos_ini_admindatoscompartidos_editar');editarnumero(item,2)" ng-if="Administrador == 1"></img>
+                                </div>
+                                <div class="col-xs-6 p0 mt5p">
+                                    <img src="/Images/IconDelete.png" class="cpointer outlinenone ma w32" ng-click="Tagging('Datos_compartidos','bt_pos_ini_admindatoscompartidos_elimina');confirmareliminarnumdtscptds(item)" ng-if="Administrador == 1 && item.member_type != 'ADMIN'"></img>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 p0" ng-repeat="item in NuemeroAdd" ng-if="item.add == 1 && Administrador == 1 && NuemeroAdd.length > 0">
+                    <div class="col-xs-1 p0 tac h65 bcgraymouse pt15 fs18 fwbbold cwhite bc1graylight">
+                        {{item.indice}}
+                    </div>
+                    <div class="col-xs-11 p0 h65 pt20 bc1graylight">
+                        <div class="col-xs-7 col-md-8 cgraymouse fwbbold fs18">
+                            Agregar más números
+                        </div>
+                        <div class="col-xs-5 col-md-4 p0">
+                            <div class="col-xs-6 col-md-9 p0">
+                            </div>
+                            <div class="col-xs-6 col-md-3 p0 tac">
+                                <img src="/Images/Iconadd.png" class="cpointer outlinenone" ng-click="Tagging('Datos_compartidos','bt_pos_ini_admindatoscompartidos_agregar');agregarnumero()"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

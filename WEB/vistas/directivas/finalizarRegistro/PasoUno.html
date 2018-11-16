@@ -1,0 +1,90 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<div class="col-xs-12 col-md-6 p0">
+    <!-- Version Desktop -->
+    <img preload-image ng-src="/Images/registrar_banner2.png" default-image="/Images/registrar_banner2def.jpg" fallback-image="/Images/registrar_banner2def.jpg" class="resizehight img-responsive hidden-xs hidden-sm"></img>
+    <!-- Version Mobil 
+    <img src="/Images/registrar_banner2.png" class="img-responsive hidden-md hidden-lg"></img> -->
+</div>
+
+<div class="col-xs-12 col-md-6 bcwhite" block-ui="registroblock">
+    <div class="col-xs-12 tac corange fs40 mt6p fwbbold">
+        Completa tu Registro
+    </div>
+
+    <div class="col-xs-12 tac fs20 fwbbold cgray">
+        Para comenzar ingresa la siguiente información
+    </div>
+
+    <div class="col-xs-12 col-md-8 col-md-offset-2 h1 bbcgray"></div>
+
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="col-xs-12 corange fs18 mt8p cgray fwbbold">
+            <span>Número de Cuenta Hogar/Móvil Claro</span>
+        </div>
+
+        <div class="col-xs-12 cgray fs18 mt1p">
+            <input type="text" class="col-xs-12 fs18 p7 outlinenone" ng-model="$parent.ObjSend.meAccountId" placeholder="Ej: 789123456" onkeypress="return soloNumeros(event);" max-length="10" />
+        </div>
+
+        <div class="col-xs-12 corange fs20 mt6p cgray fwbbold">
+            Tipo de documento de identificación
+        </div>
+
+        <div class="col-xs-12 cgray fs18 mt1p">
+            <select ng-model="ObjSend.selected" class="col-xs-12 fs18 p7">
+              <option ng-repeat="item in TiposDocumentos" value="{{item.id}}">{{item.nombre}}</option>
+            </select>
+        </div>
+
+        <div class="col-xs-12 corange fs20 mt6p cgray fwbbold">
+            Número de identificación
+        </div>
+
+        <div class="col-xs-12 cgray fs18 mt1p">
+            <input type="text" class="col-xs-12 fs18 p7 outlinenone" ng-model="ObjSend.documento" placeholder="Escribe el número de identificación" max-length="20" />
+        </div>
+    </div>
+
+    <!-- Version mobil -->
+    <div class="col-xs-12 hidden-md hidden-lg cgray fs15 mt3p mb3p tac">
+        <div class="cpointer col-xs-7 tar" ng-click="terminoscondiciones();"><span class="tdul cgraylight cpointer">Términos y condiciones<span></div>
+        <div class="col-xs-5">
+            <md-switch ng-model="Terminos.Terminos" ng-click="Tagging('Registro','bt_registro_aceptoterminos');"></md-switch>
+        </div>
+    </div>
+    
+    <!-- Version desktop -->
+    <div class="col-xs-12 col-md-8 col-xs-offset-2 hidden-xs hidden-sm cgray fs15 mt3p tac">
+        <div class="cpointer col-xs-7 tar" ng-click="terminoscondiciones();"><span class="tdul cgraylight cpointer">Términos y condiciones<span></div>
+        <div class="col-xs-5">
+            <md-switch ng-model="Terminos.Terminos" ng-click="Tagging('Registro','bt_registro_aceptoterminos');"></md-switch>
+        </div>
+    </div>    
+
+    <!--<div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 bgcorange cwhite pt10 pb10 fs18 tac mt3p cpointer RobotoBold" ng-click="Tagging('Registro','bt_registro_comenzarregistro');validateNumber()">
+        Comenzar registro
+    </div>-->
+    
+    <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 bgcorange cwhite pt10 pb10 fs18 tac mt3p cpointer RobotoBold" ng-click="Tagging('Registro','');validarCuenta()">
+        Continuar Registro
+    </div>
+    
+    <a href="/" ng-click="Tagging('Registro','');">
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 bgcorange cwhite pt10 pb10 fs18 tac mt3p mb7p cpointer RobotoBold mb15">
+            Volver
+        </div>    
+    </a>
+        
+</div>
+
+
+<div class="col-xs-12">
+    <div class="col-xs-4 col-xs-offset-4"></div>
+    
+    <div class="col-xs-12"><div>
+</div>

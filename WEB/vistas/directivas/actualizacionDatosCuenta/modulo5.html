@@ -1,0 +1,207 @@
+<script>
+    var URLactual = window.location;
+    if (URLactual.pathname.indexOf('.') != -1) {
+        window.location.href = "/";
+    }
+</script>
+<script type="text/ng-template" id="modalConfirm.html">
+    <div class="col-xs-12" >
+        <div class="col-xs-12 tac fwbbold fs22 mt3p cgraybold"><img src="/Images/ico_InformacionEnLinea.png"></img></div>
+        <div class="col-xs-12 tac fwbbold fs22 mt3p cblack">Tus datos cambiarán de la siguiente forma:</div>
+
+        <div class="col-xs-12 tal fs18 mt2p cblack fwbbold">Departamento</div>
+        <div class="col-xs-12 tal fs18 cgraybold">{{datos.Address.Department}}</div>
+        
+        <div class="col-xs-12 tal fs18 mt2p cblack fwbbold">Ciudad</div>
+        <div class="col-xs-12 tal fs18 cgraybold">{{datos.Address.City}}</div>
+        
+        <div class="col-xs-12 tal fs18 mt2p cblack fwbbold">Barrio</div>
+        <div class="col-xs-12 tal fs18 cgraybold">{{datos.Address.District}}</div>
+        
+        <div class="col-xs-12 tal fs18 mt2p cblack fwbbold">Dirección</div>
+        <div class="col-xs-12 tal fs18 cgraybold">{{datos.Address.Address}}</div>
+
+
+        <div class="col-xs-12 mt6p" >
+            <div class="col-xs-4 col-xs-offset-2 bcgraydark cwhite pt10 pb10 fs18 tac cpointer mb8p" ng-click="cancel()">
+                Cancelar
+            </div>
+            <div class="col-xs-4 col-xs-offset-1 bgcorange cwhite pt10 pb10 fs18 tac cpointer mb8p" ng-click="ok()">
+                Confirmar
+            </div>
+        </div>
+        <div class="cb"></div>
+    </div>
+    <div class="cb"></div>
+</script>
+<div class="container-fluid" block-ui="block">
+    <div class="col-xs-12 p0">
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25 mb20">
+            Actualizar tus datos
+        </div>
+        <div class="col-xs-12 p0 col-sm-4 col-sm-offset-4 mt25 mb10 fs20">
+            <div class="col-xs-2 col-sm-2 fs16 fwbbold cgraybold tar">
+                <img src="/Images/icon_celular.png">
+            </div><div class="col-xs-5 col-sm-5 fs18 fwbbold mt10 cgraybold tar">
+                Actualización de datos
+            </div>
+            <div class="col-xs-5 fs18 fwbbold corange mt10 tar">
+                 {{AccountId}}
+            </div>
+        </div>
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 hidden-sm hidden-xs">
+            <div class="col-xs-12 fs22 fsm18 tac clila mt19">
+                En caso de que tengas activo el envío de factura <br> física, esta será modificada.
+            </div>
+        </div>
+        <div class="col-xs-12 mb25 plm10p fs16 fwbbold tac cgraybold hidden-md hidden-lg">
+            <div class="col-xs-12 fs14 tac clila mt25 pl0 pm0">
+                En caso de que tengas activo el envío de factura <br> física, esta será modificada.
+            </div>
+        </div>
+        <!--Contenido del plan (especificaciones)-->
+        <div class="row">
+            <div class="col-xs-12  col-md-10 col-md-offset-1 mt30 mb20 p0">
+                <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-12 cblack fs18 mt8p cgray fwbbold">
+                        Departamento:<span class="corange">*</span>
+                    </div>
+
+                    <div class="col-xs-12 cgray fs18 mt1p">
+                        <select class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-valid br5all ng-empty ng-touched" ng-model="DataSend.departamento" ng-change="cargarCiudades(DataSend.departamento)">
+                            <option value selected>Selecciona</option>
+                            <option ng-repeat="item in dirData.States" value="{{item.codigo}}">{{item.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-12 cblack fs18 mt8p cgray fwbbold">
+                        Ciudad:<span class="corange">*</span>
+                    </div>
+
+                    <div class="col-xs-12 cgray fs18 mt1p">
+                        <select class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-valid br5all ng-empty ng-touched" ng-model="DataSend.ciudad">
+                            <option value selected>Selecciona</option>
+                            <option ng-repeat="item in ciudades">{{item.ciudad}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-12 cblack fs18 mt8p cgray fwbbold">
+                        Barrio:<span class="corange">*</span>
+                    </div>
+                    <div class="col-xs-12 cgray fs18 mt1p">
+                        <input type="text" class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-untouched br5all ng-valid ng-empty" ng-model="DataSend.barrio" placeholder="Digita el barrio en el que vives" aria-invalid="false" style="">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-12  col-md-10 col-md-offset-1 mb20 p0">
+                <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-12 cblack fs18 mt8p cgray fwbbold">
+                        Tipo (calle, carrera, diagonal, etc.):<span class="corange">*</span>
+                    </div>
+
+                    <div class="col-xs-12 cgray fs18 mt1p">
+                        <select class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-valid br5all ng-empty ng-touched" ng-model="DataSend.tipo">
+                            <option value selected>Selecciona</option>
+                            <option ng-repeat="item in dirData.Streets" >{{item.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-6 cblack fs18 mt8p cgray fwbbold">
+                        Nº principal:<span class="corange">*</span>
+                    </div>
+                    <div class="col-xs-6 cblack fs18 mt8p cgray fwbbold">
+                        Sufijo:
+                    </div>
+
+                    <div class="col-xs-6 cgray fs18 mt1p">
+                        <input type="number" class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-untouched br5all ng-valid ng-empty" ng-model="DataSend.numeroPrincipal" placeholder="(48)" aria-invalid="false" style="">
+                    </div>
+                    <div class="col-xs-6 cgray fs18 mt1p">
+                        <select class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-valid br5all ng-empty ng-touched" ng-model="DataSend.sufijoPrincipal">
+                            <option value selected>Selecciona</option>
+                             <option ng-repeat="item in dirData.Streets" >{{item.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-5 cblack fs18 mt8p cgray fwbbold">
+                        Nº secundario:<span class="corange">*</span>
+                    </div>
+                    <div class="col-xs-3 cblack fs18 mt8p cgray fwbbold">
+                        Sufijo:
+                    </div>
+                    <div class="col-xs-4 cblack fs18 mt8p cgray fwbbold">
+                        Nº comp.:<v class="corange">*</span>
+                    </div>
+
+                    <div class="col-xs-5 cgray fs18 mt1p">
+                        <input type="number" class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-untouched br5all ng-valid ng-empty" ng-model="DataSend.numeroSecundario" placeholder="(48)" aria-invalid="false" style="">
+                    </div>
+                    <div class="col-xs-3 cgray fs18 p0 mt1p">
+                        <select class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-valid br5all ng-empty ng-touched" ng-model="DataSend.sufijoSecundario">
+                            <option value selected>Selecciona</option>
+                             <option ng-repeat="item in dirData.Streets" >{{item.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-4 cgray fs18 mt1p">
+                        <input type="number" class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-untouched br5all ng-valid ng-empty" ng-model="DataSend.complementoDirSec" placeholder="(48)" aria-invalid="false" style="">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-12  col-md-10 col-md-offset-1 mb20 p0">
+                <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-6 cblack fs18 mt8p cgray fwbbold">
+                        Complemento:
+                    </div>
+                    <div class="col-xs-6 cblack fs18 mt8p cgray fwbbold">
+                        Número:
+                    </div>
+
+                    <div class="col-xs-6 cgray fs18 mt1p">
+                        <select class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-valid br5all ng-empty ng-touched" ng-model="DataSend.complemeto1">
+                            <option value selected>Selecciona</option>
+                            <option ng-repeat="item in dirData.Buildings" >{{item.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 cgray fs18 mt1p">
+                        <input type="text" class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-untouched br5all ng-valid ng-empty" ng-model="DataSend.complemeto1Num" placeholder="(48)" aria-invalid="false" style="">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-6 cblack fs18 mt8p cgray fwbbold">
+                        Complemento:
+                    </div>
+                    <div class="col-xs-6 cblack fs18 mt8p cgray fwbbold">
+                        Número:
+                    </div>
+
+                    <div class="col-xs-6 cgray fs18 mt1p">
+                        <select class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-valid br5all ng-empty ng-touched" ng-model="DataSend.complemeto2">
+                            <option value selected>Selecciona</option>
+                            <option ng-repeat="item in dirData.Apartments" >{{item.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 cgray fs18 mt1p">
+                        <input type="text" class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-untouched br5all ng-valid ng-empty" ng-model="DataSend.complemeto2Num" placeholder="(48)" aria-invalid="false" style="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb30">
+            <div class="col-xs-12 col-md-2 col-md-offset-4 mr25 tac p0 cpointer bcgraydark cwhite mt6p mb20 pt10 pb10 fs17 hidden-xs hidden-sm" ng-click="cambioModulo(4)" role="button" tabindex="0">
+                Cancelar
+            </div>
+            <div class="col-xs-12 col-md-2  tac p0 cpointer bgcorange cwhite mt6p mb20 pt10 pb10 fs17" ng-click="guardarDireccion()" role="button" tabindex="0">
+                Guardar
+            </div>
+            <div class="col-xs-12 col-md-2 col-md-offset-3 tac p0 cpointer bcgraydark cwhite mt10 pt10 pb10 fs17 hidden-lg hidden-md" ng-click="cambioModulo(4)" role="button" tabindex="0">
+                Cancelar
+            </div>
+        </div>
+    </div>
+</div>

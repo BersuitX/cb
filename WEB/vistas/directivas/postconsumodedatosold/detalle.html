@@ -1,0 +1,229 @@
+<!-- Modal -->
+<!-- Detalle del plan -->
+<script type="text/ng-template" id="detalledelpanpostpago.html">
+    <div class="col-xs-12 bc1graylight mh316" block-ui="block">
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img></div>
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mt5 mb25">
+            Detalle consumo
+        </div>
+        <div class="col-xs-12 pb30">
+            <div class="col-xs-12 pt10 pb10 bbcgray" ng-repeat="item in DataConsumo">
+                <div class="col-xs-12 fs12 cgraylight">{{item.COBRO}}</div>
+                <div class="col-xs-6 cgraybold fwbbold fs15">{{item.TIPO_CONSUMO}}</div>
+                <div class="col-xs-6 cgraybold fwbbold fs15"><span class="pull-right">{{item.TRAFICO}}</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="cb"></div>
+</script>
+
+<!-- Historial del plan -->
+<script type="text/ng-template" id="historialdelplanpostpago.html">
+    <div class="col-xs-12 bc1graylight mh316" block-ui="block">
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img></div>
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mt5 mb25">
+            Historial consumo
+        </div>
+        <div class="col-xs-12 pb30 max-h360 ofy">
+            <div class="col-xs-6 pt15 pb15 bbcgray" ng-repeat="item in DatosTorta.history">
+                <div class="col-xs-12 p0fs16 cblack fwbbold tac">{{item.productName}}({{item.endReason}})</div>
+                <div class="col-xs-12 p0 mt2p">
+                    <div class="col-xs-6 p0 cgraybold fwbbold fs15 tac">Fecha inicial</div>
+                    <div class="col-xs-6 p0 cgraybold fwbbold fs15 tac">Fecha final</div>
+                </div>
+                <div class="col-xs-12 p0 mt2p">
+                    <div class="col-xs-6 p0 cred fwbbold fs15 tac">{{item.startDate}}</div>
+                    <div class="col-xs-6 p0 cred fwbbold fs15 tac">{{item.endDate}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cb"></div>
+</script>
+
+<div class="col-xs-12 fs40 fwbbold tac cgraybold mt25">
+    Consumo de datos
+</div>
+
+<!-- Contenedor -->
+<div class="col-xs-12 col-md-10 col-md-offset-1 p0 mt25 contenedorconsumodatospostpago" block-ui="blockroaming">
+    <!-- Formulario Compra de paquetes y recargas-->
+    <div id="mainContent"></div><style>form{display:none}</style>
+    <!-- Detalle factura -->
+    <div class="col-xs-12 p0 mt25">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 p0 mb5p" block-ui="blockdatos">
+            <!-- First content -->
+            <div class="col-xs-12" ng-if="estadistica == 1">
+                <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 fs16 fwbbold tac cred mt19 mb20">
+                        {{DatosTorta.activeProductName}}
+                    </div>
+
+                    <div class="col-xs-12 tac">
+                        <div class="w210 h160 ma prelative">
+                            <canvas id="doughnuttorta" class="chart chart-doughnut" chart-data="datadata" chart-labels="labelsdata" chart-colors="colorcharts" chart-options="options"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 mt25">
+                        <!-- Info por fila -->
+                        <div class="col-xs-12 p0 fwbbold cgraybold tac">Última actualización:</div>
+                        <div class="col-xs-12 p0 fwbbold cgraybold tac mt5">{{DatosTorta.lastUpdated}}</div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 bc1graylight bcgraylight mt55">
+                    <div class="col-xs-12 pb30 pt15">
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-7 p0 cgraybold fwbbold fs15">Datos incluidos en el plan</div>
+                            <div class="col-xs-5 p0 cgraybold fwbbold fs15"><span class="pull-right">{{DatosTorta.includedMB}} MB</span></div>
+                        </div>
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-7 p0 cgraybold fwbbold fs15">Datos usados</div>
+                            <div class="col-xs-5 p0 cgraybold fwbbold fs15"><span class="pull-right">{{DatosTorta.usedMB}} MB</span></div>
+                        </div>
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-7 p0 cgraybold fwbbold fs15">Datos disponibles</div>
+                            <div class="col-xs-5 p0 cgraybold fwbbold fs15"><span class="pull-right">{{DatosTorta.availableMB}} MB</span></div>
+                        </div>
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-7 p0 cgraybold fwbbold fs15">Fecha de activación</div>
+                            <div class="col-xs-5 p0 cgraybold fwbbold fs15"><span class="pull-right">{{DatosTorta.activationDate}}</span></div>
+                        </div>
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-7 p0 cgraybold fwbbold fs15">Fecha de expiración</div>
+                            <div class="col-xs-5 p0 cgraybold fwbbold fs15"><span class="pull-right">{{DatosTorta.expirationDate}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second content -->
+            <div class="col-xs-12 mt5p" ng-if="showroaming.show == 1">
+                <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 fs25 fwbbold tac cgraybold">
+                        Roaming
+                    </div>
+
+                    <div class="col-xs-12 fs16 fwbbold tac cred mt19 mb20">
+                        {{RoamingTorta.activeProductName}}
+                    </div>
+
+                    <div class="col-xs-12 tac">
+                        <div class="w160 h160 ma prelative">
+                            <canvas id="doughnutroaming" class="chart chart-doughnut" chart-data="dataroaming" chart-labels="labelsroaming" chart-colors="colorcharts"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 mt25">
+                        <!-- Info por fila -->
+                        <div class="col-xs-12 p0 fwbbold cgraybold tac">Última actualización:</div>
+                        <div class="col-xs-12 p0 fwbbold cgraybold tac mt5">{{RoamingTorta.lastUpdated}}</div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 bc1graylight bcgraylight mt40">
+                    <div class="col-xs-12 pb30 pt15">
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-8 p0 cgraybold fwbbold fs15">Datos incluidos en el plan</div>
+                            <div class="col-xs-4 cgraybold fwbbold fs15"><span class="pull-right">{{RoamingTorta.includedMB}}</span></div>
+                        </div>
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-8 p0 cgraybold fwbbold fs15">Datos usados</div>
+                            <div class="col-xs-4 cgraybold fwbbold fs15"><span class="pull-right">{{RoamingTorta.usedMB}}</span></div>
+                        </div>
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-8 p0 cgraybold fwbbold fs15">Datos disponibles</div>
+                            <div class="col-xs-4 cgraybold fwbbold fs15"><span class="pull-right">{{RoamingTorta.availableMB}}</span></div>
+                        </div>
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-8 p0 cgraybold fwbbold fs15">Fecha de activación</div>
+                            <div class="col-xs-4 cgraybold fwbbold fs15"><span class="pull-right">{{RoamingTorta.activationDate}}</span></div>
+                        </div>
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-8 p0 cgraybold fwbbold fs15">Fecha de expiración</div>
+                            <div class="col-xs-4 cgraybold fwbbold fs15"><span class="pull-right">{{RoamingTorta.expirationDate}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Consumo Bono Regalo -->
+            <div class="col-xs-12 mt5p" ng-if="estadistica == 2">
+                <div class="col-xs-12 fs20 fwbbold tac cgraybold mb20">
+                    Aquí encontrarás el consumo de tu bono aplicado.
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 tac">
+                        <div class="w210 h160 ma prelative">
+                            <canvas id="doughnuttorta" class="chart chart-doughnut" chart-data="datarBono" chart-labels="labelsBono" chart-colors="colorcharts" chart-options="options"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 bc1graylight bcgraylight mt40">
+                    <div class="col-xs-12 pb30 pt15">
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-8 p0 cgraybold fwbbold fs15">Datos incluidos en bono</div>
+                            <div class="col-xs-4 cgraybold fwbbold fs15"><span class="pull-right">{{bonoRegaloData.MBsIncluidos}}</span></div>
+                        </div>
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-8 p0 cgraybold fwbbold fs15">Datos Consumidos</div>
+                            <div class="col-xs-4 cgraybold fwbbold fs15"><span class="pull-right">{{bonoRegaloData.MBsConsumidos}}</span></div>
+                        </div>
+                        <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-8 p0 cgraybold fwbbold fs15">Datos Disponibles</div>
+                            <div class="col-xs-4 cgraybold fwbbold fs15"><span class="pull-right">{{bonoRegaloData.MBsIndisponibles}}</span></div>
+                        </div>
+                         <div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-8 p0 cgraybold fwbbold fs15">Fecha de activación</div>
+                            <div class="col-xs-4 cgraybold fwbbold fs15"><span class="pull-right">{{bonoRegaloData.fechaAc}}</span></div>
+                        </div>
+                        <!--<div class="col-xs-12 p0 pt10 pb10 bbcgray">
+                            <div class="col-xs-8 p0 cgraybold fwbbold fs15">Fecha de expiración</div>
+                            <div class="col-xs-4 cgraybold fwbbold fs15"><span class="pull-right">{{RoamingTorta.expirationDate}}</span></div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 mt5p">
+                <div class="col-xs-12 col-md-4 mt10" ng-if="estadistica != 1">
+                    <div class="col-xs-12 tac br10all bgcorange pt10 pb10 cwhite fwbbold cpointer outlinenone" ng-click="getini()">
+                        Consumo de Datos
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4 mt10" ng-if="estadistica == 1">
+                    <div class="col-xs-12 tac br10all bgcorange pt10 pb10 cwhite fwbbold cpointer outlinenone">
+                        Consumo de Datos
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4 mt10" ng-if="estadistica != 2">
+                    <div class="col-xs-12 tac br10all bgcorange pt10 pb10 cwhite fwbbold cpointer outlinenone" ng-click="Tagging('Postpago','bt_pos_ini_dateconsu_bonregal');detalleBonoregalo()">
+                        Consumo Bono Regalo
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4 mt10" ng-if="estadistica == 2">
+                    <div class="col-xs-12 tac br10all bgcorange pt10 pb10 cwhite fwbbold cpointer outlinenone">
+                        Consumo Bono Regalo
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4 mt10">
+                    <div class="col-xs-12 pr0 br10all bgcorange cwhite tac pt10 pb10 fs16 tac cpointer outlinenone p0" ng-click="Tagging('Postpago','bt_pos_ini_detaconsu_paqadi');datalleMesAnterior(0)">
+                        Recargas y Pag. Adicionales
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="col-xs-12 col-md-4 col-md-offset-4 tac mt5p bclilalight pt10 pb10 cwhite fwbbold cpointer outlinenone" ng-if="showroaming.show == 0" ng-click="showroaming.show = 1">
+                Ver consumo roaming
+            </div>
+            
+            <div class="col-xs-12 col-md-4 col-md-offset-4 tac mt2p bgcorange pt10 pb10 cwhite fwbbold cpointer outlinenone" ng-click="opendetalle()">
+                Ver detalle de consumo
+            </div>
+
+            <div class="col-xs-12 col-md-4 col-md-offset-4 tac mt2p bcgraydark pt10 pb10 cwhite fwbbold cpointer"  ng-click="compradepaquetes()">
+                Paquetes y Recargas
+            </div>
+            -->
+        </div>
+    </div>
+</div>

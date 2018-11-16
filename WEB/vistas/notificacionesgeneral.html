@@ -1,0 +1,55 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<!-- Modal Terminos y condiciones legalizacion -->
+<div class="col-xs-12 p0">
+    <div class="col-xs-12 p0" ng-if="secnnotificacion == 0" block-ui="blocksms">
+        <!-- Primera pantalla -->
+        <div class="col-xs-12 p0">
+            <div class="col-xs-12 p0 fs40 fwbbold tac cgraybold mt25 mb15">
+                Tus Notificaciones
+            </div>
+        </div>
+        <div class="col-xs-12 mb20 bnfocus" ng-repeat="item in smsnoleido" ng-click="versms(item)">
+            <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 fs17 sombraMensajes pt10 pb10 cpointer ">
+                <div class="col-xs-11 fs18 fwbbold cblack p0 mb5">{{item.asunto}}</div><div class="col-xs-1 p0"><div class="newnotificacion"></div></div>
+                <div class="col-xs-12 fs16 fwbbold cgraybold mtbil11 p0 mb5">{{item.mensaje}}</div>
+                <div class="col-xs-12 fs15 cgraylight mtbil11 p0">{{item.reg}}</div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 mb20" ng-if="smsnoleido.length != 0 && smsleido.length != 0">
+            <div class="col-xs-12">
+                <div class="col-xs-12 separadornotificaciones"></div>
+            </div>
+        </div>
+        <div class="col-xs-12 mb20 bnfocus" ng-repeat="item in smsleido" ng-click="versms(item)">
+            <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 fs17 sombraMensajes pt10 pb10 cpointer">
+                <div class="col-xs-12 fs20 fwbbold cblack p0 mb5">{{item.asunto}}</div><div class="col-xs-1 p0"></div>
+                <div class="col-xs-12 fs16 fwbbold cgraybold mtbil11 p0 mb5">{{item.mensaje}}</div>
+                <div class="col-xs-12 fs15 cgraylight mtbil11 p0">{{item.reg}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 p0" ng-if="secnnotificacion == 1" block-ui="blocksmsls">
+        <!-- Primera pantalla -->
+        <div class="col-xs-12 p0">
+            <div class="col-xs-12 p0 fs35 fwbbold tac cgraybold mt25 mb15">
+                {{smsInterno.asunto}}
+            </div>
+        </div>
+        <div class="col-xs-12 mb20 p0">
+            <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 fs17 pt10 pb10 cpointer">
+                <div class="col-xs-12 fs16 cgraybold mtbil11 mb15">{{smsInterno.reg}}</div>
+                <div class="col-xs-12 fs16 mtbil11 cgraylight">
+                    {{smsInterno.mensaje}}
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 bgcorange cwhite pt10 pb10 fs18 tac mt5p mb7p cpointer RobotoBold bnfocus" ng-click="volver()">
+            Volver
+        </div> 
+    </div>
+</div>

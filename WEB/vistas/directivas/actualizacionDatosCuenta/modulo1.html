@@ -1,0 +1,186 @@
+<script>
+    var URLactual = window.location;
+    if (URLactual.pathname.indexOf('.') != -1) {
+        window.location.href = "/";
+    }
+</script>
+<script type="text/ng-template" id="cabContrasena.html">
+    <div class="col-xs-12" block-ui="blockcambiopass">
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+        </div>
+        <div class="col-xs-12 tac fwbbold fs30 mt3p cgraybold">Cambiar contraseña</div>
+
+        <div class="col-xs-12 tac fs15 mt2p cgraybold">Actualiza tu contraseña personal y no pierdas</div>
+        <div class="col-xs-12 tac fs15 cgraybold">el acceso a Mi Claro.</div>
+
+        <div class="col-xs-8 col-xs-offset-2 p0 fwbbold fs17 mt6p cgraybold">Contraseña actual:</div>
+        <div class="col-xs-8 col-xs-offset-2 bc1grayinput">
+            <input id="acContrasena" type="password" placeholder="Escribe tu nueva contraseña actual" class="col-xs-11 fs18 p7 outlinenone bn RobotoRegular" ng-model="formCambiarContrasena.contrasena" ng-keydown="onKeydown($event)" />
+            <div class="col-xs-1 p0 tac">
+                <img src="/Images/eye.png" alt="Logo_mostrar_contraseña_mi_claro" class="ma mt8 outlinenone" ng-click="PassTex()" ng-if="PassTexVarcon == 1"></img>
+                <img src="/Images/eyegray.png" alt="Logo_ocultar_contraseña_mi_claro" class="ma mt8 outlinenone" ng-click="PassTex()" ng-if="PassTexVarcon == 0"></img>
+            </div>
+        </div>
+
+        <div class="col-xs-8 col-xs-offset-2 p0 fwbbold fs17 mt6p cgraybold">Nueva contraseña:</div>
+        <div class="col-xs-8 col-xs-offset-2 bc1grayinput">
+            <input id="ncontrasena" type="password" placeholder="Escribe Una Contraseña" class="col-xs-11 fs18 p7 outlinenone bn RobotoRegular" ng-model="formCambiarContrasena.ncontrasena" />
+            <div class="col-xs-1 p0 tac">
+                <img src="/Images/eye.png" alt="Logo_mostrar_contraseña_mi_claro" class="ma mt8 outlinenone" ng-click="PassTexfncon()" ng-if="PassTexVarncon == 1"></img>
+                <img src="/Images/eyegray.png" alt="Logo_ocultar_contraseña_mi_claro" class="ma mt8 outlinenone" ng-click="PassTexfncon()" ng-if="PassTexVarncon == 0"></img>
+            </div>
+        </div>
+
+        <div class="col-xs-8 col-xs-offset-2 p0 fwbbold fs17 mt6p cgraybold">Confirma nueva contraseña:</div>
+        <div class="col-xs-8 col-xs-offset-2 bc1grayinput">
+            <input id="cfcontrasena" type="password" placeholder="Confirmar la contraseña" class="col-xs-11 fs18 p7 outlinenone bn RobotoRegular" ng-model="formCambiarContrasena.cfcontrasena" />
+            <div class="col-xs-1 p0 tac">
+                <img src="/Images/eye.png" alt="Logo_mostrar_contraseña_mi_claro" class="ma mt8 outlinenone" ng-click="PassTexRepeatfcfcon()" ng-if="PassTexVarcfcon == 1"></img>
+                <img src="/Images/eyegray.png" alt="Logo_ocultar_contraseña_mi_claro" class="ma mt8 outlinenone" ng-click="PassTexRepeatfcfcon()" ng-if="PassTexVarcfcon == 0"></img>
+            </div>
+        </div>
+
+        <div class="col-xs-12 mt6p" block-ui="block">
+            <div class="col-xs-8 col-xs-offset-2 bgcorange cwhite pt10 pb10 fs18 tac cpointer mb8p" ng-click="Tagging('MiClaro','bt_ini_cambiarcontrasena_actualizar');atulizarActContrasena()">
+                Actualizar la contraseña
+            </div>
+        </div>
+        <div class="cb"></div>
+    </div>
+    <div class="cb"></div>
+</script>
+
+<script type="text/ng-template" id="cabCorreo.html">
+    <div class="col-xs-12" block-ui="blockcambiocorreo">
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img>
+        </div>
+        <div class="col-xs-12 tac fwbbold fs30 mt3p cgraybold">Actualiza tu correo de acceso</div>
+
+        <div class="col-xs-12 tac fs15 mt2p cgraybold">Mantén actualizado el correo electrónico con el cual</div>
+        <div class="col-xs-12 tac fs15 cgraybold">ingresar a Mi Claro App y no pierdas el acceso.</div>
+
+        <div class="col-xs-8 col-xs-offset-2 p0 fwbbold fs17 mt6p cgraybold">Correo electrónico actual:</div>
+        <div class="col-xs-8 col-xs-offset-2 cgray fs18 mt1p p0">
+            <input type="text" placeholder="Correo electrónico" class="col-xs-12 fs18 p7 outlinenone pl15 RobotoRegular bc1grayinput" ng-model="formCambiarCorreso.correoActual" disabled/>
+        </div>
+
+        <div class="col-xs-8 col-xs-offset-2 p0 fwbbold fs17 mt6p cgraybold">Nuevo correo electrónico:</div>
+        <div class="col-xs-8 col-xs-offset-2 cgray fs18 mt1p p0">
+            <input type="text" placeholder="Ingresa el nuevo correo" class="col-xs-12 fs18 p7 outlinenone pl15 RobotoRegular bc1grayinput" ng-model="formCambiarCorreso.ncorreo" ng-keydown="onKeydown($event)" />
+        </div>
+
+        <div class="col-xs-8 col-xs-offset-2 p0 fwbbold fs17 mt6p cgraybold">Confirmar nuevo correo:</div>
+        <div class="col-xs-8 col-xs-offset-2 cgray fs18 mt1p p0">
+            <input type="text" placeholder="Confirma el nuevo correo" class="col-xs-12 fs18 p7 outlinenone pl15 RobotoRegular bc1grayinput" ng-model="formCambiarCorreso.cfncorreo" />
+        </div>
+
+        <div class="col-xs-8 col-xs-offset-2 p0 fwbbold fs17 mt6p cgraybold">Ingresa tu contraseña actual:</div>
+        <div class="col-xs-8 col-xs-offset-2 bc1grayinput">
+            <input id="cfcontrasena" type="password" placeholder="Ingresa tu contraseña actual" class="col-xs-11 fs18 p7 outlinenone bn RobotoRegular" ng-model="formCambiarCorreso.contrasenaac" />
+            <div class="col-xs-1 p0 tac">
+                <img src="/Images/eye.png" alt="Logo_mostrar_contraseña_mi_claro" class="ma mt8 outlinenone" ng-click="PassTexRepeatfcfcon()" ng-if="PassTexVarcfcon == 1"></img>
+                <img src="/Images/eyegray.png" alt="Logo_ocultar_contraseña_mi_claro" class="ma mt8 outlinenone" ng-click="PassTexRepeatfcfcon()" ng-if="PassTexVarcfcon == 0"></img>
+            </div>
+        </div>
+
+        <div class="col-xs-12 mt6p p0" block-ui="block">
+            <div class="col-xs-8 col-xs-offset-2 bclilalight cwhite pt10 pb10 fs18 tac cpointer mb8p" ng-click="Tagging('Mi_claro','bt_ini_actualizatucorreo_actua');atulizarActCorreo()">
+                Actualizar correo electrónico
+            </div>
+        </div>
+        <div class="cb"></div>
+    </div>
+    <div class="cb"></div>
+</script>
+
+<!--Nueva visual de Detalle de tu plan >MD -->
+<div class="container-fluid" block-ui="blockInfo">
+    <div class="col-xs-12 p0">
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25 mb20">
+            Configuración de cuenta
+        </div>
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 hidden-sm hidden-xs">
+            <div class="col-xs-12 fs22 fsm18 tac cblack mt19">
+                ¿En qué servicio deseas actualizar <br> tus datos?
+            </div>
+        </div>
+        <div class="col-xs-12 mb25 plm10p fs16 fwbbold tac cgraybold hidden-md hidden-lg">
+            <div class="col-xs-12 fs14 tac cblack mt25 pl0 pm0">
+                ¿En qué servicio deseas actualizar <br> tus datos?
+            </div>
+        </div>
+        <!--Contenido del plan (especificaciones)-->
+        <div class="row">
+            <div class="col-xs-12  col-md-8 col-md-offset-3 mt30 mb10p p0">
+                <!--Descripción Postpago-->
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 fs15 mt25 pl10 pr10 cpointer">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12 mt10 p15 btcgray2px" ng-click="cambioModulo(3)">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 imgRes">
+                                <img src="/Images/icon_perservicios.png" class="pt5"></img>
+                            </div>
+                            <div class="col-xs-8  cblackopacity fs28 mt15 hidden-xs hidden-sm">
+                                Personaliza tus servicios
+                            </div>
+
+                            <div class="col-xs-8  cblackopacity fs16 mt30 hidden-md hidden-lg">
+                                Personaliza tus servicios
+                            </div>
+                            <div class="col-xs-1 imgRes mt15">
+                                <img src="/Images/rigth.png" class="pt5"></img>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12 mt10 p15 btcgray2px" ng-click="Tagging('Mi_claro','bt_ini_actualizatucorreo');popupCambiarCorreo()">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 imgRes">
+                                <img src="/Images/ico_cuentasCorreo.png" class="pt5"></img>
+                            </div>
+                            <div class="col-xs-8  cblackopacity fs28 mt15 hidden-xs hidden-sm">
+                                Actualiza tu correo mi Claro
+                            </div>
+                            <div class="col-xs-8  cblackopacity fs16 mt30 hidden-md hidden-lg">
+                                Actualiza tu correo mi Claro
+                            </div>
+                            <div class="col-xs-1 imgRes mt15">
+                                <img src="/Images/rigth.png" class="pt5"></img>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12 mt10 p15 btcgray2px" ng-click="Tagging('Mi_claro','bt_ini_cambiarcontrasena');popupCambioContrasena()">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 imgRes">
+                                <img src="/Images/icon_candado.png" class="pt5"></img>
+                            </div>
+                            <div class="col-xs-8  cblackopacity fs28 mt15 hidden-xs hidden-sm">
+                                Cambiar contraseña
+                            </div>
+                            <div class="col-xs-8  cblackopacity fs16 mt30 hidden-md hidden-lg">
+                                Cambiar contraseña
+                            </div>
+                            <div class="col-xs-1 imgRes mt15">
+                                <img src="/Images/rigth.png" class="pt5"></img>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-12 mt10 p15 btcgray2px bbcgray2px" ng-click="cambioModulo(2)">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3 imgRes">
+                                <img src="/Images/icon_actualizadatos.png" class="pt5"></img>
+                            </div>
+                            <div class="col-xs-8  cblackopacity fs28 mt10 hidden-xs hidden-sm">
+                                Actualizar datos
+                            </div>
+                            <div class="col-xs-8  cblackopacity fs16 mt30 hidden-md hidden-lg">
+                                Actualizar datos
+                            </div>
+                            <div class="col-xs-1 imgRes mt10">
+                                <img src="/Images/rigth.png" class="pt5"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

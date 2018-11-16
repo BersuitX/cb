@@ -1,0 +1,34 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.cmPoller.sisges.telmex.com.co" xmlns:obj="http://objects.cmPoller.sisges.telmex.com.co">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getWifiDataIVR>
+         <ser:cm>
+            <obj:alive><?=$Vhuiaynakyjv?></obj:alive>
+            <obj:brand><?=$V3dt3m5vruqs?></obj:brand>
+            <obj:buildingId><?=$V11ftagpdvix?></obj:buildingId>
+            <obj:buildingName><?=$Vyi14zohwmje?></obj:buildingName>
+            <obj:clientAddress><?=$Vhlbddlfuj4b?></obj:clientAddress>
+            <obj:cmts><?=$Vbr05shi3pop?></obj:cmts>
+            <obj:cmtsInterface><?=$Vbr05shi3popInterface?></obj:cmtsInterface>
+            <obj:cmtsIp><?=$Vbr05shi3popIp?></obj:cmtsIp>
+            <obj:division><?=$Vakhmebuonmc?></obj:division>
+            <obj:docsCableMaclayerIndex><?=$V3sojfrg1zta?></obj:docsCableMaclayerIndex>
+            <obj:firmware><?=$Vkn1unhgkim3?></obj:firmware>
+            <obj:index><?=$Vuglyh4gwddb?></obj:index>
+            <obj:interfaceIndex><?=$Vcxokmvgnjr4?></obj:interfaceIndex>
+            <obj:ipAddress><?=$Vswu1obdrdvu?></obj:ipAddress>
+            <obj:lastSeen><?=$Ve4ads51y5ym?></obj:lastSeen>
+            <obj:mac><?=$Vjikrg1dolr2?></obj:mac>
+            <obj:matrixAccount><?=$Vycjgdi2hyap?></obj:matrixAccount>
+            <obj:model><?=$Vadzjolgeeux?></obj:model>
+            <obj:node><?=$Vusxuvcl20we?></obj:node>
+            <obj:rrAccount><?=$Vwrojp1us1dw?></obj:rrAccount>
+            <obj:standBy><?=$Vaun2typeeei?></obj:standBy>
+            <obj:status><?=$Vwa00m3pezrc?></obj:status>
+            <obj:sysDescr></obj:sysDescr>
+            <obj:uptime><?=$Vq0e3mmqonbo?></obj:uptime>
+            <obj:validIndex><?=$Vjxeo5vddweu?></obj:validIndex>
+         </ser:cm>
+      </ser:getWifiDataIVR>
+   </soapenv:Body>
+</soapenv:Envelope>

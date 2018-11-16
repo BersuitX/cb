@@ -1,0 +1,19 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://servicios.autolegalizacion.claro.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:validarDatosDemograficos>
+         <!--Optional:-->
+         <RequestDatosDemograficos>
+            <min><?=$V3hbf4so4iko?></min>
+            <canal>MiClaro</canal>
+            <tipoDocumento><?=$Vcfzis3ca5nv?></tipoDocumento>
+            <numeroDocumento><?=$Vbbhadzcf3q5?></numeroDocumento>
+            <!--Optional:-->
+            <fechaExpedicion><?=$Vmflplvsxtqs?></fechaExpedicion>
+            <!--Optional:-->
+            <apellido><?=$Vcfuma51n1le?></apellido>
+            <idTransaccion>1</idTransaccion>
+         </RequestDatosDemograficos>
+      </ser:validarDatosDemograficos>
+   </soapenv:Body>
+</soapenv:Envelope>

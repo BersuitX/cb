@@ -1,0 +1,70 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<div class="col-xs-12 col-md-6 p0">
+    <!-- Version Desktop -->
+    <img preload-image ng-src="/Images/registrar_banner3.png" default-image="/Images/registrar_banner3def.jpg" fallback-image="/Images/registrar_banner3def.jpg" class="resizehight img-responsive hidden-xs hidden-sm"></img>
+    <!-- Version Mobil 
+    <img src="/Images/registrar_banner3.png" class="img-responsive hidden-md hidden-lg"></img> -->
+</div>
+
+<div class="col-xs-12 col-md-6" block-ui="registro">
+    <div class="col-xs-12 tac corange fs40 mt6p fwbbold">
+        Continuemos con tu registro
+    </div>
+
+    <div class="col-xs-12 tac fs20 fwbbold cgray">
+        Ahora ingresa los datos para acceder a Mi Claro:
+    </div>
+
+    <div class="col-xs-12 col-md-8 col-md-offset-2 h1 bbcgray"></div>
+
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="col-xs-12 corange fs20 mt8p cgray fwbbold">
+            Correo electrónico
+        </div>
+
+        <div class="col-xs-12 cgray fs18 mt1p">
+            <input type="text" class="col-xs-12 fs18 p7 outlinenone pl15" ng-model="$parent.ObjSend.nombreUsuario" placeholder="Escribe tu correo electrónico" max-length="20" />
+        </div>
+
+        <div class="col-xs-12 corange fs20 mt6p cgray fwbbold">
+            Contraseña
+        </div>
+
+        <div class="col-xs-12 cgray fs18 mt1p">
+            <div class="col-xs-12 bc1grayinput">
+                <input id="myPassword" type="password" class="col-xs-11 fs18 p7 outlinenone bn" ng-model="$parent.ObjSend.password" placeholder="Escribe una contraseña" max-length="20" />
+                <div class="col-xs-1 p0 tac">
+                    <img src="/Images/eye.png" class="ma mt8 outlinenone" ng-click="PassTex()" ng-if="PassTexVar == 1"></img>
+                    <img src="/Images/eyegray.png" class="ma mt8 outlinenone" ng-click="PassTex()" ng-if="PassTexVar == 0"></img>
+                </div>                    
+            </div>        
+        </div>    
+
+        <div class="col-xs-12 corange fs20 mt6p cgray fwbbold">
+            Confirmar contraseña
+        </div>
+        
+        <div class="col-xs-12 cgray fs18 mt1p">
+            <div class="col-xs-12 bc1grayinput">
+                <input id="myPasswordRepeat" type="password" class="col-xs-11 fs18 p7 outlinenone bn" ng-model="$parent.ObjSend.repeatpassword" placeholder="Confirmar tu contraseña" max-length="20" />
+                <div class="col-xs-1 p0 tac">
+                    <img src="/Images/eye.png" class="ma mt8 outlinenone" ng-click="PassTexRepeat()" ng-if="PassTexVarRepeat == 1"></img>
+                    <img src="/Images/eyegray.png" class="ma mt8 outlinenone" ng-click="PassTexRepeat()" ng-if="PassTexVarRepeat == 0"></img>
+                </div>                    
+            </div>         
+        </div>      
+    </div>
+
+    <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 bgcorange cwhite pt10 pb10 fs18 tac mt8p cpointer RobotoBold" ng-click="Tagging('Registro_Legalizacion','Continuar_registro_tercera_pantalla');registrarUsuarioLegalizacion()">
+        Continuar registro
+    </div>
+
+    <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 bgcorange cwhite pt10 pb10 fs18 tac mt3p mb7p cpointer RobotoBold" ng-click="Tagging('Registro_Legalizacion','bt_confirmarelpin_continuarregistro');cambiodepaso(22)">
+        Volver
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 p0 mb20" block-ui="pedidoExt">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <div class="col-xs-12 sombraMensajes pt15 pb15 p0">
+            <div class="col-xs-12 fwbbold fs28 pb10">
+                <img align="left" src="/Images/rte_equipo_gris.png" alt="" class="ma img-responsive h31 pr10"></img>
+                Costo de tu Smartphone
+            </div>
+            <div class="col-xs-12 col-sm-6 p0 fs18" ng-if="productentrega.aprecioPublico!=0">
+                <div class="col-xs-6 pt5 pb5">Valor total del equipo</div><div class="col-xs-6 tar fwbbold pt5 pb5">{{fnreplace(productentrega.aprecio)}}</div>
+                <div class="col-xs-7 pt5 pb5">Descuento clientes Claro</div><div class="col-xs-5 tar fwbbold pt5 pb5 clila">{{fnreplace(productentrega.descuento)}}</div>
+                <div class="col-xs-7 pt5 pb5">Impuesto consumo (IVA)</div><div class="col-xs-5 tar fwbbold pt5 pb5">{{fnreplace(productentrega.aimpuesto)}}</div>
+            </div>
+            <div class="col-xs-12 col-sm-6 p0 fs18" ng-if="productentrega.aprecioPublico==0">
+                <div class="col-xs-6 pt5 pb5">Valor total del equipo</div><div class="col-xs-6 tar fwbbold pt5 pb5">{{fnreplace(productentrega.aprecio)}}</div>
+                <div class="col-xs-7 pt5 pb5">Impuesto consumo (IVA)</div><div class="col-xs-5 tar fwbbold pt5 pb5">{{fnreplace(productentrega.aimpuesto)}}</div>
+            </div>
+            <div class="col-xs-12 col-sm-6 p0 fs18">
+                <div class="col-xs-6 pt5 pb5">Costo de envío </div><div class="col-xs-6 tar fwbbold pt5 pb5">{{fnreplace(productentrega.costoEnvio)}}</div>
+                <div class="col-xs-6 fwbbold pt5 pb5">Valor total a pagar </div><div class="col-xs-6 tar fwbbold cred fs25">{{fnreplace(productentrega.aprecio)}}</div>
+                <div class="col-xs-6">
+                    Color equipo
+                </div>
+                <div class="col-xs-6">
+                    <span ng-repeat="color in elegircolor" ng-if="color.colorbg.aproductoColorID == colorPagaF" style="background:{{color.colorbg.acodigo}};" class="br50pall dib flr bnfocus w20 h20 bc1graybold mr3"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 mt20 p0">
+        <div class="col-xs-12 col-sm-6 fs16">
+            <div class="col-xs-12 mt6p">
+                Nombre <span class="corange">*</span>
+            </div>
+            <div class="col-xs-12 cgray mt1p">
+                <input type="text" placeholder="Nombre" class="col-xs-12 form-control-entrega bnfocus fs16 p7 outlinenone pl15 RobotoRegular" ng-model="datosEnvio.nombre" ng-keydown="onKeydown($event)" />
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 fs16">
+            <div class="col-xs-12 mt6p">
+                Teléfono de contacto <span class="corange">*</span>
+            </div>
+            <div class="col-xs-12 cgray mt1p">
+                <input type="text" class="col-xs-12 form-control-entrega bnfocus fs16 p7 outlinenone" ng-model="datosEnvio.celular" placeholder="Ej: 3102223344" onkeypress="return soloNumeros(event);" max-length="10" />
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 fs16">
+            <div class="col-xs-12 mt6p">
+                Línea a la que se le asignará el equipo <span class="corange">*</span>
+            </div>
+            <div class="col-xs-12 cgray mt1p">
+                <input type="text" class="col-xs-12 form-control-entrega bnfocus fs16 p7 outlinenone" ng-model="datosEnvio.numClaro" placeholder="Ej: 3102223344" onkeypress="return soloNumeros(event);" max-length="10" />
+            </div>
+        </div>
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 mt4p">
+        <div class="col-xs-12 mt20">
+            <div class="col-xs-12 p0 fs18">
+                <div class="col-xs-10 p0 fs16">
+                    Selecciona la cantidad de cuotas con las cuales deseas diferir el pago de tu Smartphone.  
+                </div>
+                <div class="col-xs-2 p0 flr">
+                   <select ng-model="datosEnvio.nCuotas" class="col-xs-12 form-control-entrega bnfocus fs18 p7">
+                      <option ng-repeat="item in cuotastext" ng-click="bt_pos_ini_renuequi_equi1_pagcuo_+item.num+cuo" value="{{item.num}}">{{item.num}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 pt20 hidden-md hidden-sm hidden-lg">
+        <div class="col-xs-12 col-sm-5 col-sm-offset-1 bgRojoBl cwhite tac pt10 pb10 mt7 cpointer" ng-click="Tagging('CatalogoMovil','bt_pos_ini_renuequi_equi'+productentrega.aproductoID+'_pagcuo_conti');gudarpagofactura()">
+            Solicita tu Smartphone
+        </div>
+        <div class="col-xs-12 col-sm-5 col-sm-offset-1 bclilalight cwhite tac pt10 pb10 mt7 cpointer" ng-click="Tagging('CatalogoMovil','bt_pos_ini_renuequi_equi'+productentrega.aproductoID+'_pagcuo_volver');volver(3)">
+            Volver
+        </div>
+    </div>
+    <div class="col-xs-12 pt20 hidden-xs">
+        <div class="col-xs-12 col-sm-5 col-sm-offset-1 bclilalight cwhite tac pt10 pb10 mt7 cpointer" ng-click="Tagging('CatalogoMovil','bt_pos_ini_renuequi_equi'+productentrega.aproductoID+'_pagcuo_volver');volver(3)">
+            Volver
+        </div>
+        <div class="col-xs-12 col-sm-5 col-sm-offset-1 bgRojoBl cwhite tac pt10 pb10 mt7 cpointer" ng-click="Tagging('CatalogoMovil','bt_pos_ini_renuequi_equi'+productentrega.aproductoID+'_pagcuo_conti');gudarpagofactura()">
+            Solicita tu Smartphone
+        </div>
+    </div>
+</div>

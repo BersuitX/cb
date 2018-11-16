@@ -1,0 +1,27 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="Claro.SelfCareManagement.Services.Entities.Contracts" xmlns:clar1="http://schemas.datacontract.org/2004/07/Claro.SelfCareManagement.Services.Entities.Messages">
+   <soapenv:Header>
+      <clar:HeaderAutenticacion>
+         <clar1:contraseñaAutenticacion>Mi2018ClaroCo*$Vvosfj1kohp3.$Vbroibcc3co3</clar1:contraseñaAutenticacion>
+         <clar1:tipoCanalID><?=isset($Vj51pdqbhifj)?2:1?></clar1:tipoCanalID>
+         <clar1:usuarioAutenticacion>Mi$2019.$Vduuglj0unse*$1C$Vk33bzuipr3e$0</clar1:usuarioAutenticacion>
+      </clar:HeaderAutenticacion>
+   </soapenv:Header>
+   <soapenv:Body>
+      <clar:SolicitarPedidoRequest>
+         <clar:ciudad><?=$V1mccspyvfe0?></clar:ciudad>
+         <clar:departamento><?=$Vbnriemdgxet?></clar:departamento>
+         <clar:direccion><?=htmlentities($Vtt5lms041w2)?></clar:direccion>
+         <clar:impuesto><?=$Vvskvigfunnu?></clar:impuesto>
+         <clar:metodoPagoID><?=$Vcq3pfwure41?></clar:metodoPagoID>
+         <clar:municipio></clar:municipio>
+         <clar:nombreUsuario><?=$Vyvjwikpa2bp?></clar:nombreUsuario>
+         <clar:numeroCuenta><?=$V3hbf4so4iko?></clar:numeroCuenta>
+         <clar:numeroCuota><?=isset($Vlu40tg4yqod)?$Vlu40tg4yqod:0?></clar:numeroCuota>
+         <clar:observacion><?=htmlentities($Vy0cecvf3n3d)?></clar:observacion>
+         <clar:precio><?=$Vfonk43paucy?></clar:precio>
+         <clar:productoColorID><?=$Vcbmphbe0yis?></clar:productoColorID>
+         <clar:productoID><?=$V1vc1vkvopoo?></clar:productoID>
+         <clar:telefonoContacto><?=$Vcww2eufzcsg?></clar:telefonoContacto>
+      </clar:SolicitarPedidoRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

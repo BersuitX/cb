@@ -1,0 +1,8 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<hogar-dth ng-if="hogar_dth == 1"></hogar-dth>
+<hogar ng-if="hogar_dth == 0"></hogar>

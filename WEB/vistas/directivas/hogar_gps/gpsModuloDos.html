@@ -1,0 +1,684 @@
+<script>
+var URLactual = window.location;
+if (URLactual.pathname.indexOf('.') != -1) {
+    window.location.href = "/";
+}
+</script>
+<style type="text/css">
+md-radio-button {
+    margin-bottom: 0px !important;
+}
+.md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {
+    border: 1px solid rgb(245, 52, 2) !important;
+}
+.md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator{
+    background: rgb(245, 52, 2) !important;
+    color: rgb(255,255,255);
+    border-color: transparent;
+}
+.md-calendar-day-header {
+    background: rgb(245, 52, 2) !important;
+    color: rgb(255,255,255) !important;
+    margin-left: 15px;
+}
+.md-calendar-date.md-calendar-date-today.md-calendar-date-disabled {
+    color: rgb(245, 52, 2) !important;
+}
+.md-calendar-scroll-mask {
+    display: inline-block;
+    overflow: hidden;
+    height: 308px;
+    margin-left:15px;
+}
+.md-default-theme .md-calendar-date-disabled, .md-calendar-date-disabled, .md-default-theme .md-calendar-month-label-disabled, .md-calendar-month-label-disabled {
+    color: rgba(0,0,0,.075) !important;
+}
+</style>
+<!-- iframe chat -->
+<div class="pfixed ng-scope r0 b380 zi1 bcgraychat w304 pt5 pb5 pl6" ng-if="chat == 1">
+    <img src="/Images/cancellila.png" class="zi1 b390 r227 h25 w25 cpointer outlinenone" ng-click="Tagging('Hogar','Cerrar_chat');showchat()" ng-if="chat == 1"></img>
+</div>
+<iframe ng-src="{{UrlIframe}}" class="pfixed zi1 b0 r0 h380 bcgraylight " ng-if="chat == 1"></iframe>
+<!------------
+menu internas gps
+-------------->
+<div class="col-xs-12 bgRojoBl h70 hautobil66 p0">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 tac p0">
+        <div class="col-xs-1 col-sm-1 tal maincpointer bnfocus pt22 pl28 p0bil pl18pxbil" ng-click="Tagging('Hogar','_volver_modulo_visitas');volverPrimerModulo()">
+            <img src="/Images/heager_icon_down-white.png" alt="btn volver">
+        </div>
+        <div class="col-xs-10 col-sm-10 tac cwhite RobotoRegular fs13 p0 p0bil">
+            <div class="col-xs-12 col-lg-8 col-lg-offset-2 p0bil">
+                <div class="col-xs-3 col-sm-3 tac outlinenone pt10 p0bil pt10bil pb9" ng-click="Tagging('Hogar','_ini_vistec_reprogagend_resumen');getinfoSubmodulo(1)" ng-class="(subModulo == 1)? 'bgrojoActive' : '';">
+                    <div class="col-xs-12 col-sm-12 p0">
+                        <a href="" class="outlinenone bnfocus">
+                            <img src="/Images/Icon_resumen_2.png" alt="Resumen gps">
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 p0 mt3 fsm10 fs15">
+                        Resumen
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 tac outlinenone pt10 p0bil pt10bil pb9" ng-click="Tagging('Hogar','_ini_vistec_reprogagend_gpstec');getinfoSubmodulo(2)" ng-class="(subModulo == 2)? 'bgrojoActive' : '';">
+                    <div class="col-xs-12 col-sm-12 p0">
+                        <a href="" class="outlinenone bnfocus">
+                            <img src="/Images/icon_gpstecnico.png" alt="Tecnico gps">
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 p0 mt3 fsm10 fs15">
+                        GPS Técnico
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 tac outlinenone pt10 p0bil pt10bil pb9" ng-click="Tagging('Hogar','_ini_vistec_reprogagend_reprogram');getinfoSubmodulo(3)" ng-class="(subModulo == 3)? 'bgrojoActive' : '' || (subModulo == 7)? 'bgrojoActive' : '';">
+                    <div class="col-xs-12 col-sm-12 p0">
+                        <a href="" class="outlinenone bnfocus">
+                            <img src="/Images/icon_reprogramar.png" alt="Reprogramar gps">
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 p0 mt3 fsm10 fs15">
+                        Reprogramar
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 tac outlinenone pt10 p0bil pt10bil pb9" ng-click="Tagging('Hogar','_ini_vistec_reprogagend_cancelar');getinfoSubmodulo(4)" ng-class="(subModulo == 4)? 'bgrojoActive' : '';">
+                    <div class="col-xs-12 col-sm-12 p0">
+                        <a href="" class="outlinenone bnfocus">
+                            <img src="/Images/icon_cancelar.png" alt="cnacelar gps">
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 p0 mt3 fsm10 fs15">
+                        Cancelar
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1 col-sm-1 tac outlinenone pt19 p0bil pr4pxbil" ng-click="Tagging('Hogar','_ini_vistec_reprogagend_compartir');getinfoSubmodulo(5)">
+            <a href="" class="outlinenone bnfocus">
+                <img src="/Images/compartir.png" alt="compartir con un amigo" class="">
+            </a>
+        </div>
+    </div>
+</div>
+<!-----------
+resumen 
+------------->
+<div class="col-xs-12 p0" ng-if="subModulo == 1">
+    <div class="col-xs-12 col-md-12 p0 bcgraylight hidden-xs">
+        <div class="col-xs-12 col-md-6 col-md-offset-3 mt30 p0">
+            <div class="col-xs-12 col-md-10">
+                <div class="col-xs-12 col-md-12 tac corange fwbbold fs18">Técnico Asignado</div>
+                <!--<div class="col-xs-12 col-md-12 tac corange fwbbold fs18">Visita técnica</div> 
+                <div class="col-xs-12 col-md-12 tac cgraylight fwbbold fs15">Técnico Asignado</div>-->
+                <div class="col-xs-12 col-md-12 tac mt15">
+                    <div class="pl0 p0bil prelative contenimgRedonda">
+                        <div class="imgRedonda">
+                            <img ng-src='{{lisDetalleVisitas.tecnico.foto != "" && lisDetalleVisitas.tecnico.foto || "/Images/icon_tecnico_sinfoto.png"}}' alt="foto tecnico - {{lisDetalleVisitas.tecnico.nombre}}" class="h100p">
+                        </div>
+                        <!--<img src="/Images/icon_rojo.png" class="w27 iconimgRedonda">-->
+                    </div>
+                    <!--<div class="col-xs-2 ml-78 mt-12"> -->
+                    <!--    <img src="/Images/icon_rojo.png" class="w27">-->
+                    <!--</div>-->
+                </div>
+                <div class="col-xs-12 col-md-12 tac corange fwbbold fs20 mt10" ng-if="lisDetalleVisitas.tecnico.documento == 0 ">
+                    Todavía no hemos asignado un técnico a tu visita
+                </div>
+                <div class="col-xs-12 col-md-12 tac corange fwbbold fs20 mt10" ng-if="lisDetalleVisitas.tecnico.documento != 0 ">
+                    {{lisDetalleVisitas.tecnico.nombre}}
+                </div>
+                <div class="col-xs-12 col-md-12 p0 mt10 mb12" ng-if="lisDetalleVisitas.tecnico.documento != 0 ">
+                    <div class="col-xs-12 col-sm-4 p0 cgray">
+                        <div class="col-xs-6 col-sm-12 p0 fs14 tarbil pr10pxbil fwbbold cblack"><i>Número de identificación:</i></div>
+                        <div class="col-xs-6 col-sm-12 p0 talbil">{{lisDetalleVisitas.tecnico.documento}}</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 p0 cgray">
+                        <div class="col-xs-6 col-sm-12 p0 fs14 tarbil pr10pxbil fwbbold cblack"><i>Número de carné:</i></div>
+                        <div class="col-xs-6 col-sm-12 p0 talbil">{{lisDetalleVisitas.tecnico.carne}}</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 p0 cgray">
+                        <div class="col-xs-6 col-sm-12 p0 fs14 tarbil pr10pxbil fwbbold cblack"><i>Contratista:</i></div>
+                        <div class="col-xs-6 col-sm-12 p0 talbil textmarker">{{visitaselec.NOMBRE_ALIADO}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-2 p0">
+                <div class="col-xs-6 col-sm-6 col-md-12 p0 bnfocus outlinenone h126gps bcwhite pt27 pt12gps pb12gps hautobilgps pt12pxbil pb12pxbil" ng-click="Tagging('Hogar','_ini_vistec_reprogagend_contacto');showchat()">
+                    <div class="col-xs-2 col-sm-2 col-md-12 col-lg-12 p0 tac">
+                        <img src="/Images/icon_chat_support.png" alt="gps_contactanos" class="w24bilgps">
+                    </div>
+                    <div class="col-xs-10 col-sm-10 col-md-12 col-lg-12 p0 corange fs11 fwbbold mt10 mt25gps">
+                        <div class="col-xs-10 pl8 tacbil">Contáctanos</div>
+                        <div class="col-xs-2 p0">></div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-12 p0 bnfocus outlinenone h126gps bcgraydark pt27 pt12gps pb12gps hautobilgps pt12pxbil pb12pxbil" ng-click="Tagging('Hogar','_ini_vistec_reprogagend_calif');getinfoSubmodulo(6)">
+                    <div class="col-xs-2 col-sm-2 col-md-12 col-lg-12 p0 tac">
+                        <img src="/Images/icon_calificanos.png" alt="gps_calificanos" class="w24bilgps">
+                    </div>
+                    <div class="col-xs-10 col-sm-10 col-md-12 col-lg-12 p0 cwhite fs11 fwbbold mt1 mt25gps">
+                        <div class="col-xs-10 pl8 tacbil">Califica tu visita</div>
+                        <div class="col-xs-2 p0">></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12 p0 bgcorange hidden-sm hidden-md hidden-lg">
+        <div class="col-xs-12 col-md-6 col-md-offset-3 mt30 p0">
+            <div class="col-xs-12 col-md-10">
+                <div class="col-xs-12 col-md-12 tac cwhite fwbbold fs18">Técnico Asignado</div>
+                <div class="col-xs-12 p0 dn-flex">
+                    <div class="tac mt15 p0">
+                        <div class="imgRedondamovil">
+                            <img ng-src='{{lisDetalleVisitas.tecnico.foto != "" && lisDetalleVisitas.tecnico.foto || "/Images/icon_tecnico_sinfoto.png"}}' alt="foto tecnico - {{lisDetalleVisitas.tecnico.nombre}}" class="h100p">
+                        </div>
+                    </div>
+                    <div class="p0 mt33">
+                        <div class="col-xs-12 col-md-12 tac cwhite fwbbold fs20 mt10" ng-if="lisDetalleVisitas.tecnico.documento == 0 ">
+                            Todavía no hemos asignado un técnico a tu visita
+                        </div>
+                        <div class="col-xs-12 p0" ng-if="lisDetalleVisitas.tecnico.documento != 0 ">
+                            <div class="col-xs-12 cwhite fwbbold fs14 mt10">
+                                {{lisDetalleVisitas.tecnico.nombre}}
+                            </div>
+                            <div class="col-xs-12 cwhite fs11 bnfocusounder" ng-if="activeinfotecnico == 0" ng-click="activeInfogps()">
+                                <i>Ver datos del colaborador ></i>
+                            </div>
+                            <div class="col-xs-12 cwhite fs11 bnfocusounder" ng-if="activeinfotecnico == 1" ng-click="activeInfogps()">
+                                <i>Ocultar datos del colaborador < </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-12 p0 mt10 mb12 mt30 overflowxh" ng-if="lisDetalleVisitas.tecnico.documento != 0 ">
+                    <div class="col-xs-12 p0" ng-class="(activeinfotecnico == 0) ? 'noanitionAct' : 'anitionAct'">
+                        <div class="col-xs-12 col-sm-4 p0 cwhite">
+                            <div class="col-xs-6 col-sm-12 p0 fs14 fsm12 tarbil pr10pxbil"><i>Número de identificación:</i></div>
+                            <div class="col-xs-6 col-sm-12 p0 fsm13 talbil fwbbold">{{lisDetalleVisitas.tecnico.documento}}</div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 p0 cwhite">
+                            <div class="col-xs-6 col-sm-12 p0 fs14 fsm12 tarbil pr10pxbil"><i>Número de carné:</i></div>
+                            <div class="col-xs-6 col-sm-12 p0 fsm13 talbil fwbbold">{{lisDetalleVisitas.tecnico.carne}}</div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 p0 cwhite">
+                            <div class="col-xs-6 col-sm-12 p0 fs14 fsm12 tarbil pr10pxbil"><i>Contratista:</i></div>
+                            <div class="col-xs-6 col-sm-12 p0 fsm13 talbil textmarker fwbbold">{{visitaselec.NOMBRE_ALIADO}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-2 p0">
+                <div class="col-xs-6 col-sm-6 col-md-12 p0 bnfocus outlinenone h126gps bcwhite pt27gps pt12gps pb12gps hautobil pt12pxbil pb12pxbil" ng-click="Tagging('Hogar','_ini_vistec_reprogagend_calif');showchat()">
+                    <div class="col-xs-2 col-sm-2 col-md-12 col-lg-12 p0 tac">
+                        <img src="/Images/icon_chat_support.png" alt="gps_contactanos" class="w24bilgps">
+                    </div>
+                    <div class="col-xs-10 col-sm-10 col-md-12 col-lg-12 p0 corange fs14 fwbbold mt5 mt25gps">
+                        <div class="col-xs-10 pl8 tacbil">Contáctanos</div>
+                        <div class="col-xs-2 p0">></div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-12 p0 bnfocus outlinenone h126gps bcgraydark pt27gps pt12gps pb12gps hautobil pt12pxbil pb12pxbil" ng-click="Tagging('Hogar','_ini_vistec_reprogagend_contacto');getinfoSubmodulo(6)">
+                    <div class="col-xs-2 col-sm-12 p0 tac">
+                        <img src="/Images/icon_calificanos.png" alt="gps_calificanos" class="w24bilgps">
+                    </div>
+                    <div class="col-xs-10 col-sm-10 col-md-12 col-lg-12 p0 cwhite fs14 fwbbold mt1 mt25gps">
+                        <div class="col-xs-10 pl8 tacbil">Califica tu visita</div>
+                        <div class="col-xs-2 p0">></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-8 col-md-offset-2 mt20">
+        <div class="col-xs-12 col-sm-12 p0 blbluelight">
+            <div class="col-xs-12 col-sm-12 cbluelight fwbbold ttc">
+                {{visitaselec.NOMBRE_ESTADO_AGENDA | lowercase}}
+            </div>
+            <div class="col-xs-12 col-sm-12 fs25 fwbbold cblack lh33px mb10 fsm24">
+                {{visitaselec.TIPO_TRABAJO}}
+            </div>
+            <div class="col-xs-6 col-sm-4">
+                <div class="corange fs15 fsm13">Fecha del servicio</div>
+                <div class="fwbbold cblack fs16">{{visitaselec.FECHA_SERVICIO}}</div>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+                <div class="corange fs15 fsm13 p0">Horario de atención</div>
+                <div class="fwbbold cblack fs16">{{visitaselec.HORARIO_ATENCION}}</div>
+            </div>
+            <div class="col-xs-6 col-sm-4 hidden-xs">
+                <div class="corange fs15 fsm13">Dirección del servicio</div>
+                <div class="fwbbold cblack fs16">{{visitaselec.CLL}} {{visitaselec.NUMDIR}}</div>
+            </div>
+        </div>
+        <div class="col-xs-12 p0 blwhite">
+            <div class="col-xs-12 col-sm-4 p0 mt23">
+                <div class="col-xs-6 col-sm-3 hidden-sm hidden-md hidden-lg">
+                    <div class="corange fs15 fsm13">Dirección del servicio</div>
+                    <div class="fwbbold cblack fs16">{{visitaselec.CLL}} {{visitaselec.NUMDIR}}</div>
+                </div>
+                <div class="col-xs-6 col-sm-12">
+                    <div class="corange fs15 fsm13">Detalle del servicio</div>
+                    <div class="fwbbold cblack fs16">{{visitaselec.APTO || ' '}}</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-8 p0 mt23">
+                <div class="col-xs-6 col-sm-6">
+                    <div class="corange fs15 fsm13">Fecha de la solicitud</div>
+                    <div class="fwbbold cblack fs16">{{visitaselec.FECHA_SOLICITUD}}</div>
+                </div>
+                <div class="col-xs-6 col-sm-6">
+                    <div class="corange fs15 fsm13">Número de la solicitud</div>
+                    <div class="fwbbold cblack fs16">{{visitaselec.ORDEN}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------- 
+Gps tecnico
+------------->
+<div class="col-xs-12 p0" ng-if="subModulo == 2">
+    <div class="col-xs-12 col-md-6 col-md-offset-3 pabsolute t0 zi1 p0bil">
+        <div class="col-xs-12 col-md-12 p0 bcwhite">
+            <div class="col-xs-12 col-md-10 col-md-offset-1 p0 mt15 mb15">
+                <div class="col-xs-2 col-sm-1 text-right p0">
+                    <img src="/Images/el_tegnico_gps.jpg" alt="">
+                </div>
+                <div class="col-xs-10 col-sm-11 fs16 cgraylight fwbbold">
+                    El técnico se encuentra en camino a tu dirección. La posición del técnico en el mapa no se muestra en tiempo real
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 p0">
+            <div class="col-xs-6 col-md-6 p0 bcgraylight">
+                <div class="col-xs-12 col-md-12 pt10 pb10 mt2 mb2 brgray pl5 pr3">
+                    <div class="col-xs-8 col-md-9 p0 cgraylight fsm10">Distancia aproximada del técnico:</div>
+                    <div class="col-xs-4 col-md-3 p0 corange fwbbold" ng-if="posicionTecnicodata != undefined">{{rutainfo.directions.routes[0].legs[0].distance.text}}</div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6 p0 bcgraylight">
+                <div class="col-xs-12 col-md-12 pt10 pb10 mt2 mb2 pl5 pr3">
+                    <div class="col-xs-7 col-md-9 p0 cgraylight fsm10">Tiempo aproximado de llegada:</div>
+                    <div class="col-xs-5 col-md-3 p0 corange fwbbold" ng-if="posicionTecnicodata != undefined">{{rutainfo.directions.routes[0].legs[0].duration.text}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mapa col-xs-12 p0" style="height:600px;">
+        <ng-map style="height:600px;" center="{{lisDetalleVisitas.visita.lat}},{{lisDetalleVisitas.visita.long}}">
+            <!--<ng-map center="[40.74, -74.18]">-->
+            <directions polyline-options="{strokeColor: '#0097ab'}" suppress-markers="true" panel="directions-panel" travel-mode="DRIVING" origin="{{posicionTecnicodata.lat}},{{posicionTecnicodata.lng}}" destination="{{lisDetalleVisitas.visita.lat}},{{lisDetalleVisitas.visita.long}}">
+            </directions>
+            <custom-marker id="start" position="{{lisDetalleVisitas.visita.lat}},{{lisDetalleVisitas.visita.long}}">
+                <img src="/Images/icon_mark_hogar.png" width="40px" />
+            </custom-marker>
+            <custom-marker id="end" position="{{posicionTecnicodata.lat}},{{posicionTecnicodata.lng}}">
+                <img src="/Images/icon_mapmark_tecnico.png" />
+            </custom-marker>
+        </ng-map>
+    </div>
+    <div class="col-xs-12 p0">
+        <div class="col-xs-8 col-xs-offset-2 col-sm-2 col-sm-offset-5 pr0 bclilalight cwhite pt15 pb15 tac mt-64 cpointer" ng-click="Tagging('Hogar','_ini_vistec_gpstecnico_actualizar');actualizarMap()">
+            Actualizar mapa
+        </div>
+    </div>
+</div>
+<!----------- 
+Reprogramar
+------------->
+<div class="col-xs-12 p0" ng-if="subModulo == 3" block-ui="reagendartemplate">
+    <div class="col-xs-12 col-md-12 p0 bcgraylight">
+        <div class="col-xs-12 col-lg-4 col-lg-offset-4 mt20 mb20 p0bil">
+            <div class="col-xs-12 col-sm-12 p0 blbluelight">
+                <div class="col-xs-12 p0">
+                    <div class="col-xs-7 p0">
+                        <div class="col-xs-12 col-sm-12 cbluelight fwbbold ttc">
+                            {{visitaselec.NOMBRE_ESTADO_AGENDA | lowercase}}
+                        </div>
+                        <div class="col-xs-12 col-sm-12 fs20 fsbil18 fwbbold cblack lh33px mb10">
+                            {{visitaselec.TIPO_TRABAJO}}
+                        </div>
+                    </div>
+                    <!-- Seoculta en pantallas medias y altas -->
+                    <div class="col-xs-5 p0 hidden-md hidden-lg">
+                        <div class="corange">Número de solicitud</div>
+                        <div class="fwbbold fs20 fsbil18 cblack">{{visitaselec.ORDEN}}</div>
+                    </div>
+                    <!-- Seoculta en pantallas de celular y tablets-->
+                    <div class="col-xs-5 hidden-xs hidden-sm p0">
+                        <div class="corange">Número de solicitud</div>
+                        <div class="fwbbold fs20 fsbil18 cblack">{{visitaselec.ORDEN}}</div>
+                    </div>
+                </div>
+                <div class="col-xs-12 p0">
+                    <div class="col-xs-7">
+                        <div class="corange fs15 fsm13">Fecha del servicio</div>
+                        <div class="fwbbold cblack fs16">{{visitaselec.FECHA_SERVICIO}}</div>
+                    </div>
+                    <div class="col-xs-5 p0">
+                        <div class="corange fs15 fsm13">Horario de atención</div>
+                        <div class="fwbbold cblack fs16">{{visitaselec.HORARIO_ATENCION}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Nuevo Reagendar-->
+    <div class="col-xs-12 col-md-10 col-md-offset-1 mt20 mb20 p0">
+        <form id="reagendarForm" name="reagendarForm">
+            <div class="col-xs-12 fs30 fwbbold tac cgraydark mb15">
+                ¿Quieres reprogramar tu visita?
+            </div>
+            <div class="col-xs-12 fs18 fwbbold tac cgray">
+               <span class="number">1</span>Cuéntanos el motivo por el cual deseas reprogramar
+            </div>
+            <div class="col-xs-12 col-md-4 col-md-offset-4 tac cgray fs18 mt1p">
+                    <select ng-model="dataReagendar.IRAZONID" class="col-xs-12 fs18 p7">
+                        <option value="">Selecciona una opción</option>
+                        <option ng-repeat="item in opObservaciones" value="{{item.IRAZONID}}">{{item.DESCRIPCION}}</option>
+                    </select>
+                </div>
+            <div class="col-xs 12 col-md-5 fwbboldd col-md-offset-1 mt15 mb20">
+                <div class="col-xs-12 fs18 mt6p cgray fwbboldd mb15"><span class="number">2</span>Seleccciona la fecha para agendar tu visita</div>
+                <md-calendar ng-show="!dataReagendar.ocultar" class="md-warn" ng-change="loadHorario(dataReagendar.Fecha)" md-current-view="year" md-min-date="dataReagendar.Fecha" md-max-date="dataReagendar.max_date" md-date-filter="onlyWeekendsPredicate"  ng-model="dataReagendar.Fecha"></md-calendar>
+            </div>
+            <div class="col-xs 12 col-md-5 mt15 mb20">
+                <div class="col-xs-12 corange fs18 mt6p cgray fwbboldd mb10"><span class="number">3</span>Confirma la franja horaria de tu visita técnica</div>
+                <div class="col-xs-12 fs16 cgray fwbboldd ">{{fechaActiva}}</div>
+                <div class="col-xs-12 cgray fs18 mt1p" ng-show="showHorario">
+                    <md-radio-group ng-model="dataReagendar.IdRangoHora">
+                      <div ng-repeat="item in horarioFranja" class="row">
+                        <div flex layout='row' layout-padding layout-align="start center" >
+                          <div flex class="col-md-3">
+                            {{item.RangoHora}}
+                          </div>
+                          <md-radio-button  flex
+                              ng-value="item.IdRangoHora"
+                              class="md-warn" >
+                
+                          </md-radio-button>
+                
+                        </div>
+                      </div>
+                    </md-radio-group>
+                </div>
+                <div class="col-xs-12 tac" ng-show="!showHorario">
+                    <div class="col-xs-8 fs18 mt6p cgraybold fwbboldd ">No tenemos cupos para la fecha seleccionada, intenta nuevamente</div>
+                </div>
+            </div>
+            <button type="submit" ng-click="reagendar()" role="button" class="col-xs-6 col-xs-offset-3 bgcorange tac cpointer pt10 pb10 fwbbold br10all bnfocus cwhite"><img src="/Images/ico_reservePeriodicamente.png" class="w25"></img>
+                <label role="button" class="ml20">Reprogramar</label>
+            </button>
+        </form>
+    </div>
+</div>
+<!----------- 
+Cancelar
+------------->
+<div class="col-xs-12 p0" ng-if="subModulo == 4" block-ui="reagendartemplate">
+    <div class="col-xs-12 col-md-12 p0 bcgraylight">
+        <div class="col-xs-12 col-lg-4 col-lg-offset-4 mt20 mb20 p0bil">
+            <div class="col-xs-12 col-sm-12 p0 blbluelight">
+                <div class="col-xs-12 p0">
+                    <div class="col-xs-7 p0">
+                        <div class="col-xs-12 col-sm-12 cbluelight fwbbold ttc">
+                            {{visitaselec.NOMBRE_ESTADO_AGENDA | lowercase}}
+                        </div>
+                        <div class="col-xs-12 col-sm-12 fs20 fsbil18 fwbbold cblack lh33px mb10">
+                            {{visitaselec.TIPO_TRABAJO}}
+                        </div>
+                    </div>
+                    <!-- Seoculta en pantallas medias y altas -->
+                    <div class="col-xs-5 p0 hidden-md hidden-lg">
+                        <div class="corange">Número de solicitud</div>
+                        <div class="fwbbold fs20 fsbil18 cblack fs16">{{visitaselec.ORDEN}}</div>
+                    </div>
+                    <!-- Seoculta en pantallas de celular y tablets-->
+                    <div class="col-xs-5 hidden-xs hidden-sm p0">
+                        <div class="corange">Número de solicitud</div>
+                        <div class="fwbbold fs20 fsbil18 cblack fs16">{{visitaselec.ORDEN}}</div>
+                    </div>
+                </div>
+                <div class="col-xs-12 p0">
+                    <div class="col-xs-7">
+                        <div class="corange fs15 fsm13">Fecha del servicio</div>
+                        <div class="fwbbold cblack fs16">{{visitaselec.FECHA_SERVICIO}}</div>
+                    </div>
+                    <div class="col-xs-5 p0">
+                        <div class="corange fs15 fsm13">Horario de atención</div>
+                        <div class="fwbbold cblack fs16">{{visitaselec.HORARIO_ATENCION}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-4 col-md-offset-4 mt20 mb20 p0">
+        <div class="cblack col-xs-12 col-md-12 tac fwbbold fs25">
+            Cuéntanos...
+        </div>
+        <div class="col-xs-12 col-md-12 pl16 fwbbold fs18 pb3">
+            ¿Por qué quieres cancelar tu visita?
+        </div>
+        <div class="col-xs-12 col-md-12 mb35">
+            <select class="w100p p10 br7all bc1graylight cgraylight outlinenone hidden-xs" ng-model="observaciones.selectedopObservaciones">
+                <option value="">Selecciona una opción</option>
+                <option ng-repeat="x in motivosCalcelar track by $index" value="{{x.id}}">{{x.nombre}}</option>
+            </select>
+            <md-select class="w100p p10 br7all bc1graylight cgraylight outlinenone hidden-sm hidden-md hidden-lg" placeholder="Selecciona una opción" ng-model="observaciones.selectedopObservaciones">
+                <!--<md-option value="">Selecciona una opción</md-option>-->
+                <md-option ng-repeat="x in motivosCalcelar track by $index" value="{{x.id}}">{{x.nombre}}</md-option>
+            </md-select>
+        </div>
+        <div class="col-xs-12 col-md-12 pl16 fwbbold fs15 pb3">
+            Cuéntanos tus observaciones adicionales:
+        </div>
+        <div class="col-xs-12 col-md-12 mb10">
+            <textarea class="w100p br7all p10 bc1graylight cgraylight cgraylightple resizenone outlinenone" name="textarea" placeholder="Escribe el por qué cancelas tu visita" ng-model="observaciones.obsevacionesAd" maxlength="{{maxobadicionales}}" rows="5"></textarea>
+            <div class="col-xs-12 col-md-12 p0 text-right cgraylight">
+                {{maxobadicionales - observaciones.obsevacionesAd.length}}
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 p0">
+            <div class="col-xs-12 col-md-12 fwbbold corange">
+                Ten en cuenta que:
+            </div>
+            <div class="col-xs-12 col-md-12 fwlight cblack fs13 mb35 fwbbold">
+                Si deseas cambiar la fecha de tu visita técnica, utiliza la opción de Reprogramar.
+            </div>
+            <div class="col-xs-12 col-md-12 fwbbold corange">
+                Recuerda también que:
+            </div>
+            <div class="col-xs-12 col-md-12 fwlight cblack fs13 mb35 fwbbold">
+                Si cancelas la visita técnica, esta no será realizada, ni reprogramada. Para solicitar una nueva visita técnica, comunícate a través de nuestros canales de atención al cliente.
+            </div>
+            <div class="col-xs-12 p0 col-md-12">
+                <div class="col-xs-12 col-md-12 bclilalight cwhite tac pb20 pt20 fwbbold fs18 cpointer outlinenone" ng-click="Tagging('Hogar','_ini_vistec_cancelar_cancelvisita');cancelarVisita()">
+                    Cancelar esta visita
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------- 
+Avisar a un amigo
+------------->
+<div class="col-xs-12 p0" ng-if="subModulo == 5">
+    <div class="col-xs-12 col-md-12 p0 bcgraylight">
+        <div class="col-xs-12 col-lg-4 col-lg-offset-4 mt20 mb20 p0bil">
+            <div class="col-xs-12 col-sm-12 p0 blbluelight">
+                <div class="col-xs-12 p0">
+                    <div class="col-xs-7 p0">
+                        <div class="col-xs-12 col-sm-12 cbluelight fwbbold ttc">
+                            {{visitaselec.NOMBRE_ESTADO_AGENDA | lowercase}}
+                        </div>
+                        <div class="col-xs-12 col-sm-12 fs20 fsbil18 fwbbold cblack lh33px mb10">
+                            {{visitaselec.TIPO_TRABAJO}}
+                        </div>
+                    </div>
+                    <!-- Seoculta en pantallas medias y altas -->
+                    <div class="col-xs-5 p0 hidden-md hidden-lg">
+                        <div class="corange">Número de solicitud</div>
+                        <div class="fwbbold cblack fs20 fsbil1">{{visitaselec.ORDEN}}</div>
+                    </div>
+                    <!-- Seoculta en pantallas de celular y tablets-->
+                    <div class="col-xs-5 hidden-xs hidden-sm p0">
+                        <div class="corange">Número de solicitud</div>
+                        <div class="fwbbold cblack fs20 fsbil1">{{visitaselec.ORDEN}}</div>
+                    </div>
+                </div>
+                <div class="col-xs-12 p0">
+                    <div class="col-xs-7">
+                        <div class="corange">Fecha del servicio</div>
+                        <div class="fwbbold cblack ">{{visitaselec.FECHA_SERVICIO}}</div>
+                    </div>
+                    <div class="col-xs-5 p0">
+                        <div class="corange">Horario de atención</div>
+                        <div class="fwbbold cblack fsbil1">{{visitaselec.HORARIO_ATENCION}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-4 col-md-offset-4 mt20 mb20 p0">
+        <div class="cblack col-xs-12 col-md-12 tac fwbbold fs25">
+            Infórmale a alguien
+        </div>
+        <div class="cblack col-xs-12 col-md-12 tac fwbbold fs25 mb30">
+            sobre tu visita
+        </div>
+        <div class="col-xs-12 col-md-12 p0 pb25 bbcgray">
+            <div class="col-xs-12 col-md-12 pl25 fs15 pb3 cblack fwbbold">
+                Nombre de tu amigo:
+            </div>
+            <div class="col-xs-12 col-md-12 mb10">
+                <input type="text" class="w100p br7all p10 bc1grayinput cgraylight bnfocusounder" placeholder="Escribe nombre de tu amigo" ng-model="compartirAmigoData.nombre">
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 p0 mb25 mt25">
+            <div class="col-xs-12 col-md-12 pl25 fs15 pb3 cblack fwbbold">
+                Correo electrónico:
+            </div>
+            <div class="col-xs-12 col-md-12 mb10">
+                <input type="text" class="w100p br7all p10 bc1grayinput cgraylight bnfocusounder" placeholder="Escribe el correo electrónico" ng-model="compartirAmigoData.correo">
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 p0">
+            <div class="col-xs-12 p0 col-md-12">
+                <div class="col-xs-12 col-md-12 bclilalight cwhite tac pb20 pt20 fwbbold fs18" ng-click="Tagging('Hogar','_ini_vistec_compartir_enviar');compartirAmigo()">
+                    Enviar
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------- 
+calificanos
+------------->
+<div class="col-xs-12 p0" ng-if="subModulo == 6">
+    <div class="col-xs-12 col-md-6 col-md-offset-3 mt20 mb20">
+        <div class="cgray col-xs-12 col-md-12 tac fwbbold fs25">
+            ¿Cómo te sentiste con la atención de nuestro técnico?
+        </div>
+        <!-- <div class="cgraybold col-xs-12 col-md-12 tac fwbbold fs25 mb30">
+            ¿Qué tal servicio?
+        </div>-->
+        <div class="col-xs-12 col-md-12 p0 pb25 dn-flex flex-jc-space-bt">
+            <div class="pull-left mt12 maincpointer bnfocus w20pbil" ng-click="Tagging('Hogar','_ini_vistec_calificanos_sentim1');escojercalificacion(5)">
+                <div class=""><img ng-src="{{calificacion != 5 && '/Images/icon_meencanto.png' || '/Images/icon_meencanto_rojo.png'}}" alt="icon_meencanto " class="bounce w100pbil ma"></div>
+                <div class="tac cgray mt12 fsm11" ng-class="(calificacion == 5)? 'bbredface clRojoBl' : ' ';">Me encanta</div>
+            </div>
+            <div class="pull-left mt34 mtbil31 maincpointer bnfocus w20pbil" ng-click="Tagging('Hogar','_ini_vistec_calificanos_sentim2');escojercalificacion(4)">
+                <div class="imagenescl"><img ng-src="{{calificacion != 4 && '/Images/icon_estoyfeliz.png' || '/Images/icon_feliz_rojo.png'}}" alt="icon_estoyfeli" class="bounce w100pbil ma"></div>
+                <div class="tac cgray mt12 fsm11" ng-class="(calificacion == 4)? 'bbredface clRojoBl' : ' ';">Estoy feliz</div>
+            </div>
+            <div class="pull-left mt34 mtbil31 maincpointer bnfocus w20pbil" ng-click="Tagging('Hogar','_ini_vistec_calificanos_sentim3');escojercalificacion(3)">
+                <div class="imagenescl"><img ng-src="{{calificacion != 3 && '/Images/icon_sorprendido.png' || '/Images/icon_sorprendido_rojo.png'}}" alt="icon_sorprendido" class="bounce w100pbil ma"></div>
+                <div class="tac cgray mt12 fsm11" ng-class="(calificacion == 3)? 'bbredface clRojoBl' : ' ';">Normal</div>
+            </div>
+            <div class="pull-left mt34 mtbil31 maincpointer bnfocus w20pbil" ng-click="Tagging('Hogar','_ini_vistec_calificanos_sentim4');escojercalificacion(2)">
+                <div class="imagenescl"><img ng-src="{{calificacion != 2 && '/Images/icon_decepcionado.png' || '/Images/icon_decepcionado_rojo.png'}}" alt="icon_decepcionado" class="bounce w100pbil ma"></div>
+                <div class="tac cgray mt12 fsm11" ng-class="(calificacion == 2)? 'bbredface clRojoBl' : ' ';">Decepcionado</div>
+            </div>
+            <div class="pull-left maincpointer bnfocus w20pbil" ng-click="Tagging('Hogar','_ini_vistec_calificanos_sentim5');escojercalificacion(1)">
+                <div class=""><img ng-src="{{calificacion != 1 && '/Images/icon_furioso.png' || '/Images/icon_furioso_rojo.png'}}" alt="icon_furioso" class="bounce w100pbil ma"></div>
+                <div class="tac cgray mt12 fsm11" ng-class="(calificacion == 1)? 'bbredface clRojoBl' : ' ';">Furioso</div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 p0 mb25 mt25 bcgraylight pb40 pt30">
+            <div class="col-xs-12 col-md-12 tac cgraybold fs18">
+                ¡Tú puedes ayudarnos!
+            </div>
+            <div class="col-xs-12 col-md-12 tac cgray fwbbold fs20">
+                ¿Qué crees que debemos mejorar?
+            </div>
+            <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora1');escoMejorar(0)" ng-class="(opMejorar[0].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                    Puntualidad
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora2');escoMejorar(1)" ng-class="(opMejorar[1].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                    Conocimientos técnicos
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora3');escoMejorar(2)" ng-class="(opMejorar[2].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                    Amabilidad del Técnico
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora4');escoMejorar(3)" ng-class="(opMejorar[3].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                    Aseo en presentación del servicio
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora4');escoMejorar(4)" ng-class="(opMejorar[4].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                    Presentación personal
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora4');escoMejorar(5)" ng-class="(opMejorar[5].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                    Equipos usados
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-4 pt30">
+                <div class="col-xs-12 col-sm-12 h80 bcwhite tac pt20 pb20 maincpointer dn-flex flex-ai-center flex-jc-center bnfocus" ng-click="Tagging('Hogar','_ini_vistec_calificanos_mejora5');escoMejorar(6)" ng-class="(opMejorar[6].estado == 1)? 'bgRojoBl cwhite' : 'bcwhite cgraybold';">
+                    Tiempo de ejecución del servicio
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 p0 mb40">
+            <div class="col-xs-12 p0 col-md-12">
+                <div class="col-xs-12 col-md-12 bgRojoBl cwhite tac pb20 pt20 fwbbold fs18" ng-click="Tagging('Hogar','_ini_vistec_calificanos_calificar');enviarCalificacion()">
+                    Enviar la calificación
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-xs-12 col-md-12">
+            <div class="col-xs-12 col-md-12 tac fwbbold clRojoBl fs18">
+                Si deseas realizar una PQR
+            </div>
+            <div class="col-xs-12 col-md-12 tac clRojoBl fs16">
+                Haz clic aquí
+            </div>
+        </div>-->
+    </div>
+</div>
+<div class="col-xs-12 p0" ng-if="subModulo == 7">
+    <div class="col-xs-12 col-md-6 col-md-offset-3 mt20 mb20">
+        <div class="col-xs-12 fs40 fwbbold tac cgraydark mb15">
+            En este momento no tenemos información disponible
+        </div>
+        <div class="col-xs-12 col-md-5 col-md-offset-4 pl0 fwbbold tac cgray mb20">
+            <img ng-src="/Images/ico_atencionClientes2.png" class="img img-responsive"></img>
+        </div>
+        <div class="col-xs-12 fs20 fwbbold tac cgray mb20">
+            Chatea con uno de nuestros agentes
+        </div>
+        <div class="col-xs-12  col-md-4 col-md-offset-1 bcgraydark cwhite pt10 pb10 fs18 tac mt3p mb3p cpointer hidden-xs hidden-sm RobotoBold" ng-click="intentarLuego()">
+            Intentar mas tarde
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-offset-2 bgcorange cwhite pt10 pb10 fs18 tac mt3p mb3p cpointer RobotoBold" ng-click="showchat()">
+            Chatea con nosotros
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<script>
+    var URLactual = window.location;
+    if(URLactual.pathname.indexOf('.') != -1){
+        window.location.href="/";
+    }
+</script>
+<div class="col-xs-12 p0" block-ui="blockzonaswifi">
+    <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25">
+        Zonas WiFi
+    </div>
+
+    <!-- Mobil -->
+    <div class="col-xs-12 hidden-md hidden-lg">
+        <div class="h4"></div>
+    </div>
+
+    <!-- Desktop -->
+    <img src="/Images/ZonaWifi.png" class="col-xs-4 col-xs-offset-4 hidden-xs hidden-sm img-responsive mt2p mb2p"></img>
+    <!-- Mobil -->
+    <img src="/Images/ZonaWifi.png" class="col-xs-12 hidden-md hidden-lg img-responsive mt2p mb2p"></img>
+
+    <!-- Mobil -->
+    <div class="col-xs-12 hidden-md hidden-lg">
+        <div class="h4"></div>
+    </div>
+
+    <!-- Title -->
+    <div class="col-xs-10 col-xs-offset-1 fs17 cblackopacity tac">
+        Disfruta del Internet de Claro en más de 400 zonas WiFi.</br>
+        Podrás navegar sin límites de tiempo y sin costos adicionales.</br>
+        <strong>¡Aprovecha este gran beneficio!</strong>
+    </div>
+
+    <!-- Mobil -->
+    <div class="col-xs-12 hidden-md hidden-lg">
+        <div class="h4"></div>
+    </div>
+
+    <!-- Contenedor -->
+    <div class="col-xs-12 p0 mt25">
+
+        <!-- Mapa -->
+        <ng-map zoom="14" center="[{{initcoordenates[0]}}, {{initcoordenates[1]}}]" class="h500" on-click="getpoints(event)">
+            <marker ng-repeat="p in positions track by $index" id="custom-marker-{{p.idPunto}}" on-click="openpopup(p,$index)" position="{{p.Latitud}} {{p.Longitud}}" animation="Animation.BOUNCE" icon="{url:'/Images/MarkerZonaswifi.png'}"></marker>
+            <info-window id="windowopopup">
+                <div ng-non-bindable="">
+                    <div class="col-xs-6 mb1p">
+                        <div class="col-xs-12 p0 fwbbold cblack fs11 mt5p textmarker">{{window.categoria.categoria}}</div>
+                        <div class="col-xs-12 p0 fwbbold cblack fs11 mt3p textmarker">{{window.Nombre}}</div>
+                        <div class="col-xs-12 p0 fwbbold cred fs11 mt3p textmarker">{{window.Direccion}}</div>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+            </info-window>
+        </ng-map>
+
+    </div>
+    <div class="cb"></div>
+</div>

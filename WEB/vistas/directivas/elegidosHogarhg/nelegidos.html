@@ -1,0 +1,88 @@
+<!-- Modal -->
+<script type="text/ng-template" id="agregarelegidohogar.html">
+    <div class="col-xs-12 p0" block-ui="addelegidoblock">
+        <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img></div>
+        <div class="col-xs-12 tac fwbbold fs21 mt3p cgraybold tac">
+            <img src="/Images/Miclaro.png"></img>
+        </div>
+        <div class="col-xs-12 tac fs15 mt2p cgraybold">Ingresa el número del móvil claro que deseas incluir como tu elegido.</div>
+        
+        <div class="col-xs-8 col-xs-offset-2 fwbbold fs17 mt5p p0">Número de teléfono:</div>
+        
+        <input type="text" placeholder="Escribe el teléfono del contacto" class="col-xs-8 col-xs-offset-2 fs17 p7 cgray fs18 mt1p" maxlength="10" ng-model="numero.item"/>
+        
+        <div class="col-xs-12 p0">
+            <div class="col-xs-8 col-xs-offset-2 mt5p mb8p p0">
+                <div class="col-xs-6 pl0">
+                    <div class="col-xs-12 bcgraymouse cwhite tac pt10 pb10 fs18 tac cpointer" ng-click="Tagging('Hogar','_ini_elefijomovil_agre_cance');cancel()">
+                        Cancelar
+                    </div>
+                </div>
+                
+                <div class="col-xs-6 bgcorange cwhite tac pt10 pb10 fs18 tac cpointer" ng-click="Tagging('Hogar','_ini_elefijomovil_agre_agre');agragarnum()">
+                    Agregar
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cb"></div>   
+</script>
+<div class="col-xs-12 p0" block-ui="numeroselegido">
+    <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25">
+        Administra tus Elegidos Fijo – Móvil
+    </div>
+   <!-- <div class="col-xs-12 col-sm-6 col-sm-offset-3 cgraybold p0 mt26">
+        
+    </div>-->
+
+    <!-- Contenedor -->
+    <div class="col-xs-12 col-md-10 col-md-offset-1 p0 mt80">
+
+        <!-- Content Right-->
+        <div class="col-xs-12 p0">
+
+            <!-- Body -->
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 mb20 p0">
+                <div class="col-xs-12 p0" ng-repeat="item in elegidoshogar" ng-if="item.add != 1">
+                    <div class="col-xs-12 p0">
+                        <div class="col-xs-1 p0 tac h65 bgcorange pt15 fs18 fwbbold cwhite bc1graylight">
+                            {{$index + 1}}
+                        </div>
+                        <div class="col-xs-11 p0 h65 pt15 bc1graylight">
+                            <div class="col-xs-10">
+                                <div class="col-xs-12">
+                                    <div class="fwbbold fs14 cgraylight">Teléfono:</div>
+                                    <div class="fwbbold fs14">{{item}}</div>
+                                </div>
+                            </div>
+                            <div class="col-xs-2 tac">
+                                <img src="/Images/IconDelete.png" class="cpointer outlinenone" ng-click="Tagging('Hogar','_ini_elefijomovil_agre');eliminarElegidohg(item)"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 p0" ng-repeat="item in elegidoshogar" ng-if="item.add == 1">
+                    <div class="col-xs-12 p0">
+                        <div class="col-xs-1 p0 tac h65 bcgraymouse pt15 fs18 fwbbold cwhite bc1graylight">
+                            {{item.indice}}
+                        </div>
+                        <div class="col-xs-11 p0 h65 pt20 bc1graylight">
+                            <div class="col-xs-10">
+                                <div class="col-xs-12 cgraymouse fwbbold fs18">
+                                    Agrega tu elegido
+                                </div>
+                            </div>
+                            <div class="col-xs-2 tac">
+                                <img src="/Images/Iconadd.png" class="cpointer outlinenone" ng-click="Tagging('Hogar','_ini_elefijomovil_elimi');addelegidohogar()"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 bgcorange cwhite pt10 pb10 fs18 tac mt5p mb7p cpointer RobotoBold" ng-click="volverinfonumerosHogar()">
+                Volver
+            </div> 
+        </div>
+    </div>
+</div>

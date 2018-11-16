@@ -1,0 +1,415 @@
+body #inbenta-chatbot-sdk.inbenta .inbenta-bot {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.3;
+  z-index: 999999; }
+  body #inbenta-chatbot-sdk.inbenta .inbenta-bot a {
+    color: #C93317; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot a:active, body #inbenta-chatbot-sdk.inbenta .inbenta-bot a:focus {
+      color: #C93317; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot a:hover {
+      color: #b6270e; }
+  body #inbenta-chatbot-sdk.inbenta .inbenta-bot ul, body #inbenta-chatbot-sdk.inbenta .inbenta-bot ol {
+    padding-left: 15px;
+    list-style: disc; }
+  body #inbenta-chatbot-sdk.inbenta .inbenta-bot-button {
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 13px;
+    background-color: #02A4B9;
+    color: white;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    -webkit-transition: none;
+    transition: none;
+    text-transform: none; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot-button:hover:not([disabled]), body #inbenta-chatbot-sdk.inbenta .inbenta-bot-button.clicked {
+      background-color: #02A4B9;
+      color: white;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+      -webkit-transition: none;
+      transition: none; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot-button[disabled] {
+      background-color: #02A4B9;
+      color: white;
+      opacity: 0.5; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot-button[disabled].clicked {
+        color: white;
+        background-color: #02A4B9;
+        opacity: 0.7; }
+  body #inbenta-chatbot-sdk.inbenta .inbenta-bot-input {
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 13px;
+    background-color: white;
+    color: #666;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border: 1px solid #eee; }
+  body #inbenta-chatbot-sdk.inbenta .inbenta-bot__launcher {
+    background-color: #C93317;
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 15px;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    -webkit-transition: none;
+    transition: none;
+    padding: 15px;
+    z-index: 9999;
+    height: auto; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__launcher__image + .inbenta-bot__launcher__text {
+      margin-left: 10px; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__launcher__text {
+      color: white;
+      font-weight: 600; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__launcher:hover {
+      background-color: #b6270e;
+      color: white;
+      border-radius: 0;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+      -webkit-transition: none;
+      transition: none; }
+  body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble {
+    border-radius: 0;
+    width: 365px; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat__header, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble__header {
+      background-color: #C93317;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+      padding: 10px 14px;
+      position: relative; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .header__title, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .header__title {
+      font-family: Helvetica, arial, sans-serif;
+      font-size: 16px;
+      color: white;
+      font-weight: normal;
+      text-transform: none; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .body__wrapper, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .body__wrapper {
+      background-color: white;
+      padding: 16px 16px 0; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .alert-box__title, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .alert-box__title {
+      font-family: Helvetica, arial, sans-serif;
+      color: #C93317; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .alert-box__message, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .alert-box__message {
+      font-family: Helvetica, arial, sans-serif; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message__content, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message__content {
+      font-family: Helvetica, arial, sans-serif;
+      font-size: 13px;
+      color: #666;
+      -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+              box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      padding: 9px 12px; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message .extended_message_container, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message .extended_message_container {
+      -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+              box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      background-color: white;
+      border-radius: 0; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message .extended_message_container .messages__message__content, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message .extended_message_container .messages__message__content {
+        padding: 0; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message .extended_message_container .messages__message__content .content__text, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message .extended_message_container .messages__message__content .content__text {
+          padding: 9px 12px; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message .extended_message_container .messages__message__content .content__label, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message .extended_message_container .messages__message__content .content__label {
+          padding-bottom: 0; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--sent .messages__message__content, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--sent .messages__message__content {
+      display: -ms-flexbox;
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -ms-align-items: flex-start;
+      -webkit-box-align: start;
+          -ms-flex-align: start;
+              align-items: flex-start;
+      background-color: white;
+      color: #666;
+      border-radius: 0; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--sent .content__label, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--sent .content__label {
+      color: #22B5B5;
+      font-weight: 600;
+      display: block;
+      opacity: 1; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--received .messages__message__avatar, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--received .messages__message__avatar {
+      display: none; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--received .messages__message__avatar .inbenta-bot-icon--avatar, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--received .messages__message__avatar .inbenta-bot-icon--avatar {
+        display: none; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--received .messages__message__content, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--received .messages__message__content {
+      background-color: white;
+      color: #666;
+      border-radius: 0; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--received .messages__message__content .inbenta-bot-rating__content, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--received .messages__message__content .inbenta-bot-rating__content {
+        background-color: white; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--received .messages__message__content .inbenta-bot-rating__content__buttons .inbenta-bot-button .inbenta-bot-icon:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--received .messages__message__content .inbenta-bot-rating__content__buttons .inbenta-bot-button .inbenta-bot-icon:before {
+          color: #C93317; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--received .messages__message__content .inbenta-bot-rating__content__buttons .inbenta-bot-button__text, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--received .messages__message__content .inbenta-bot-rating__content__buttons .inbenta-bot-button__text {
+          color: #C93317; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--received .messages__message__content .inbenta-bot-rating__content__buttons .inbenta-bot-button:hover, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--received .messages__message__content .inbenta-bot-rating__content__buttons .inbenta-bot-button:hover {
+          background-color: #b6270e;
+          border-radius: 0; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--received .messages__message__content .inbenta-bot-rating__content__comment .comment__wrapper__textarea, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--received .messages__message__content .inbenta-bot-rating__content__comment .comment__wrapper__textarea {
+          border-radius: 0;
+          -webkit-box-shadow: none;
+                  box-shadow: none;
+          border: 1px solid #f6f6f6; }
+          body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--received .messages__message__content .inbenta-bot-rating__content__comment .comment__wrapper__textarea:hover, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--received .messages__message__content .inbenta-bot-rating__content__comment .comment__wrapper__textarea:hover {
+            border: 1px solid #f6f6f6; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--received .content__label, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--received .content__label {
+      color: #C93317;
+      font-weight: 600;
+      opacity: 1; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message--system .messages__message__content, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message--system .messages__message__content {
+      background-color: #f0f0f0;
+      color: #666;
+      border-radius: 0; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__open-sidebubble__phrase, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__open-sidebubble__phrase {
+      color: #22B5B5;
+      font-family: Helvetica, arial, sans-serif;
+      font-weight: 600;
+      margin: 0; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__open-sidebubble__icon, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__open-sidebubble__icon {
+      color: #22B5B5;
+      margin: 0; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__open-sidebubble:hover, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__open-sidebubble:hover {
+      background-color: transparent; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__open-sidebubble:hover .content__open-sidebubble__phrase,
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__open-sidebubble:hover .content__open-sidebubble__icon, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__open-sidebubble:hover .content__open-sidebubble__phrase,
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__open-sidebubble:hover .content__open-sidebubble__icon {
+        color: #22B5B5; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons {
+      margin: 0; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--multiple-choise, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--multiple-choise {
+        padding-top: 13px; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--multiple-choise .inbenta-bot-icon--faq-icon, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--multiple-choise .inbenta-bot-icon--faq-icon {
+          margin-right: 5px; }
+          body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--multiple-choise .inbenta-bot-icon--faq-icon:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--multiple-choise .inbenta-bot-icon--faq-icon:before {
+            color: #C93317; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--multiple-choise .inbenta-bot-button, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--multiple-choise .inbenta-bot-button {
+          color: #C93317;
+          font-size: 13px;
+          font-weight: normal;
+          background-color: transparent; }
+          body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--multiple-choise .inbenta-bot-button:hover:not([disabled]), body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--multiple-choise .inbenta-bot-button.clicked, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--multiple-choise .inbenta-bot-button:hover:not([disabled]), body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--multiple-choise .inbenta-bot-button.clicked {
+            background-color: transparent;
+            color: #b6270e; }
+            body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--multiple-choise .inbenta-bot-button:hover:not([disabled]) .inbenta-bot-icon--faq-icon:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--multiple-choise .inbenta-bot-button.clicked .inbenta-bot-icon--faq-icon:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--multiple-choise .inbenta-bot-button:hover:not([disabled]) .inbenta-bot-icon--faq-icon:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--multiple-choise .inbenta-bot-button.clicked .inbenta-bot-icon--faq-icon:before {
+              color: #b6270e; }
+          body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--multiple-choise .inbenta-bot-button[disabled], body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--multiple-choise .inbenta-bot-button[disabled] {
+            background-color: transparent; }
+          body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--multiple-choise .inbenta-bot-button.clicked, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--multiple-choise .inbenta-bot-button.clicked {
+            color: #b6270e; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--download .inbenta-bot-button, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--download .inbenta-bot-button {
+        color: #C93317;
+        background-color: transparent; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--download .inbenta-bot-button:hover:not([disabled]), body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--download .inbenta-bot-button.clicked, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--download .inbenta-bot-button:hover:not([disabled]), body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--download .inbenta-bot-button.clicked {
+          background-color: transparent;
+          color: #b6270e; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--attached .inbenta-bot-button, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--attached .inbenta-bot-button {
+        color: #C93317; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--attached .inbenta-bot-button:hover:not([disabled]), body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__buttons--attached .inbenta-bot-button.clicked, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--attached .inbenta-bot-button:hover:not([disabled]), body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__buttons--attached .inbenta-bot-button.clicked {
+          background-color: transparent;
+          color: #b6270e; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related-contents, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related-contents {
+      border-radius: 0;
+      background-color: #F5F5F5;
+      padding: 9px 12px; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related-contents .content__related__show, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related-contents .content__related__show {
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        -ms-justify-content: flex-start;
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        padding: 0;
+        font-size: 12px; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related__show, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related__show {
+      font-family: Helvetica, arial, sans-serif;
+      font-size: 13px;
+      background-color: #F5F5F5;
+      border-radius: 0;
+      color: #666; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related__show:hover, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related__show:hover {
+        background-color: #F5F5F5;
+        color: #666; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related__icon--closed:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related__icon--closed:before {
+      color: #22B5B5; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related__icon--opened:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related__icon--opened:before {
+      color: #22B5B5; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related-buttons, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related-buttons {
+      margin: 0; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related__button, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related__button {
+      font-family: Helvetica, arial, sans-serif;
+      font-size: 13px;
+      background-color: transparent;
+      color: #C93317;
+      border-radius: 0;
+      padding: 4px 0; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related__button--active, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related__button:hover:not([disabled]), body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related__button:focus, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related__button--active, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related__button:hover:not([disabled]), body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related__button:focus {
+        background-color: transparent;
+        color: #b6270e; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .content__related__button:first-child, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .content__related__button:first-child {
+        margin-top: 10px; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat__body, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble__body {
+      padding: 8px;
+      background-color: #F5F5F5; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat__footer, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble__footer {
+      padding: 8px;
+      padding-top: 0;
+      background-color: white;
+      background-color: #f5f5f5; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__chat-activity .activity__content, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__chat-activity .activity__content {
+      background-color: white;
+      color: #666;
+      border-radius: 0;
+      -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+              box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1); }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__chat-activity .activity__avatar, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__chat-activity .activity__avatar {
+      display: none; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__chat-activity .activity__avatar .inbenta-bot-icon, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__chat-activity .activity__avatar .inbenta-bot-icon {
+        display: none; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__chat-activity .activity__avatar .inbenta-bot-icon--avatar:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__chat-activity .activity__avatar .inbenta-bot-icon--avatar:before {
+          color: white; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__chat-activity .activity__dot, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__chat-activity .activity__dot {
+      background-color: #C93317; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__chat-activity .activity__text, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__chat-activity .activity__text {
+      color: #666; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form {
+      background-color: #F5F5F5;
+      -webkit-box-shadow: none;
+              box-shadow: none; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__input, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__input {
+        color: #666;
+        font-size: 13px;
+        height: 46px;
+        border: none;
+        background-color: white;
+        -webkit-box-shadow: none;
+                box-shadow: none;
+        margin-right: 8px;
+        padding: 0 10px; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__input::-webkit-input-placeholder, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__input::-webkit-input-placeholder {
+          color: #D4D4D4;
+          opacity: 1; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__input::-moz-placeholder, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__input::-moz-placeholder {
+          color: #D4D4D4;
+          opacity: 1; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__input:-ms-input-placeholder, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__input:-ms-input-placeholder {
+          color: #D4D4D4;
+          opacity: 1; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__input:-moz-placeholder, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__input:-moz-placeholder {
+          color: #D4D4D4;
+          opacity: 1; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__input[disabled], body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__input:hover[disabled], body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__input[disabled], body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__input:hover[disabled] {
+          border: none;
+          background-color: white; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__button, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__button {
+        background-color: #C93317;
+        height: 46px;
+        -webkit-box-shadow: none;
+                box-shadow: none; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__button .inbenta-bot-icon,
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__button .inbenta-bot-icon--wait, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__button .inbenta-bot-icon,
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__button .inbenta-bot-icon--wait {
+          display: -ms-flexbox;
+          display: -webkit-box;
+          display: flex;
+          -ms-justify-content: center;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          -ms-align-items: center;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          right: 0;
+          opacity: 1; }
+          body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__button .inbenta-bot-icon:before,
+          body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__button .inbenta-bot-icon--wait:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__button .inbenta-bot-icon:before,
+          body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__button .inbenta-bot-icon--wait:before {
+            color: white;
+            content: "Enviar";
+            font-family: Helvetica, arial, sans-serif;
+            font-size: 14px;
+            letter-spacing: 0;
+            font-weight: 600; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__button:hover:not([disabled]), body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__button:hover:not([disabled]) {
+          background-color: #b6270e;
+          color: white; }
+          body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__button:hover:not([disabled]) .inbenta-bot-icon:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__button:hover:not([disabled]) .inbenta-bot-icon:before {
+            color: white; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__button.footer__form__button--attach .inbenta-bot-icon:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__button.footer__form__button--attach .inbenta-bot-icon:before {
+          color: #666; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .footer__form__button.footer__form__button--attach:hover:not([disabled]) .inbenta-bot-icon:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .footer__form__button.footer__form__button--attach:hover:not([disabled]) .inbenta-bot-icon:before {
+          color: #666; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat__confirmation, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble__confirmation {
+      font-family: Helvetica, arial, sans-serif;
+      border-radius: 0; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat__confirmation .confirmation-box, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble__confirmation .confirmation-box {
+        border-radius: 0; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat__confirmation .confirmation-box__icon:before, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble__confirmation .confirmation-box__icon:before {
+          color: #C93317; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat__confirmation .confirmation-box__title, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble__confirmation .confirmation-box__title {
+          font-family: Helvetica, arial, sans-serif;
+          color: #666;
+          text-align: center;
+          font-size: 13px; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat__confirmation .confirmation-box__subtitle, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble__confirmation .confirmation-box__subtitle {
+          font-family: Helvetica, arial, sans-serif;
+          font-size: 12px; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat__confirmation .confirmation-box__buttons .inbenta-bot-button, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble__confirmation .confirmation-box__buttons .inbenta-bot-button {
+          font-family: Helvetica, arial, sans-serif; }
+  body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .header__title {
+    font-size: 15px; }
+  body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble__body {
+    background-color: white;
+    padding: 0 16px 16px 16px; }
+  body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble__footer {
+    padding: 0;
+    background-color: white; }
+  body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating {
+    margin: 8px; }
+    body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content {
+      background-color: #F5F5F5; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content__phrase {
+        color: #666; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content__buttons .inbenta-bot-button {
+        background-color: #C93317; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content__buttons .inbenta-bot-button + .inbenta-bot-button {
+          margin-left: 8px; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content__buttons .inbenta-bot-button__text {
+          color: white; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content__buttons .inbenta-bot-button:hover {
+          background-color: #b6270e; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content .inbenta-bot-icon--rating-yes:before {
+        color: white; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content .inbenta-bot-icon--rating-no:before {
+        color: white; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content__comment .comment__phrase {
+        color: #666;
+        margin: 0; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content__comment .comment__wrapper .inbenta-bot-button {
+        background-color: #C93317; }
+        body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content__comment .comment__wrapper .inbenta-bot-button:hover {
+          background-color: #b6270e; }
+      body #inbenta-chatbot-sdk.inbenta .inbenta-bot-rating__content__thanks {
+        color: #666; }
+
+html.inbenta-bot--msie-11 #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message__content, html.inbenta-bot--msie-11 #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message__content {
+  width: auto !important;
+  overflow: auto; }
+  html.inbenta-bot--msie-11 #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message__content .content__text, html.inbenta-bot--msie-11 #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message__content .content__text {
+    width: 100%; }
+
+html.inbenta-bot--msie-11 #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat .messages__message .extended_message_container .messages__message__content .content__related__show, html.inbenta-bot--msie-11 #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble .messages__message .extended_message_container .messages__message__content .content__related__show {
+  font-size: 12px;
+  padding: 0; }
+
+@media (max-width: 768px) {
+  body #inbenta-chatbot-sdk.inbenta .inbenta-bot__chat, body #inbenta-chatbot-sdk.inbenta .inbenta-bot__bubble {
+    border-radius: 0;
+    width: 100%; } }

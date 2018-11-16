@@ -1,0 +1,550 @@
+<script type="text/ng-template" id="posdetailterminosPaquetesRecargas.html">
+    <div class="col-xs-12"><img src="/Images/cancel.png" class="pull-right mt15 w20 cpointer" ng-click="cancel()"></img></div>
+    <div class="col-xs-12 mh200"  block-ui="detalleplanprepago">
+        <div class="col-xs-12 tac fwbbold fs25 fsm25 mt3p cgraybold">
+            Términos y Condiciones
+        </div>
+
+        <div class="col-xs-10 col-xs-offset-1 fs17 cgraybold mt4p taj fs40">
+            <p style="text-align: center; font-size:15px; font-weight: bold;" class="tac"> A partir del 12 del julio del 2018, recibe GRATIS el doble de megas y minutos por la compra de tu primer paquete Prepago del día a través de App Mi Claro.</p>
+            <ul>
+                <li> La vigencia aplicada al doble de megas y minutos corresponde a la del paquete adquirido. </li>
+                <li> El doble de megas y minutos solo aplica para el primer paquete adquirido en el día.</li>
+                <li> Oferta válida para Clientes Prepago.</li>
+                <li> Aplica para compra de paquetes de minutos y navegación. </li>
+                <li> Oferta válida hasta el 31 de Octubre de 2018.</li>
+                 <li> No aplica para la compra de paquetes APPs.</li>
+            </ul>
+        </div>
+    
+        <div class="col-xs-12 p0 mt3p mb3p" >
+            <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4" ng-click="cancel()">
+                <div class="col-xs-12 bgcorange cwhite pt10 pb10 fs18 tac mt8p cpointer mb8p outlinenone">
+                    Aceptar
+                </div>
+            </div>       
+        </div>
+        <div class="cb"></div>
+    </div>
+    <div class="cb"></div>
+</script>
+
+
+<script type="text/ng-template" id="detallePaquetesRecargas.html">
+    <div class="col-xs-12 tac fwbbold fs21 cgraybold tac mt20">
+        <img src="/Images/Miclaro.png"></img>
+    </div>
+    <div class="col-xs-12 fs15 mt30 mb30 cgraybold ofy overflowxh tac ">
+       {{Data}}
+    </div>
+    <div class="col-xs-12 p0">
+        <div class="col-xs-8 col-xs-offset-2 mb5p p0">
+            <div class="col-xs-12 p0 bgcorange cwhite tac pt10 pb10 fs16 tac cpointer" ng-click="ok()">
+                Cerrar
+            </div>
+        </div>
+    </div>
+    <div class="cb"></div>
+</script>
+<div id="mainContent" class="dn"></div>
+<div class="col-xs-12 p0" block-ui="blockPaquetesRecargas">
+    <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25">
+        Compra de paquetes y recargas
+    </div>
+    
+     <div class="col-xs-12 mb15 mt15 tac fs15 corange tdu bnfocusounder" ng-click="posdetailterminosPaquetesRecargas()">
+        Términos y Condiciones
+    </div>
+    
+    <div class="col-xs-12 mt2p tac cgraylight fs15">
+        <div class="col-xs-12 p0">
+            Escribe el número de la línea a la que deseas que 
+        </div>
+        <div class="col-xs-12 p0">
+            se le aplique la compra  
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4 mt10">
+        <div class="col-xs-12 bc1graylight bcgraylight br10all">
+            <input id="preinterPaquetesRecargas" type="text" class="col-xs-11 fs18 p7 outlinenone bn RobotoRegular bcgraylight" ng-disabled="true" ng-model="accountId.valor" id="editarNum"/>
+            <div class="col-xs-1 p0 tac bnfocusounder"  ng-click="editNum();Tagging('Postpago','bt_pos_ini_paqyrecar_edita')">
+                <img src="/Images/icon_editanum.png" class="ma mt8 outlinenone"></img>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contenedor -->
+    <div class="col-xs-12 col-md-10 col-md-offset-1 mt35 hidden-xs">
+        <div class="col-xs-4 sidebarPaquetesPre">
+            <div class="col-xs-12 bgcorange pt10 pb10 cwhite fs16 fwbbold br10all mb15 dn-flex flex-ai-center bnfocusounder" ng-repeat="item in categorias" ng-click="cambiovistacategoria(item);Tagging('Postpago','bt_pos_ini_paqyrecar_paq1')" ng-class="{'bcblack': item.idCategoria == vistaCategoria.idCategoria}">
+                <div class="col-xs-11 p0 tal">
+                    <div class="col-xs-12 p0 dn-flex flex-ai-center">
+                        <div class="col-xs-2 p0">
+                            <img ng-src="{{item.icono}}" alt="{{item.nombre}}" class="w32">
+                        </div>
+                        <div class="col-xs-10 p0 fs14">
+                            <div class="col-xs-10 p0">
+                                {{item.titulo}}
+                            </div>
+                            <div class="col-xs-10 p0 fs12">
+                                {{item.sub}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-1 tac p0">
+                    <img src="/Images/icon_flecha_recargas.png"></img>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <div class="col-xs-12 p0" ng-if="tienePicoyPlaca != 'false'">
+                <div class="col-xs-12 dn-flex flex-ai-center h50 p0">
+                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 p0">
+                        <div class="col-xs-4 p0">
+                            <img src="/Images/icon_license-plate.png" alt="" class="ma img-responsive">
+                        </div>
+                        <div class="col-xs-8 cblack fwbbold fs14 p0 mt5">
+                            ¡Hoy es tu día pico y placa!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 p0 dn-flex flwrap" ng-if='vistaCategoria.idCategoria == "1" || vistaCategoria.idCategoria == "6" || vistaCategoria.idCategoria == "4"'>
+                <!--Paquese vos / datos-->
+                <div class="col-xs-6 mb15" ng-repeat="pa in paquetes" ng-if='pa.categoriaPaqueteID == vistaCategoria.idCategoria'>
+                    <div class="col-xs-12 bslbposconsumo pb15 pt15 br10all">
+                        <div class="col-xs-12 tac fs18 fwbbold">
+                            {{pa.nombre}}
+                        </div>
+                        <div class="col-xs-12 tac corange fs12">
+                            {{vistaCategoria.titulo}}
+                        </div>
+                        <div class="col-xs-12 tac fs14 fwbbold dn-flex flex-ai-center" ng-if='vistaCategoria.idCategoria == "1" || vistaCategoria.idCategoria == "6"'>
+                            <div class="col-xs-6 tac">
+                                <img src="/Images/paquetesdatos.png" alt=""> Datos
+                            </div>
+                            <div class="col-xs-6 tac blgray1px">
+                                {{pa.cantidadDatos}}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 tac fs14 fwbbold dn-flex flex-ai-center" ng-if='vistaCategoria.idCategoria == "4"'>
+                            <div class="col-xs-6 tac">
+                                <img src="/Images/paquetesvoz.png" alt=""> Voz
+                            </div>
+                            <div class="col-xs-6 tac blgray1px">
+                                {{pa.cantidadVoz}}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 tac fwbbold corange fs22">
+                            {{fnreplace(pa.precio)}}
+                        </div>
+                        <div class="col-xs-12 tac cblack fs13">
+                            Costo paquete
+                        </div>
+                        <div class="col-xs-12 cbluelight fs13 mt10 mb10 cpointer bnfocusounder" ng-click="detallePaquetesRecargas(pa.descripcion)">
+                            Descripción del paquete
+                        </div>
+                        <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoContraSaldo == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,1);Tagging('Postpago','bt_pos_ini_paqyrecar_paq1_pagsal')">
+                            <div class="col-xs-2">
+                                <img src="/Images/icon_claro.png" alt="Pagar contra saldo">
+                            </div>
+                            <div class="col-xs-10">
+                                Pagar contra saldo
+                            </div>
+                        </div>
+                        <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoEnLinea == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,2)">
+                            <div class="col-xs-2">
+                                <img src="/Images/icon_mediodepago.png" alt="Pagar contra saldo">
+                            </div>
+                            <div class="col-xs-10 p0">
+                                Otros medios de pagos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 p0" ng-if='vistaCategoria.idCategoria == "2" || vistaCategoria.idCategoria == "3"'>
+                <!--Paquetes todo incluido / paquetes insuperable-->
+                <div class="col-xs-6 mb15" ng-repeat="pa in paquetes" ng-if='pa.categoriaPaqueteID == vistaCategoria.idCategoria'>
+                    <div class="col-xs-12 bslbposconsumo pb15 pt15 br10all">
+                        <div class="col-xs-12 tac fs18 fwbbold">
+                            {{pa.nombre}}
+                        </div><!--
+                        <div class="col-xs-12 tac corange fs12">
+                            {{vistaCategoria.titulo}}
+                        </div>-->
+                        <div class="col-xs-12 tac fs14 fwbbold dn-flex flex-ai-center">
+                            <div class="col-xs-4">
+                                <div class="col-xs-12 tac p0">
+                                    Datos
+                                </div>
+                                <div class="col-xs-12 tac p0">
+                                    <img src="/Images/paquetesdatos.png" alt=""> 
+                                </div>
+                                <div class="col-xs-12 tac p0">
+                                    {{pa.cantidadDatos}}
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="col-xs-12 tac p0">
+                                    Voz
+                                </div>
+                                <div class="col-xs-12 tac p0">
+                                    <img src="/Images/paquetesvoz.png" alt=""> 
+                                </div>
+                                <div class="col-xs-12 tac p0">
+                                    {{pa.cantidadVoz}}
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="col-xs-12 tac p0">
+                                    SMS
+                                </div>
+                                <div class="col-xs-12 tac p0">
+                                    <img src="/Images/icon_sms.png" alt=""> 
+                                </div>
+                                <div class="col-xs-12 tac p0">
+                                    {{pa.cantidadSMS}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 tac fwbbold corange fs22">
+                            {{fnreplace(pa.precio)}}
+                        </div>
+                        <div class="col-xs-12 tac cblack fs13">
+                            Costo paquete
+                        </div>
+                        <div class="col-xs-12 cbluelight fs13 mt10 mb10 cpointer bnfocusounder" ng-click="detallePaquetesRecargas(pa.descripcion)">
+                            Descripción del paquete
+                        </div>
+                        <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoContraSaldo == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,1);Tagging('Postpago','bt_pos_ini_paqyrecar_paq1_pagsal')">
+                            <div class="col-xs-2">
+                                <img src="/Images/icon_claro.png" alt="Pagar contra saldo">
+                            </div>
+                            <div class="col-xs-10">
+                                Pagar contra saldo
+                            </div>
+                        </div>
+                        <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoEnLinea == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,2)">
+                            <div class="col-xs-2">
+                                <img src="/Images/icon_mediodepago.png" alt="Pagar contra saldo">
+                            </div>
+                            <div class="col-xs-10 p0">
+                                Otros medios de pagos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 p0" ng-if='vistaCategoria.idCategoria == "7"'>
+                <!--Paquetes redes sociales-->
+                <div class="col-xs-6 mb15" ng-repeat="pa in paquetes" ng-if='pa.categoriaPaqueteID == vistaCategoria.idCategoria'>
+                    <div class="col-xs-12 bslbposconsumo pb15 pt15 br10all">
+                        <div class="col-xs-12 tac fs18 fwbbold">
+                            {{pa.nombre}}
+                        </div>
+                        <div class="col-xs-12 tac corange fs12">
+                            {{vistaCategoria.titulo}}
+                        </div>
+                        <div class="col-xs-12 tac fwbbold corange fs22">
+                            {{fnreplace(pa.precio)}}
+                        </div>
+                        <div class="col-xs-12 tac cblack fs13">
+                            Costo paquete
+                        </div>
+                        <div class="col-xs-12 cbluelight fs13 mt10 mb10 cpointer bnfocusounder" ng-click="detallePaquetesRecargas(pa.descripcion)">
+                            Descripción del paquete
+                        </div>
+                        <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoContraSaldo == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,1);Tagging('Postpago','bt_pos_ini_paqyrecar_paq1_pagsal')">
+                            <div class="col-xs-2">
+                                <img src="/Images/icon_claro.png" alt="Pagar contra saldo">
+                            </div>
+                            <div class="col-xs-10">
+                                Pagar contra saldo
+                            </div>
+                        </div>
+                        <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoEnLinea == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,2)">
+                            <div class="col-xs-2">
+                                <img src="/Images/icon_mediodepago.png" alt="Pagar contra saldo">
+                            </div>
+                            <div class="col-xs-10 p0">
+                                Otros medios de pagos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!--Recargas-->
+            <div class="col-xs-12 p0" ng-if='vistaCategoria.idCategoria == "-1"'>
+                <div class="col-xs-12 col-md-8 col-md-offset-2 p0 ">
+                    <div class="col-xs-12 p0 tac">
+                        <div class="col-xs-2">
+                            <img src="/Images/icon_Recargas.png" alt="vista recargas">
+                        </div>
+                        <div class="col-xs-8">
+                            <div class="col-xs-12 p0 fwbbold">
+                                Recargas
+                            </div>
+                            <div class="col-xs-12 p0">
+                                En linea
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-md-offset-3 p0 mt20">
+                    <div class="col-xs-12 bslbposconsumo pt15 pb15">
+                        <div class="col-xs-12 tac mb20">
+                            ¿Cúal es el valor que deseas recargar?
+                        </div>
+                        <div class="col-xs-12 mb15">
+                            <div class="col-xs-12 cgray fs18 mt1p">
+                                <select ng-model="parametros.valrecargas" class="col-xs-12 fs18 p7 bnfocusounder">
+                                  <option ng-repeat="item in recagas" value="{{$index}}">{{fnreplace(item.valor)}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 p0">
+                            <div class="col-xs-12 p0 bclilalight cwhite pt10 pb10 fs18 tac mt3p cpointer RobotoBold" ng-click="urlCampraPaquetesRecarga('',2);Tagging('Postpago','bt_pos_ini_paqyrecar_recarga')">
+                                Recarga
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+        <md-content> <br>
+    		<div class="md-accordion mb5" ng-repeat="data in categorias">
+    			<md-toolbar class="bgcorange bnfocusounder" ng-init="data.expanded = false" ng-click="collapseAll(data);cambiovistacategoria(data)" >
+    				<div class="md-toolbar-tools">
+    				    <div class="col-xs-11 p0 tal">
+                            <div class="col-xs-12 p0 dn-flex flex-ai-center">
+                                <div class="col-xs-2 p0">
+                                    <img ng-src="{{data.icono}}" alt="{{data.nombre}}" class="w32">
+                                </div>
+                                <div class="col-xs-10 p0 fs14">
+                                    <div class="col-xs-10 p0">
+                                        {{data.nombre}}
+                                    </div>
+                                    <div class="col-xs-10 p0 fs12">
+                                        {{data.sub}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-1 tac p0">
+                            <span ng-class="{expandCollapse:true, active:data.expanded}"></span> 
+                        </div>
+    					<span flex=""></span>
+    				</div>
+    			</md-toolbar>
+    			<div ng-class="{dataContent:true, activeContent:data.expanded}" class="bcwhite clWhite fs14 ">
+    			   <div class="col-xs-12 p0 dn-flex flwrap" ng-if='vistaCategoria.idCategoria == "1" || vistaCategoria.idCategoria == "6" || vistaCategoria.idCategoria == "4"'>
+                        <!--Paquese vos / datos-->
+                        <div class="col-xs-12 mb15" ng-repeat="pa in paquetes" ng-if='pa.categoriaPaqueteID == vistaCategoria.idCategoria'>
+                            <div class="col-xs-12 bslbposconsumo pb15 pt15 br10all">
+                                <div class="col-xs-12 tac fs18 fwbbold">
+                                    {{pa.nombre}}
+                                </div>
+                                <div class="col-xs-12 tac corange fs12">
+                                    {{vistaCategoria.titulo}}
+                                </div>
+                                <div class="col-xs-12 tac fs14 fwbbold dn-flex flex-ai-center" ng-if='vistaCategoria.idCategoria == "1" || vistaCategoria.idCategoria == "6"'>
+                                    <div class="col-xs-6 tac">
+                                        <img src="/Images/paquetesdatos.png" alt=""> Datos
+                                    </div>
+                                    <div class="col-xs-6 tac blgray1px">
+                                        {{pa.cantidadDatos}}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 tac fs14 fwbbold dn-flex flex-ai-center" ng-if='vistaCategoria.idCategoria == "4"'>
+                                    <div class="col-xs-6 tac">
+                                        <img src="/Images/paquetesvoz.png" alt=""> Voz
+                                    </div>
+                                    <div class="col-xs-6 tac blgray1px">
+                                        {{pa.cantidadVoz}}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 tac fwbbold corange fs22">
+                                    {{fnreplace(pa.precio)}}
+                                </div>
+                                <div class="col-xs-12 tac cblack fs13">
+                                    Costo paquete
+                                </div>
+                                <div class="col-xs-12 cbluelight fs13 mt10 mb10 cpointer bnfocusounder" ng-click="detallePaquetesRecargas(pa.descripcion)">
+                                    Descripción del paquete
+                                </div>
+                                <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoContraSaldo == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,1);Tagging('Postpago','bt_pos_ini_paqyrecar_paq1_pagsal')">
+                                    <div class="col-xs-2">
+                                        <img src="/Images/icon_claro.png" alt="Pagar contra saldo">
+                                    </div>
+                                    <div class="col-xs-10">
+                                        Pagar contra saldo
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoEnLinea == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,2)">
+                                    <div class="col-xs-2">
+                                        <img src="/Images/icon_mediodepago.png" alt="Pagar contra saldo">
+                                    </div>
+                                    <div class="col-xs-10 p0">
+                                        Otros medios de pagos
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 p0" ng-if='vistaCategoria.idCategoria == "2" || vistaCategoria.idCategoria == "3"'>
+                        <!--Paquetes todo incluido / paquetes insuperable-->
+                        <div class="col-xs-12 mb15" ng-repeat="pa in paquetes" ng-if='pa.categoriaPaqueteID == vistaCategoria.idCategoria'>
+                            <div class="col-xs-12 bslbposconsumo pb15 pt15 br10all">
+                                <div class="col-xs-12 tac fs18 fwbbold">
+                                    {{pa.nombre}}
+                                </div><!--
+                                <div class="col-xs-12 tac corange fs12">
+                                    {{vistaCategoria.titulo}}
+                                </div>-->
+                                <div class="col-xs-12 tac fs14 fwbbold dn-flex flex-ai-center">
+                                    <div class="col-xs-4">
+                                        <div class="col-xs-12 tac p0">
+                                            Datos
+                                        </div>
+                                        <div class="col-xs-12 tac p0">
+                                            <img src="/Images/paquetesdatos.png" alt=""> 
+                                        </div>
+                                        <div class="col-xs-12 tac p0">
+                                            {{pa.cantidadDatos}}
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="col-xs-12 tac p0">
+                                            Voz
+                                        </div>
+                                        <div class="col-xs-12 tac p0">
+                                            <img src="/Images/paquetesvoz.png" alt=""> 
+                                        </div>
+                                        <div class="col-xs-12 tac p0">
+                                            {{pa.cantidadVoz}}
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="col-xs-12 tac p0">
+                                            SMS
+                                        </div>
+                                        <div class="col-xs-12 tac p0">
+                                            <img src="/Images/icon_sms.png" alt=""> 
+                                        </div>
+                                        <div class="col-xs-12 tac p0">
+                                            {{pa.cantidadSMS}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 tac fwbbold corange fs22">
+                                    {{fnreplace(pa.precio)}}
+                                </div>
+                                <div class="col-xs-12 tac cblack fs13">
+                                    Costo paquete
+                                </div>
+                                <div class="col-xs-12 cbluelight fs13 mt10 mb10 cpointer bnfocusounder" ng-click="detallePaquetesRecargas(pa.descripcion)">
+                                    Descripción del paquete
+                                </div>
+                                <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoContraSaldo == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,1);Tagging('Postpago','bt_pos_ini_paqyrecar_paq1_pagsal')">
+                                    <div class="col-xs-2">
+                                        <img src="/Images/icon_claro.png" alt="Pagar contra saldo">
+                                    </div>
+                                    <div class="col-xs-10">
+                                        Pagar contra saldo
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoEnLinea == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,2)">
+                                    <div class="col-xs-2">
+                                        <img src="/Images/icon_mediodepago.png" alt="Pagar contra saldo">
+                                    </div>
+                                    <div class="col-xs-10 p0">
+                                        Otros medios de pagos
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 p0" ng-if='vistaCategoria.idCategoria == "7"'>
+                        <!--Paquetes redes sociales-->
+                        <div class="col-xs-12 mb15" ng-repeat="pa in paquetes" ng-if='pa.categoriaPaqueteID == vistaCategoria.idCategoria'>
+                            <div class="col-xs-12 bslbposconsumo pb15 pt15 br10all">
+                                <div class="col-xs-12 tac fs18 fwbbold">
+                                    {{pa.nombre}}
+                                </div>
+                                <div class="col-xs-12 tac corange fs12">
+                                    {{vistaCategoria.titulo}}
+                                </div>
+                                <div class="col-xs-12 tac fwbbold corange fs22">
+                                    {{fnreplace(pa.precio)}}
+                                </div>
+                                <div class="col-xs-12 tac cblack fs13">
+                                    Costo paquete
+                                </div>
+                                <div class="col-xs-12 cbluelight fs13 mt10 mb10 cpointer bnfocusounder" ng-click="detallePaquetesRecargas(pa.descripcion)">
+                                    Descripción del paquete
+                                </div>
+                                <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoContraSaldo == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,1);Tagging('Postpago','bt_pos_ini_paqyrecar_paq1_pagsal')">
+                                    <div class="col-xs-2">
+                                        <img src="/Images/icon_claro.png" alt="Pagar contra saldo">
+                                    </div>
+                                    <div class="col-xs-10">
+                                        Pagar contra saldo
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 p0 bgcorange cwhite pt10 pb10 fs14 tac mt3p cpointer RobotoBold br10all" ng-if='pa.aplicaPagoEnLinea == "true"' ng-click="verCompraPaquete(pa,vistaCategoria,2)">
+                                    <div class="col-xs-2">
+                                        <img src="/Images/icon_mediodepago.png" alt="Pagar contra saldo">
+                                    </div>
+                                    <div class="col-xs-10 p0">
+                                        Otros medios de pagos
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <!--Recargas-->
+                    <div class="col-xs-12 p0" ng-if='vistaCategoria.idCategoria == "-1"'>
+                        <div class="col-xs-12 col-md-8 col-md-offset-2 p0 ">
+                            <div class="col-xs-12 p0 tac">
+                                <div class="col-xs-2">
+                                    <img src="/Images/icon_Recargas.png" alt="vista recargas">
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="col-xs-12 p0 fwbbold">
+                                        Recargas
+                                    </div>
+                                    <div class="col-xs-12 p0">
+                                        En linea
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-md-offset-3 p0 mt20">
+                            <div class="col-xs-12 bslbposconsumo pt15 pb15">
+                                <div class="col-xs-12 tac mb20">
+                                    ¿Cúal es el valor que deseas recargar?
+                                </div>
+                                <div class="col-xs-12 mb15">
+                                    <div class="col-xs-12 cgray fs18 mt1p">
+                                        <select ng-model="parametros.valrecargas" class="col-xs-12 fs18 p7 bnfocusounder">
+                                          <option ng-repeat="item in recagas" value="{{$index}}">{{fnreplace(item.valor)}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 p0">
+                                    <div class="col-xs-12 p0 bclilalight cwhite pt10 pb10 fs18 tac mt3p cpointer RobotoBold">
+                                        Recargas
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    			</div>
+    		</div>
+    	</md-content>
+    </div>
+</div>

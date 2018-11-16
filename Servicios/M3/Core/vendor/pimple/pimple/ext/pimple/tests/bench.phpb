@@ -1,0 +1,51 @@
+<?php
+
+if (!class_exists('Pimple\Container')) {
+    require_once __DIR__ . '/../../../src/Pimple/Container.php';
+} else {
+    echo "pimple-c extension detected, using...\n\n";
+}
+
+$Vlbwbnl10iav = microtime(true);
+
+function foo() { }
+$Vdnxqjiaf0hs = function () { };
+
+for ($Vxja1abp34yq=0; $Vxja1abp34yq<10000; $Vxja1abp34yq++) {
+
+$Vbf4sq4psyai = new Pimple\Container;
+
+$Vbf4sq4psyai['foo'] = 'bar';
+
+if (!isset($Vbf4sq4psyai[3])) {
+    $Vbf4sq4psyai[3] = $Vbf4sq4psyai['foo'];
+    $Vbf4sq4psyai[]  = 'bar';
+}
+
+$Vbf4sq4psyai[2] = 42;
+
+if (isset($Vbf4sq4psyai[2])) {
+	unset($Vbf4sq4psyai[2]);
+}
+
+$Vbf4sq4psyai[42] = $Vbf4sq4psyai['foo'];
+
+$Vbf4sq4psyai['cb'] = function($V5mddzgxir3y) { };
+
+$Vbf4sq4psyai[] = $Vbf4sq4psyai['cb'];
+
+echo $Vbf4sq4psyai['cb'];
+echo $Vbf4sq4psyai['cb'];
+echo $Vbf4sq4psyai['cb'];
+
+
+
+$Vbf4sq4psyai['factory'] = $Vdnxqjiaf0hs;
+
+echo $Vbf4sq4psyai['factory'];
+echo $Vbf4sq4psyai['factory'];
+echo $Vbf4sq4psyai['factory'];
+
+}
+
+echo microtime(true)  - $Vlbwbnl10iav;

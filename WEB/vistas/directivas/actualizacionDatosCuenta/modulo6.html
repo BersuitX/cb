@@ -1,0 +1,61 @@
+<script>
+    var URLactual = window.location;
+    if (URLactual.pathname.indexOf('.') != -1) {
+        window.location.href = "/";
+    }
+</script>
+<div class="container-fluid" block-ui="blockDir">
+    <div class="col-xs-12 p0">
+        <div class="col-xs-12 fs40 fwbbold tac cgraybold mt25 mb20">
+            Actualizar tus datos
+        </div>
+        <div class="col-xs-12 p0 col-sm-4 col-sm-offset-4 mt25 mb10 fs20">
+            <div class="col-xs-2 col-sm-2 fs16 fwbbold cgraybold tar">
+                <img src="/Images/icon_celular.png">
+            </div><div class="col-xs-5 col-sm-5 fs18 fwbbold mt10 cgraybold tar">
+                Actualización de datos
+            </div>
+            <div class="col-xs-5 fs18 fwbbold corange mt10 tar">
+                 {{AccountId}}
+            </div>
+        </div>
+        <!--Contenido del plan (especificaciones)-->
+        <div class="row">
+            <div class="col-xs-12  col-md-10 col-md-offset-1 mt30 mb20 p0">
+                <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 cblack fs18 mt8p cgray fwbbold">
+                        <span>Nombres y apellidos:</span>
+                    </div>
+
+                    <div class="col-xs-12 cgray fs18 mt1p">
+                        <input type="text" class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-valid bn ng-empty ng-touched" ng-model="ObjSend.nombre" ng-disabled="true" disabled placeholder="Escribe tus nombres y apellidos" aria-invalid="false" style="">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 cblack fs18 mt8p cgray fwbbold">
+                        Tipo y número de identificación:
+                    </div>
+
+                    <div class="col-xs-12 cgray fs18 mt1p">
+                        <input type="text" class="col-xs-12 fs18 p7 outlinenone ng-pristine ng-untouched bn ng-valid ng-empty" ng-model="ObjSend.documento" ng-disabled="true" disabled placeholder="Escribe tu tipo y número de identificación" aria-invalid="false" style="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 col-md-offset-4 mt3p mb20">
+                <div class="col-xs-12 cblack fs18 cgray fwbbold">
+                    <span>Teléfono fijo:</span>
+                </div>
+                <div class="col-xs-12 bc1graylight bcgraylight">
+                    <input id="prePaquetesRecargas" type="text" class="col-xs-11 fs18 p7 outlinenone bn RobotoRegular bcgraylight ng-pristine ng-untouched ng-valid ng-not-empty" ng-disabled="true" ng-model="ObjSend.telefono" disabled="disabled" aria-invalid="false">
+                   <!-- <div class="col-xs-1 p0 tac bnfocusounder"  role="button" tabindex="0" ng-click="cambioModulo(8)">
+                        <img src="/Images/icon_editanum.png" class="ma mt8 outlinenone">
+                    </div>-->
+                </div>
+            </div>
+
+        </div>
+         <div class="col-xs-2 col-xs-offset-5 tac p0 cpointer bclilalight cwhite mt8p mb20 pt10 pb10 fs17" ng-click="cambioModulo(2)">
+            Volver
+        </div>
+    </div>
+</div>
