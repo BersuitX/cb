@@ -1,3 +1,0 @@
-{
-    "data":"<?=$Vfeinw1hsfej?>"
-}
