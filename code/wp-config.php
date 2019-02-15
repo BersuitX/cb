@@ -19,7 +19,7 @@
 define('DB_NAME', 'webproje_claro');
 
 /** Tu nombre de usuario de MySQL */
-define('DB_USER', 'webproje_claro');
+define('DB_USER', 'clarousr');
 
 /** Tu contraseña de MySQL */
 define('DB_PASSWORD', 'Yw-K2hu!oCip');
