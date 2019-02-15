@@ -1,0 +1,229 @@
+@font-face {
+	font-family: 'DIN Pro Light';
+	font-style: normal;
+	font-weight: normal;
+	src: local('fonts/DIN Pro Light'), url('fonts/DINPro-Light.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'DIN Pro';
+	font-style: normal;
+	font-weight: normal;
+	src: local('fonts/DIN Pro'), url('fonts/DINPro.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'DIN Pro Medium';
+	font-style: normal;
+	font-weight: normal;
+	src: local('fonts/DIN Pro Medium'), url('fonts/DINPro-Medium.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'DIN Pro Bold';
+	font-style: normal;
+	font-weight: normal;
+	src: local('fonts/DIN Pro Bold'), url('fonts/DINPro-Bold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'DIN Pro Black';
+	font-style: normal;
+	font-weight: normal;
+	src: local('fonts/DIN Pro Black'), url('fonts/DINPro-Black.woff') format('woff');
+}
+
+body{
+
+	padding: 0;
+	margin: 0;
+	height: 100vh;
+	width: 100vw;
+	
+
+
+	background: rgba(215,217,219,1);
+	background: -moz-linear-gradient(left, rgba(215,217,219,1) 0%, rgba(249,250,250,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(215,217,219,1)), color-stop(100%, rgba(249,250,250,1)));
+	background: -webkit-linear-gradient(left, rgba(215,217,219,1) 0%, rgba(249,250,250,1) 100%);
+	background: -o-linear-gradient(left, rgba(215,217,219,1) 0%, rgba(249,250,250,1) 100%);
+	background: -ms-linear-gradient(left, rgba(215,217,219,1) 0%, rgba(249,250,250,1) 100%);
+	background: linear-gradient(to right, rgba(215,217,219,1) 0%, rgba(249,250,250,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7d9db', endColorstr='#f9fafa', GradientType=1 );
+}
+
+p{
+	padding: 0;
+	margin: 0;
+}
+
+.container{
+	width:100vw;
+	height: 100vh;
+	max-width:1500px;
+	margin: auto;
+	position: relative;
+}
+
+.personas{
+	position: absolute;
+	bottom: 0;
+	left:-60px;
+}
+
+.personas img{
+	width:90%;
+	max-width:800px;
+	vertical-align: bottom;
+	animation: llegada 1s linear;
+}
+
+.text{
+	position: absolute;
+	top:30vh;
+	right: 5vw;
+	text-align: center;
+}
+
+
+h1{
+	font-family: 'DIN Pro Black';
+	color:#ed1c24;
+	font-size: 70px;
+	margin: 0;
+	padding: 10px 0px;
+	animation: text 1.5s;
+}
+
+.text-description{ 
+	font-family: 'DIN Pro Bold';
+	font-size: 47px;
+	animation: text 1.7s;
+}
+
+
+/* Iconos Wp */
+
+.wp-desenfoque-1{
+	position: absolute;
+	animation: move-1 linear 2s infinite;
+}
+
+.wp-desenfoque-1 img{
+	width:100%;
+	max-width: 150px;
+}
+
+.wp-desenfoque-2{
+	position: absolute;
+	animation: move-2 linear 5s infinite;
+}
+
+.wp-desenfoque-2 img{
+	width:100%;
+	max-width: 40px;
+}
+
+.wp-1{
+	position: absolute;
+	left: 75%;
+	animation: move-wp1 linear 1s infinite;
+}
+
+.wp-2{
+	position: absolute;
+	bottom:13vh;
+	right: 5vw;
+}
+
+.wp-1 img{
+	max-width: 85px;
+}
+
+.wp-2 img{
+	width:100%;
+	max-width: 108px;
+}
+
+
+/* Iconos SMS */
+
+.sms-1{
+	position: absolute;
+	top: 31vh;
+	left:2vw;
+}
+
+.sms-1 img{
+	width:100%;
+	max-width: 50px;
+}
+
+.sms-2{
+	position: absolute;
+	bottom: 10vh;
+	left:47%;
+}
+
+.sms-2 img{
+	width:100%;
+	max-width: 50px;
+}
+
+.sms-3{
+	position: absolute;
+	top: 20vh;
+	left:38%;
+}
+
+.sms-3 img{
+	width:100%;
+	max-width: 67px;
+}
+
+
+
+@keyframes move-1{
+  0%   {left:-40px; top:7vh; }
+  25%  {left:-35px; top:7.5vh;}
+  50%  {left:-40px; top:8vh;}
+  75%  {left:-45px; top:7.5vh;}
+  100% {left:-40px; top:7vh;}
+}
+
+@keyframes move-2 {
+  0%   {left:50%; bottom:30%; transform: rotate(0deg); }
+  25%  {left:51%; bottom:28%; transform: rotate(180deg); }
+  50%  {left:50%; bottom:26%; transform: rotate(250deg); }
+  75%  {left:49%; bottom:28%; transform: rotate(0deg); }
+  100% {left:50%; bottom:30%; transform: rotate(359deg); }
+}
+
+@keyframes move-wp1 {
+  0%   {top: 14vh;}
+  50%  {top: 14.4vh;}
+  100% {top: 14vh;}
+}
+
+@keyframes llegada {
+  	0%   {max-width: 0px;}
+  	25%  {max-width: 200px;}
+  	50%  {max-width: 400px;}
+  	75%  {max-width: 600px;}
+  	100% {max-width: 800px;}
+}
+
+@keyframes text {
+  from {
+    margin-left: 100%;
+    width: 300%; 
+    color: rgba(255,255,255,.9);
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+
