@@ -22,7 +22,7 @@ define('DB_NAME', 'webproje_claro');
 define('DB_USER', 'clarousr');
 
 /** Tu contraseña de MySQL */
-define('DB_PASSWORD', 'Yw-K2hu!oCip');
+define('DB_PASSWORD', 'Xch.R7Gsvr9PU');
 
 /** Host de MySQL (es muy probable que no necesites cambiarlo) */
 define('DB_HOST', '10.3.0.7');
