@@ -25,7 +25,7 @@ define('DB_USER', 'webproje_claro');
 define('DB_PASSWORD', 'Yw-K2hu!oCip');
 
 /** Host de MySQL (es muy probable que no necesites cambiarlo) */
-define('DB_HOST', 'localhost');
+define('DB_HOST', '10.3.0.7');
 
 /** Codificación de caracteres para la base de datos. */
 define('DB_CHARSET', 'utf8mb4');
